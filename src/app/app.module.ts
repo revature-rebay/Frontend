@@ -7,12 +7,18 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
+import { ProductComponent } from './src/app/models/product/product.component';
+import { ProductModel } from './models/product/product.model';
+import { TestModel } from './models/test/test.model';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    ProductComponent,
+    ProductModel,
+    TestModel
   ],
   imports: [
     BrowserModule,
