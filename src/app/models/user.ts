@@ -1,4 +1,5 @@
 export class User {
+
     public id:number;
     public username:string;
     public password:string; 
@@ -6,8 +7,9 @@ export class User {
     public firstName:string; 
     public lastName:string; 
     public roleId:number; 
+    
     constructor(obj?:User){
-        
+
             this.id = obj?.id ?? 0
             this.username = obj?.username ?? ""
             this.password = obj?.password ?? ""
