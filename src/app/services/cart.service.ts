@@ -93,7 +93,7 @@ export class CartService {
       })
     };
     const body = JSON.stringify(cartItem);
-    return this.http.put<CartItem[]>(`${this.baseURL}delete`, body, httpOptions);
+    return this.http.put<CartItem[]>(`${this.baseURL}cart/delete`, body, httpOptions);
   }
 
  clearCart(userId: string): Observable<Object> {

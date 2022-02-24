@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { CartDTO } from 'src/app/models/cart-dto';
 import { CartItem } from 'src/app/models/cart-item';
 import { CartService } from 'src/app/services/cart.service';
+
 
 
 @Component({
@@ -30,10 +32,24 @@ export class CartComponent implements OnInit {
   }
 
   addProductCart(/*possible input*/): void {
-    this.cartService.addProductToCart(this.userProductInput,this.userIdInput,this.userQuantityInput).subscribe(
+    this.cartService.addProductToCart(this.userIdInput,this.userProductInput,this.userQuantityInput).subscribe(
       res => {
         this.cart = res;
       });
     
   } 
+
+  deleteProduct(): void{
+    const cartdto = <CartDTO>({
+      userId: parseInt(this.userIdInput),
+      quantity: parseInt(this.userQuantityInput),
+      productId: parseInt(this.userProductInput)
+    })
+    
+      this.cartService.deleteProduct(cartdto).subscribe(
+      res => {
+        this.cart =res;
+      }
+    );
+  }
 }
