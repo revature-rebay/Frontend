@@ -60,3 +60,20 @@
     </div>
 </div>
 <!-- Product Listing -->
+<!-- Featured Product-->
+<div class="home-container">
+    
+    <div class="featured">
+      <div class="featured__header">
+        <h2>Featured Products</h2>
+      </div>
+      <div class="featured__list">
+        <app-featured-card
+          *ngFor="let featured of products"
+          [singleproduct]="featured"
+        >
+        </app-featured-card>
+      </div>
+    </div>
+</div>
+<!-- Featured Product-->
