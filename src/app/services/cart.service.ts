@@ -50,6 +50,21 @@ export class CartService {
     return [item, item2, item3]
   }
 
+  addProductToCart(userId:string, productId:string, quantity:string):Observable<any[]>{
+    console.log(userId)
+    console.log(productId)
+    console.log(quantity)
+    let body = {
+      userId:Number.parseInt(userId),
+      productId:Number.parseInt(productId),
+      quantity:Number.parseInt(quantity)
+    };
+    console.log(body);
+    let respone = this.http.post<any>(this.baseURL+"add", body).pipe()
+    console.log(respone);
+    return respone;
+  }
+
   updateProductQuantity(cartItem:CartItem):Observable<CartItem[]> {
     const httpOptions= {
       headers: new HttpHeaders({
