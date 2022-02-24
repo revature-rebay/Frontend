@@ -22,7 +22,7 @@ export class MainComponent implements OnInit {
 
 
   
-  // quanity incrementer 
+  // quantity incrementer 
   quantity:number = 1;
   i=1;
   plus(){
@@ -37,6 +37,6 @@ export class MainComponent implements OnInit {
       this.quantity = this.i;
     }
   }
-  // quanity incrementer
+  // quantity incrementer
 
 }
