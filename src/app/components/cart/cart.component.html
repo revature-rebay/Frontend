@@ -1,4 +1,9 @@
+<span><input type="text" [(ngModel)]= 'userQuantityInput' placeholder="User Quantity Input"><button></button> </span>
+<span><input type="text" [(ngModel)]= 'userIdInput' placeholder="User ID Input"> <button></button></span>
+<span><input type="text" [(ngModel)]= 'userProductInput' placeholder="User Product Input"><button (click)="addProductCart()"></button></span>
+
 <div *ngFor="let cartItem of cart">
+
     <app-cart-item
     [itemQuantity] = cartItem.quantity
     [productName] = cartItem.product.productName

@@ -4,6 +4,8 @@ import { CartItem } from '../models/cart-item';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ProductModel } from '../models/product/product.model';
+import { CartDTO } from '../models/cart-dto';
+
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +81,29 @@ export class CartService {
       })
     };
     const body = JSON.stringify(cartItem);
-    return this.http.put<CartItem[]>(this.baseURL+'/update', body, httpOptions);
+    return this.http.put<CartItem[]>(`${this.baseURL}update`, body, httpOptions);
   }
+
+
+  deleteProduct(cartItem:CartDTO):Observable<CartItem[]> {
+    const httpOptions= {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'my-auth-token'
+      })
+    };
+    const body = JSON.stringify(cartItem);
+    return this.http.put<CartItem[]>(`${this.baseURL}delete`, body, httpOptions);
+  }
+
+ clearCart(userId: string): Observable<Object> {
+  const httpOptions= {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      Authorization: 'my-auth-token',
+      observe: 'response'
+    })
+  };
+  return this.http.delete(`${this.baseURL + userId}`, httpOptions);
+ }
 }

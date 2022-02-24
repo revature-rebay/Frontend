@@ -10,7 +10,11 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class CartComponent implements OnInit {
   cart!: CartItem[];
-  userId: string = '0';
+  userId: string = '1';
+  userQuantityInput: string = '';
+  userIdInput: string = '';
+  userProductInput: string = '';
+
 
   constructor(private cartService: CartService) {}
 
@@ -24,4 +28,12 @@ export class CartComponent implements OnInit {
       this.cart = res;
     });
   }
+
+  addProductCart(/*possible input*/): void {
+    this.cartService.addProductToCart(this.userProductInput,this.userIdInput,this.userQuantityInput).subscribe(
+      res => {
+        this.cart = res;
+      });
+    
+  } 
 }
