@@ -1,12 +1,5 @@
-import { Byte } from '@angular/compiler/src/util';
-import { Component, OnInit } from '@angular/core';
 
-@Component({
-  selector: 'app-product',
-  templateUrl: './product.model.html',
-  styleUrls: ['./product.model.css']
-})
-export class ProductModel implements OnInit {
+export class ProductModel {
 
   productId: number;
   productName: string;
@@ -25,8 +18,5 @@ export class ProductModel implements OnInit {
     this.currentStock = currentStock;
     this.productImage = productImage;
    }
-
-  ngOnInit(): void {
-  }
 
 }
