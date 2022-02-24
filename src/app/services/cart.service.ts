@@ -68,7 +68,7 @@ export class CartService {
       quantity:Number.parseInt(quantity)
     };
     console.log(body);
-    let respone = this.http.post<any>(this.baseURL+"add", body).pipe()
+    let respone = this.http.post<any>(this.baseURL+"cart/add", body).pipe()
     console.log(respone);
     return respone;
   }
