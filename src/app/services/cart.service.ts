@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { CartItem } from '../models/cart-item';
+import { HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { ProductModel } from '../models/product/product.model';
 
 @Injectable({
@@ -7,10 +10,11 @@ import { ProductModel } from '../models/product/product.model';
 })
 export class CartService {
 
+  baseURL: string = "http://localhost:8080/";
   
   private cart !: CartItem[];
 
-  constructor() { 
+  constructor(private http:  HttpClient) { 
     this.cart = this.getCart();
   }
 
@@ -44,5 +48,16 @@ export class CartService {
     };
 
     return [item, item2, item3]
+  }
+
+  updateProductQuantity(cartItem:CartItem):Observable<CartItem[]> {
+    const httpOptions= {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'my-auth-token'
+      })
+    };
+    const body = JSON.stringify(cartItem);
+    return this.http.put<CartItem[]>(this.baseURL+'/update', body, httpOptions);
   }
 }
