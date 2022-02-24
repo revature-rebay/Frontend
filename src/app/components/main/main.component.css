@@ -588,3 +588,53 @@
     }
  
 }
+
+/* * {
+	box-sizing: border-box;
+	min-width: 0;
+	min-height: 0; 
+} */
+body {
+	margin: 0;
+	font-size: 1.4rem;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	/* line-height: 1.5; */
+	color: #575757;	
+}
+button {
+	padding: 0;
+	margin: 0;
+	border-style: none;
+	touch-action: manipulation;
+	display: inline-block;
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+.qty {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	text-align: center;
+}
+    
+input {
+		width: 5.5rem; height: 1.7rem;	
+		font-size: 1.3rem;
+		text-align: center;
+		border: 1px solid;
+}
+button {
+		width: 1.7rem; height: 1.7rem;
+		color: #fff;
+		font-size: 1rem;
+		background: #F26925;
+}
+button.qtyminus {
+		margin-right: 0.3rem;
+}
+button.qtyplus {
+		margin-left: 0.3rem;
+}
+

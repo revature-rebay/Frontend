@@ -1,5 +1,6 @@
+
 <div class="container">
-    <div class="col-xs-12 col-md-6">
+    <div class="col-xs-12 col-md-4">
         <div class="prod-info-main prod-wrap clearfix">
 
             <div class="row">
@@ -51,15 +52,27 @@
 
                     </div>
 
+                    <section>
+                        <form action="">
+                            <p class="qty">
+                                <button class="qtyminus" aria-hidden="true" type="button" (click)="minus()">&minus;</button>
+                                <input type="number" name="qty" id="qty" min="1" max="10" step="1" [value]="quantity">
+                                <button class="qtyplus" aria-hidden="true" type="button" (click)="plus()">&plus;</button>
+                            </p>
+                        </form>			
+                    </section>
+
                     <div class="product-info smart-form">
 
                         <div class="row">
 
-                            <div class="col-md-12">
+                            <div class="col-md-12 justify-content-center">
 
                                 <a href="#" class="btn btn-dark" style="background-color:#F26925">Add to cart</a>
+
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

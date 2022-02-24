@@ -12,4 +12,31 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+
+
+
+
+
+
+
+
+  
+  // quanity incrementer 
+  quantity:number = 1;
+  i=1;
+  plus(){
+    if(this.i < 100){
+      this.i++;
+      this.quantity = this.i;
+    }
+  }
+  minus(){
+    if(this.i != 1){
+      this.i--;
+      this.quantity = this.i;
+    }
+  }
+  // quanity incrementer
+
 }
