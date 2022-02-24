@@ -1,0 +1,30 @@
+<div class="product-card" *ngIf="(singleproduct.featuredProduct == true)">
+    <div class="product-card__image" routerLink="/product/{{ singleproduct.productId }}">
+      <img src="{{ singleproduct.productImage }}" alt="" />
+    </div>
+    <div class="product-card__info">
+      <header>
+        <div class="title">
+          <div class="product-name">{{ singleproduct.productName }}</div>
+        </div>
+        <div class="product-price">{{ singleproduct.productPrice | currency: "USD" }}</div>
+      </header>
+    </div>
+    <div class="product-card__cta">
+      <button
+        nz-button
+        [disabled]="singleproduct.currentStock === 0"
+        (click)="
+          onAdd({
+            productId: singleproduct.productId,
+            productPrice: singleproduct.productPrice,
+            productImage: singleproduct.productImage,
+            productName: singleproduct.productName,
+            maxQuantity: singleproduct.currentStock
+          })
+        "
+      >
+        {{ singleproduct.currentStock === 0 ? "Out of stock" : "Add to cart" }}
+      </button>
+    </div>
+  </div>
