@@ -19,9 +19,24 @@ export class LoginService {
 
   }
 
-  login(){
+  login(user:User){
+    
+    return this.http.post<User>(this.url +"user/login", user, {withCredentials:true});
 
+  }
 
+  logout(){
+
+    return this.http.post(this.url+"user/logout", null, {withCredentials:true});
+
+  }
+
+  getCurrentUser(){
+    return this.http.get<User>(this.url+"user/current", {withCredentials:true});
+  }
+
+  getUserById(id:number){
+    return this.http.get<User>(this.url+"user/"+id, {withCredentials:true});
   }
 
 }
