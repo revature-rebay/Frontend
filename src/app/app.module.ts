@@ -8,14 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
-import { ProductModel } from './models/product/product.model';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MainComponent,
-    ProductModel
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -27,4 +25,5 @@ import { ProductModel } from './models/product/product.model';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
