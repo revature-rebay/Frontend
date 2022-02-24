@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    
     this.user.userName = this.userName;
     this.user.passWord = this.passWord;
 
@@ -49,6 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   signup() {
+
     this.user.userName = this.userName;
     this.user.passWord = this.passWord;
     this.user.email = this.email;
