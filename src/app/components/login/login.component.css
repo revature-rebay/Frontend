@@ -13,7 +13,7 @@
     width: 100%;
     margin: auto;
     max-width: 525px;
-    min-height: 600px;
+    min-height: 690px;
     position: relative;
     background-color: black;
     box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, .19)
@@ -24,7 +24,7 @@
     position: absolute;
     padding: 90px 70px 50px 70px;
     background: #F26925;
-    background-image: linear-gradient(135deg, #F26925 65%, #474C55);
+    /* background-image: linear-gradient(135deg, #F26925 65%, #474C55); */
 }
 .login-snip .login,
 .login-snip .sign-up-form {
