@@ -9,13 +9,23 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { FeaturedCardComponent } from './components/featured-card/featured-card.component';
+import { CartComponent } from './components/cart/cart.component';
+import { CartItemComponent } from './components/cart-item/cart-item.component';
+import { CartPanelComponent } from './components/cart-panel/cart-panel.component';
+import { CartPanelContentComponent } from './components/cart-panel-content/cart-panel-content.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MainComponent,
-    FeaturedCardComponent
+    FeaturedCardComponent,
+    CartComponent,
+    CartItemComponent,
+    CartPanelComponent,
+    CartPanelContentComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
