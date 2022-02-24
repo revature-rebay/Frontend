@@ -9,13 +9,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { FeaturedCardComponent } from './components/featured-card/featured-card.component';
+import { ProductPageComponent } from './components/product-page/product-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     MainComponent,
-    FeaturedCardComponent
+    FeaturedCardComponent,
+    ProductPageComponent
   ],
   imports: [
     BrowserModule,
