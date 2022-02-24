@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductModel } from 'src/app/models/product/product.model';
 
 @Component({
   selector: 'app-main',
@@ -7,12 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
+  products: ProductModel[] = [];
   constructor() { }
 
   ngOnInit(): void {
   }
-
-
 
 
 
@@ -37,6 +37,6 @@ export class MainComponent implements OnInit {
       this.quantity = this.i;
     }
   }
-  // quantity incrementer
+  
 
 }
