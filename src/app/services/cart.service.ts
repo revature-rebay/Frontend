@@ -15,39 +15,45 @@ export class CartService {
   private cart !: CartItem[];
 
   constructor(private http:  HttpClient) { 
-    this.cart = this.getCart();
   }
 
-  getCart():CartItem[] {
+  getCart(userId:string):Observable<CartItem[]>{
    
-    //temp
-    //remove
-    let product = new ProductModel(1, 'TV', 50, 0, true, 50, new ArrayBuffer(56));
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'my-auth-token'
+      }),
+    };
+
+    //TODO Get UserId dynamicaly
+    return this.http.get<CartItem[]>(`${this.baseURL}cart/${userId}`, httpOptions);
     
+    
+    // let product = new ProductModel(1, 'TV', 50, 0, true, 50, new ArrayBuffer(56));
+    // let item = {
+    //   id:1,
+    //   quantity:2,
+    //   product: product
+    // };
 
-    let item = {
-      id:1,
-      quantity:2,
-      product: product
-    };
+    // let product2 = new ProductModel(2, 'Fridge', 150, 0, true, 50, new ArrayBuffer(56));
 
-    let product2 = new ProductModel(2, 'Fridge', 150, 0, true, 50, new ArrayBuffer(56));
+    // let item2 = {
+    //   id:1,
+    //   quantity:2,
+    //   product: product2
+    // };
 
-    let item2 = {
-      id:1,
-      quantity:2,
-      product: product2
-    };
+    // let product3 = new ProductModel(3, 'PC', 250, 0, true, 50, new ArrayBuffer(56));
 
-    let product3 = new ProductModel(3, 'PC', 250, 0, true, 50, new ArrayBuffer(56));
+    // let item3 = {
+    //   id:1,
+    //   quantity:2,
+    //   product: product3
+    // };
 
-    let item3 = {
-      id:1,
-      quantity:2,
-      product: product3
-    };
-
-    return [item, item2, item3]
+    // return [item, item2, item3]
   }
 
   addProductToCart(userId:string, productId:string, quantity:string):Observable<any[]>{
