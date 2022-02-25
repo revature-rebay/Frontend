@@ -33,11 +33,13 @@ export class LoginService {
   getCurrentUser() {
 
     return this.http.get<User>(this.url + "user/current", { withCredentials: true });
+
   }
 
   getUserById(id: number) {
 
     return this.http.get<User>(this.url + "user/" + id, { withCredentials: true });
+    
   }
 
 }

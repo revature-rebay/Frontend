@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    
+
     this.user.userName = this.userName;
     this.user.passWord = this.passWord;
 
@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
       next: response => {
         this.user = response
         console.log(this.user);
-
 
         if (this.user != null) {
           this.router.navigate([`main`]);
