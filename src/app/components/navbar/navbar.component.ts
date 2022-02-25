@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { delay } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -13,20 +12,17 @@ export class NavbarComponent implements OnInit {
 
     currentUser!: User;
 
-  constructor(private user: LoginService, private router:Router) {
-
+  constructor(public user: LoginService, private router:Router) {
+    this.updateNavbarUser();
    }
 
   ngOnInit(): void {
     this.updateNavbarUser();
-    console.log(this.currentUser);
     
   }
 
   updateNavbarUser(): void {
-    this.currentUser = new User();
-    delay(1000);
-    console.log("updated current user info");
+    this.currentUser = this.user.getCurrentUser();
   }
 
   revealCurrentUser():void {
@@ -34,8 +30,7 @@ export class NavbarComponent implements OnInit {
   }
 
   userLoggedIn():boolean {
-    if (this.currentUser.id == 0) return false;
-    return true;
+    return this.user.userLoggedIn();
   }
 
   logOut():void {
