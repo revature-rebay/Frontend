@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { User } from '../models/user';
 
 @Injectable({
@@ -19,7 +18,6 @@ export class LoginService {
   }
 
   login(user: User) {
-    console.log(user);
 
     return this.http.post<User>(this.url + "user/login", user, { withCredentials: true });
 
@@ -32,11 +30,15 @@ export class LoginService {
   }
 
   getCurrentUser() {
+
     return this.http.get<User>(this.url + "user/current", { withCredentials: true });
+
   }
 
   getUserById(id: number) {
+
     return this.http.get<User>(this.url + "user/" + id, { withCredentials: true });
+    
   }
 
 }
