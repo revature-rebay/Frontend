@@ -4,7 +4,7 @@ import { ProductModel } from '../models/product/product.model';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ProductService } from './product.service';
 
-fdescribe('ProductService', () => {
+describe('ProductService', () => {
   let service: ProductService;
 
   beforeEach(() => {

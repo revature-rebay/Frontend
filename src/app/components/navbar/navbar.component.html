@@ -7,7 +7,7 @@
             <!-- Logo -->
           <div class="col-md-4 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0">
             <a routerLinkActive="true" routerLink="main" class="ms-md-2">
-                <img src="https://trello.com/1/cards/620e67c198089c4edb5e73f6/attachments/620e67c198089c4edb5e75f6/download/rev-logo(1).png"  width="200" height="60" alt="rev logo">
+                <img src="assets/images/rev-logo.jpg"  width="200" height="60" alt="rev logo">
             </a>
           </div>
             <!-- Logo -->
@@ -42,9 +42,9 @@
                 <!-- Cart -->
 
                     <!-- Sign Up & Login Links -->
-                <a routerLinkActive="true" routerLink="login" id="signup" style="margin-right:5px; text-decoration: none;"><span class="nav navbar-nav navbar-right">Sign Up</span></a>
+                <a routerLinkActive="true" routerLink="login" *ngIf= "!userLoggedIn()" id="signup" style="margin-right:5px; text-decoration: none;"><span class="nav navbar-nav navbar-right">Sign Up</span></a>
                 &nbsp;&nbsp;<span style="color:#F26925;">|</span>&nbsp;&nbsp;
-                <a routerLinkActive="true" routerLink="login" style="text-decoration: none;"><span class="nav navbar-nav navbar-right">Login</span></a>
+                <a routerLinkActive="true" routerLink="login" *ngIf= "!userLoggedIn()" style="text-decoration: none;"><span class="nav navbar-nav navbar-right">Login</span></a>
                     <!-- Sign Up & Login Links -->
   
             </div>
@@ -72,7 +72,7 @@
   
             <!-- User Dropdown (Shows up AFTER User Logs In) -->
         <div class="dropdown">
-            <span style="color:#F26925; padding-bottom: -25px;">Hello, (User) <span style="color:#af4e1d;">⌄</span></span>
+            <span style="color:#F26925; padding-bottom: -25px;" *ngIf= "userLoggedIn()">Hello, (User) <span style="color:#af4e1d;">⌄</span></span>
             <!-- <button  class="dropbtn">Dropdown</button> -->
             <div class="dropdown-content" style="background-color:#474C55">
               <a routerLinkActive="true" routerLink="login" *ngIf= "userLoggedIn()">Update Profile</a>
