@@ -13,7 +13,22 @@
     [ngStyle]="getSideNavBarStyle()">
         
         <!-- close button -->
-        <div><span class="material-icons side-nav-bar-close" (click)="onSidebarClose()">clear</span></div>
+        <div class="row">
+            <div class="col-2">
+                <span class="material-icons side-nav-bar-close" (click)="onSidebarClose()">clear</span>
+            </div>
+            <div class="col mt-5">
+                <div class="mt-4">
+                    <p class="text-center me-5">This order ships for free!</p> 
+                </div>
+                <button class="btn btn-outline-secondary rounded-pill mt-2"><span class="shopping-cart material-icons align-middle">
+                    shopping_cart
+                    </span>Review Cart</button>
+                <button class="btn btn-secondary rounded-pill ms-4 mt-2">Checkout Now</button>
+                <p class="text-end mt-4 me-5">Subtotal: {{890 | currency}}</p>
+                </div>
+            
+        </div>
 
         <!-- side bar content -->
         <div class="side-nav-bar-content-container">

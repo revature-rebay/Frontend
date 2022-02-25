@@ -1,8 +1,8 @@
-<span><input type="text" [(ngModel)]= 'userQuantityInput' placeholder="User Quantity Input"><button>Update</button> </span>
-<span><input type="text" [(ngModel)]= 'userIdInput' placeholder="User ID Input"> <button (click)="deleteProduct()">delete</button></span>
-<span><input type="text" [(ngModel)]= 'userProductInput' placeholder="User Product Input"><button (click)="addProductCart()">add</button></span>
+<!-- <span><input type="text" [(ngModel)]= 'userQuantityInput' placeholder="User Quantity Input"><button>Update</button> </span> -->
+<!-- <span><input type="text" [(ngModel)]= 'userIdInput' placeholder="User ID Input"> <button (click)="deleteProduct()">delete</button></span> -->
+<!-- <span><input type="text" [(ngModel)]= 'userProductInput' placeholder="User Product Input"><button (click)="addProductCart()">add</button></span> -->
 
-<div *ngFor="let cartItem of cart">
+<!-- <div *ngFor="let cartItem of cart">
 
     <app-cart-item
     [itemQuantity] = cartItem.quantity
@@ -11,7 +11,11 @@
     [productImage] = cartItem.product.productImage
     
     ></app-cart-item>
-</div>
+</div> -->
+
+<app-cart-item>
+
+</app-cart-item>
 
 
 

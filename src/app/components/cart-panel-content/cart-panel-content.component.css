@@ -16,7 +16,7 @@
     top: 0;
     bottom: 0;
     /* background: #FFF; */
-    background: lightgrey;
+    background: #fff;
     display: flex;
     flex-direction: column;
   }
@@ -25,8 +25,10 @@
     font-size: 2.5em;
     margin: 24px 0px 0px 24px;
     cursor: pointer;
+    color: #F26925;
   }
   .side-nav-bar .side-nav-bar-content-container {
+    overflow-y: scroll;
     padding: 32px;
   }
   .side-nav-bar-overlay-collapsed {
