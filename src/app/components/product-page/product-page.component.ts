@@ -26,7 +26,7 @@ export class ProductPageComponent implements OnInit {
         this.productImage = 'data:image/jpg;base64,' + data;
 
         let img = document.getElementById("product-image") as HTMLImageElement;
-        img.src = this.productImage;
+        //img.src = this.productImage;
       }
     )
   }
