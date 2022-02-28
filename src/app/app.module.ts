@@ -14,6 +14,8 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { CartPanelComponent } from './components/cart-panel/cart-panel.component';
 import { CartPanelContentComponent } from './components/cart-panel-content/cart-panel-content.component';
 import { HeaderComponent } from './components/header/header.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { ProductPageComponent } from './components/product-page/product-page.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { HeaderComponent } from './components/header/header.component';
     CartItemComponent,
     CartPanelComponent,
     CartPanelContentComponent,
-    HeaderComponent
+    HeaderComponent,
+    NavbarComponent,
+    ProductPageComponent
   ],
   imports: [
     BrowserModule,

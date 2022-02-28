@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
+import { ProductPageComponent } from './components/product-page/product-page.component';
 
 const routes: Routes = [{
   path: 'main',
@@ -14,6 +15,9 @@ const routes: Routes = [{
 {
   path: 'cart',
   component: HeaderComponent
+}, {
+  path: 'product_page',
+  component: ProductPageComponent
 }
 ];
 
