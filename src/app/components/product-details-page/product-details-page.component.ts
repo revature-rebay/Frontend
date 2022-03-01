@@ -13,11 +13,15 @@ export class ProductDetailsPageComponent implements OnInit {
   //currentlySelectedProduct:ProductModel = new ProductModel(0, "", "", 0, 0, false, 0, new ArrayBuffer(0));
   productArray:ProductModel[] = [];
 
+  displayProduct!:ProductModel; 
+
   constructor(private productService:ProductService) { }
 
   ngOnInit(): void {
     this.testGetAllProducts();
     console.log(this.productArray);
+    this.setDisplayProduct(); 
+    console.log(this.displayProduct);
   }
 
   testGetAllProducts():void {
@@ -30,6 +34,11 @@ export class ProductDetailsPageComponent implements OnInit {
         for (let yeet of response) console.log("Here's the response: " + yeet.productDescription);
       }
     )
+  }
+
+  setDisplayProduct():void { 
+    //this.displayProduct = this.productService.currentlySelectedProduct; 
+    this.displayProduct = this.productArray[3]; 
   }
 
 }
