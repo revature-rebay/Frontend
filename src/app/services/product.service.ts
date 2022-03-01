@@ -32,6 +32,18 @@ export class ProductService {
     return this.http.get(this.backendURL + "products/discount") as Observable<ProductModel[]>;
   }
 
+  addNewProduct(prod:ProductModel):Observable<boolean> {
+    return this.http.post(this.backendURL + "products", prod) as Observable<boolean>;
+  }
+
+  updateProduct(prod:ProductModel):Observable<boolean> {
+    return this.http.put(this.backendURL + "products", prod) as Observable<boolean>;
+  }
+
+  removeProduct(id:number):Observable<boolean> {
+    return this.http.delete(this.backendURL + "products/" + id) as Observable<boolean>;
+  }
+
   setCurrentlySelectedProduct(product:ProductModel):void {
     this.currentlySelectedProduct = product;
   }
