@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductModel } from 'src/app/models/product/product.model';
+import { Product } from 'src/app/models/product/product.model';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -9,12 +9,12 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class MainComponent implements OnInit {
 
-  products: ProductModel[] = [];
-  featuredProducts: ProductModel[] = [];
+  products: Product[] = [];
+  featuredProducts: Product[] = [];
   constructor(private productService:ProductService) { }
 
   ngOnInit(): void {
-    this.productService.getFeaturedProducts().subscribe((response: ProductModel[])=> this.featuredProducts = response);
+    this.productService.getFeaturedProducts().subscribe((response: Product[])=> this.featuredProducts = response);
     console.log(this.featuredProducts);
   }
 

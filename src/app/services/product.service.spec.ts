@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
-import { ProductModel } from '../models/product/product.model';
+import { Product } from '../models/product/product.model';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ProductService } from './product.service';
 
@@ -20,7 +20,7 @@ describe('ProductService', () => {
   });
 
   it('should return a full list of products', () => {
-    let products: ProductModel[] = [];
+    let products: Product[] = [];
     let productServiceMock = spyOn(service, 'getAllProducts').withArgs()
       .and.returnValue(of(products));
 
@@ -32,7 +32,7 @@ describe('ProductService', () => {
   })
 
   it('should return a list of featured products', () => {
-    let products: ProductModel[] = [];
+    let products: Product[] = [];
     let productServiceMock = spyOn(service, 'getFeaturedProducts').withArgs()
       .and.returnValue(of(products));
 
@@ -44,7 +44,7 @@ describe('ProductService', () => {
   })
 
   it('should return a list of discounted products', () => {
-    let products: ProductModel[] = [];
+    let products: Product[] = [];
     let productServiceMock = spyOn(service, 'getDiscountedProducts').withArgs()
       .and.returnValue(of(products));
 
