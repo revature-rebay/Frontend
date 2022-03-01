@@ -10,14 +10,15 @@ import { NavigationService } from 'src/app/services/navigation.service';
 export class HeaderComponent implements OnInit {
 
   constructor(private navService: NavigationService) { }
-  @Output() toggleNavStateEvent = new EventEmitter<boolean>();
-  showNav !: boolean;
+  // @Output() toggleNavStateEvent = new EventEmitter<boolean>();
+  // showNav !: boolean;
 
   ngOnInit(): void {
-    this.navService.showNav.subscribe(showNav => this.showNav = showNav);
+    // console.log("in header component")
+    // this.navService.showNav.subscribe(showNav => this.showNav = showNav);
   }
 
-  toggleSideNav() {
-    this.navService.toggleShowNav();
-  }
+  // toggleSideNav() {
+  //   this.navService.toggleShowNav();
+  // }
 }

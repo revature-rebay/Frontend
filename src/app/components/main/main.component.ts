@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductModel } from 'src/app/models/product/product.model';
-
+import { NavigationService } from 'src/app/services/navigation.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -9,7 +9,7 @@ import { ProductModel } from 'src/app/models/product/product.model';
 export class MainComponent implements OnInit {
 
   products: ProductModel[] = [];
-  constructor() { }
+  constructor(private navService: NavigationService) { }
 
   ngOnInit(): void {
   }

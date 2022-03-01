@@ -30,6 +30,7 @@ export class CartPanelComponent implements OnInit {
   }
 
   getSideNavBarStyle() {
+    console.log(`in getSideNavBarStyle in cart-panel component`)
     let navBarStyle: any = {};
     
     navBarStyle.transition = this.direction + ' ' + this.duration + 's, visibility ' + this.duration + 's';

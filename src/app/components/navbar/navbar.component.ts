@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login.service';
+import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,13 +13,12 @@ export class NavbarComponent implements OnInit {
 
     currentUser!: User;
 
-  constructor(public user: LoginService, private router:Router) {
+  constructor(public user: LoginService, private router:Router, private navService: NavigationService) {
     this.updateNavbarUser();
    }
 
   ngOnInit(): void {
     this.updateNavbarUser();
-    
   }
 
   updateNavbarUser(): void {
@@ -42,6 +42,11 @@ export class NavbarComponent implements OnInit {
         this.router.navigateByUrl("");
       }
     )
+  }
+
+  //displays user cart as a slide in side panel
+  toggleSideNav() {
+    this.navService.toggleShowNav();
   }
 
 }

@@ -18,11 +18,13 @@ export class NavigationService {
 
   //updates the BehaviorSubject
   toggleShowNav(){
+    console.log("toggling from service");
+    console.log(this.toggle);
     this.toggle.next(!this.toggle.value);
   }
 
-  // //get current value of BehaviorSubject
-  // getCurrentShowNav(){
-  //   return this.toggle.getValue();
-  // }
+  //get current value of BehaviorSubject
+  getCurrentShowNav(){
+    return this.toggle.getValue();
+  }
 }

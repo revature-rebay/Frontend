@@ -10,7 +10,7 @@ export class LoginService {
 
   currentUser: User = new User(); // I added this line
 
-  url: string = "http://localhost:8080/";
+  url: string = "http://localhost:9000/";
 
   // constructor(private currentUser: User ,private http: HttpClient) { 
   constructor(private http: HttpClient) { 
