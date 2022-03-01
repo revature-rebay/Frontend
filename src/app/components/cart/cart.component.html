@@ -3,7 +3,7 @@
 <!-- <span><input type="text" [(ngModel)]= 'userProductInput' placeholder="User Product Input"><button (click)="addProductCart()">add</button></span> -->
 
 <div *ngFor="let cartItem of cart">
-    <app-cart-item (deleteEvent)="tempDel($event)" (updateEvent)="update($event)"
+    <app-cart-item (deleteEvent)="deleteProduct($event)" (updateEvent)="update($event)"
     [itemQuantity] = cartItem.quantity
     [productDesc] = cartItem.product.productDescription
     [productName] = cartItem.product.productName

@@ -66,22 +66,22 @@ export class CartComponent implements OnInit, DoCheck {
     })
   }
 
-  deleteProduct(): void{
-    const cartdto = <CartDTO>({
-      userId: parseInt(this.userIdInput),
-      quantity: parseInt(this.userQuantityInput),
-      productId: parseInt(this.userProductInput)
-    })
+  // deleteProduct(): void{
+  //   const cartdto = <CartDTO>({
+  //     userId: parseInt(this.userIdInput),
+  //     quantity: parseInt(this.userQuantityInput),
+  //     productId: parseInt(this.userProductInput)
+  //   })
     
-      this.cartService.deleteProduct(cartdto).subscribe(
-      res => {
-        this.cart =res;
-      }
-    );
-  }
+  //     this.cartService.deleteProduct(cartdto).subscribe(
+  //     res => {
+  //       this.cart =res;
+  //     }
+  //   );
+  // }
 
   //just temp, can be removed
-  tempDel(event:number){
+  deleteProduct(event:number){
     // this.cart = this.cartService.tempDel(event);
     this.cartService.deleteProduct(<CartDTO>{userId:this.loginService.currentUser.id, quantity:0, productId:event}).subscribe(res => {
       this.cart = res;
