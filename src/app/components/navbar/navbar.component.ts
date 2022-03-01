@@ -35,11 +35,13 @@ export class NavbarComponent implements OnInit {
 
   logOut():void {
     this.user.logout().subscribe(
-      (response:number) => {
-        if (response == 0) alert("successfully logged out.")
-
-        //redirect to the main page if not there already
-        this.router.navigateByUrl("");
+      (response) => {
+        if (response.status == 200){ // check the header response from logout request
+          alert("successfully logged out.") 
+          this.user.removeUser();
+          //redirect to the main page if not there already
+          // this.router.navigateByUrl(""); // maybe route back to login page? don't know how we wanna set this up
+        }
       }
     )
   }

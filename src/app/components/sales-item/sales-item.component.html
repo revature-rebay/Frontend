@@ -1,0 +1,23 @@
+<div class="sales-container">
+    <div class="sales-container__empty" *ngIf="products.length === 0">
+      Item List is empty.
+    </div>
+    <div class="sales-container__list" *ngIf="products.length > 0">
+      <header class="list-header">
+        <h2>Sales Items</h2>
+      </header>
+      <div
+        class="list-item"
+        *ngFor="let sales of products; index as i"
+        [ngStyle]="{ border: i === products.length - 1 && 'none' }"
+      >
+        <div class="list-item__image">
+          <img src="assets/images/swag_mug.png" alt="" />
+        </div>
+        <div class="list-item__details">
+          <div class="title">{{ sales.productName }}</div>
+          <div class="price">{{ sales.productPrice | currency: "USD" }}</div>
+        </div>
+      </div>
+    </div>
+  </div>

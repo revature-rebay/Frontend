@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
         if (this.user != null) {
           this.router.navigate([`main`]);
-          this.loginService.currentUser = this.user;
+          this.loginService.currentUser = this.user; // using this now to set current user
         }
       },
       error: (response) => {

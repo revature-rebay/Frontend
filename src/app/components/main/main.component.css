@@ -338,3 +338,68 @@ button.qtyplus {
 		margin-left: 0.3rem;
 }
 
+.home-container{
+    padding-top : 24px;
+}
+.featured{
+    margin: 0 auto;
+    padding: 24px 16px;
+    max-width: calc(350px + 32px);
+}
+.featured__header{
+    margin-bottom: 16px;
+}
+h2.featured__header{
+    font-size: 1.75em;
+}
+.featured__list{
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+
+}
+
+@media only screen and (min-width: 768px){
+    .featured{
+        max-width: calc(700px + 72px);
+        padding: 36px 24px;
+    }
+    .featured__header{
+        margin-bottom: 16px;
+    }
+    .featured__list{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 24px;
+        row-gap: 24px;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .featured{
+        max-width: calc(1050px + 96px);
+        padding: 36px 24px;
+    }
+    .featured__header{
+        margin-bottom: 16px;
+    }
+    .featured__list{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 24px;
+        row-gap: 24px;
+    }
+}
+
+@keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+

@@ -10,7 +10,8 @@ import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { FeaturedCardComponent } from './components/featured-card/featured-card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ProductPageComponent } from './components/product-page/product-page.component';
+import { SalesItemComponent } from './components/sales-item/sales-item.component';
+import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ProductPageComponent } from './components/product-page/product-page.com
     MainComponent,
     FeaturedCardComponent,
     NavbarComponent,
-    ProductPageComponent
+    SalesItemComponent,
+    ProductDetailsPageComponent
   ],
   imports: [
     BrowserModule,

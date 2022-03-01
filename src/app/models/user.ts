@@ -8,7 +8,7 @@ export class User {
     public lastName: string;
     public roleId: number;
 
-    constructor(obj?: User) {
+    constructor(obj?: any) {
 
         this.id = obj?.id ?? 0
         this.userName = obj?.userName ?? ""

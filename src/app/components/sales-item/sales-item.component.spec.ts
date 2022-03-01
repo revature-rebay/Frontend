@@ -1,22 +1,24 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { LoginComponent } from './login.component';
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+import { SalesItemComponent } from './sales-item.component';
+
+describe('SalesItemComponent', () => {
+  let component: SalesItemComponent;
+  let fixture: ComponentFixture<SalesItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
-      imports: [RouterTestingModule, HttpClientTestingModule]
+      // declarations: [ ProductPageComponent ],
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      declarations: [ SalesItemComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(SalesItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

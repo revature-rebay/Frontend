@@ -3,7 +3,7 @@ export class ProductModel {
 
   productId: number;
   productName: string;
-  productDescription: string
+  productDescription: string;
   productPrice: number;
   discountPercentage: number;
   featuredProduct: boolean;
