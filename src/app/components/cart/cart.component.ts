@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartDTO } from 'src/app/models/cart-dto';
 import { CartItem } from 'src/app/models/cart-item';
 import { CartService } from 'src/app/services/cart.service';
+import { LoginService } from 'src/app/services/login.service';
 
 
 
@@ -18,18 +19,18 @@ export class CartComponent implements OnInit {
   userProductInput: string = '';
 
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private loginService:LoginService) {}
 
   ngOnInit(): void {
     //TODO Change form hardcoded UserId
-    this.getCart('1');
+    this.getCart(this.loginService.currentUser.id.toString())
   }
 
   getCart(userId: string): void {
-    // this.cartService.getCart(userId).subscribe((res) => {
-    //   this.cart = res;
-    // });
-    this.cart = this.cartService.getCart(userId);
+    this.cartService.getCart(userId).subscribe((res) => {
+      this.cart = res;
+    });
+    // this.cart = this.cartService.getCart(userId);
   }
 
   addProductCart(/*possible input*/): void {
@@ -54,7 +55,12 @@ export class CartComponent implements OnInit {
     );
   }
 
+  //just temp, can be removed
   tempDel(event:number){
-    this.cart = this.cartService.tempDel(event);
+    // this.cart = this.cartService.tempDel(event);
+    this.cartService.deleteProduct(<CartDTO>{userId:this.loginService.currentUser.id, quantity:0, productId:event}).subscribe(res => {
+      console.log(res); //is not reached, error is thrown, status 400, but table is updated
+      this.cart = res;
+    });
   }
 }

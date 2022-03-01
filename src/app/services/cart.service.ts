@@ -12,15 +12,15 @@ import { CartDTO } from '../models/cart-dto';
 })
 export class CartService {
 
-  baseURL: string = "http://localhost:8080/";
+  baseURL: string = "http://localhost:9000/";
   
   private cart !: CartItem[];
 
   constructor(private http:  HttpClient) { 
   }
 
-  // getCart(userId:string):Observable<CartItem[]>{
-    getCart(userId:string):CartItem[]{
+  getCart(userId:string):Observable<CartItem[]>{
+    // getCart(userId:string):CartItem[]{
    
     const httpOptions = {
       headers: new HttpHeaders({
@@ -30,33 +30,33 @@ export class CartService {
     };
 
     //TODO Get UserId dynamicaly
-    // return this.http.get<CartItem[]>(`${this.baseURL}cart/${userId}`, httpOptions);
+    return this.http.get<CartItem[]>(`${this.baseURL}cart/${userId}`, httpOptions);
     
     
-    let product = new ProductModel(1, 'TV', 'Giant Screen TV', 50, 0, true, 50, new ArrayBuffer(56));
-    let item = {
-      id:1,
-      quantity:2,
-      product: product
-    };
+    // let product = new ProductModel(1, 'TV', 'Giant Screen TV', 50, 0, true, 50, new ArrayBuffer(56));
+    // let item = {
+    //   id:1,
+    //   quantity:2,
+    //   product: product
+    // };
 
-    let product2 = new ProductModel(2, 'Fridge','Modern design', 150, 0, true, 50, new ArrayBuffer(56));
+    // let product2 = new ProductModel(2, 'Fridge','Modern design', 150, 0, true, 50, new ArrayBuffer(56));
 
-    let item2 = {
-      id:1,
-      quantity:5,
-      product: product2
-    };
+    // let item2 = {
+    //   id:1,
+    //   quantity:5,
+    //   product: product2
+    // };
 
-    let product3 = new ProductModel(3, 'PC','Budget PC', 250, 0, true, 50, new ArrayBuffer(56));
+    // let product3 = new ProductModel(3, 'PC','Budget PC', 250, 0, true, 50, new ArrayBuffer(56));
 
-    let item3 = {
-      id:1,
-      quantity:1,
-      product: product3
-    };
+    // let item3 = {
+    //   id:1,
+    //   quantity:1,
+    //   product: product3
+    // };
 
-    return [item, item2, item3]
+    // return [item, item2, item3]
   }
 
   addProductToCart(userId:string, productId:string, quantity:string):Observable<any[]>{
@@ -108,11 +108,12 @@ export class CartService {
   return this.http.delete(`${this.baseURL + userId}`, httpOptions);
  }
 
- tempDel(productId:number){
-   this.cart = this.getCart("1").filter(item => {
-     if(item.product.productId != productId) return item;
-     return;
-   })
-   return this.cart;
- }
+ //remove - was just for temp testing
+//  tempDel(productId:number){
+//    this.cart = this.getCart("1").filter(item => {
+//      if(item.product.productId != productId) return item;
+//      return;
+//    })
+//    return this.cart;
+//  }
 }

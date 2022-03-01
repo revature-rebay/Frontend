@@ -8,8 +8,6 @@
     opacity: 1;
 }
 
-.add {
-    color: green;
-    transition: .5s ease;
-    opacity: .2;
+.border-primary {
+    border-color: #F26925 !important;
 }

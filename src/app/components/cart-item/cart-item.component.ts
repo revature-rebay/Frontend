@@ -16,7 +16,7 @@ export class CartItemComponent implements OnInit {
   updateQuantity !: string;
 
   @Output() deleteEvent = new EventEmitter<number>();
-  //TODO output the updatedQuantity
+  @Output() updateEvent = new EventEmitter<number>();
 
   constructor(private cartService:CartService) { }
 
@@ -35,5 +35,9 @@ export class CartItemComponent implements OnInit {
     console.log(cartdto.productId);
     this.deleteEvent.emit(parseInt(cartdto.productId));
   }
+
+  // updateProduct(event:InputEvent){
+
+  // }
 
 }
