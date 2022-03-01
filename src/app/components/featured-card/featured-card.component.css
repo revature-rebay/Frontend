@@ -19,7 +19,7 @@
           font-size: 1.375rem;
           font-weight: 600;
 }
-header.product-card__info{
+header{
       display: flex;
         align-items: center;
 }
@@ -33,7 +33,7 @@ header.product-card__info{
   text-transform: uppercase;
   margin-bottom: 4px;
 }
-button.product-card__cta {
+button {
         height: 48px;
         width: 100%;
         border: none;
