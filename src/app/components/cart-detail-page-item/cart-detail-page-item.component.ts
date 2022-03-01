@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cart-detail-page-item',
@@ -6,6 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart-detail-page-item.component.css']
 })
 export class CartDetailPageItemComponent implements OnInit {
+
+  @Input() itemQuantity !: number;
+  @Input() productName !: string;
+  @Input() productPrice !: number;
+  @Input() productDesc !: string;
+  @Input() productImage !: ArrayBuffer;
+  @Input() productId !: number;
 
   constructor() { }
 

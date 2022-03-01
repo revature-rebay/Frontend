@@ -1,1 +1,23 @@
-<p>cart-detail-page-item works!</p>
+<div class="bg-light m-4 py-3 row border border-primary">
+    <div class="d-flex row justify-content-between" id={{productId}}>
+        <div class="col-2">
+               
+                <img class="rounded img-fluid" src="../../../assets/black_hat.jpeg" alt="Revature Hat">
+                <!-- <p>{{productImage}}</p> -->
+        </div>
+    
+        <div class="col">
+                <p>Product Name: {{productName}}</p>
+                <p>Description: {{productDesc}}</p>
+        </div>
+        
+
+        <div class="col-2">
+                <span>Quantity: {{itemQuantity}}</span>
+        </div>  
+
+        <div class="col-2">
+            <span>Price:{{productPrice | currency}}</span>
+        </div>
+</div>
+</div>

@@ -14,7 +14,7 @@ export class CartService {
 
   baseURL: string = "http://localhost:9000/";
   
-  private cart !: CartItem[];
+  cart !: CartItem[];
 
   constructor(private http:  HttpClient) { 
   }
