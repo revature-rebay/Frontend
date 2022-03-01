@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
-
 
 
 @Component({
@@ -10,6 +9,8 @@ import { LoginService } from 'src/app/services/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']  
 })
+
+
 export class LoginComponent implements OnInit {
 
   id: number = 0;
@@ -57,23 +58,26 @@ export class LoginComponent implements OnInit {
     this.user.email = this.email;
     this.user.firstName = this.firstName;
     this.user.lastName = this.lastName;
-    let regex = /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{10,16}$/;
+
+    let regex = /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{9,16}$/;
+    
     if (!regex.test(this.passWord)) {
-      alert("Password must not contain white spaces, must contain one uppercase letter, digit, symbol, and must be 10-16 characters long")
-    }
-    this.loginService.registerUser(this.user).subscribe({
-      next: () => {  
-        this.loginService.login(this.user).subscribe({
-          next: () => {
-            this.router.navigate([`main`]);
+      alert("Password can't have white spaces, must contain one symbol, digit & uppercase letter AND must be 9-16 characters long")
+    } else {
+      this.loginService.registerUser(this.user).subscribe({
+        next: () => {  
+          this.loginService.login(this.user).subscribe({
+            next: () => {
+              this.router.navigate([`main`]);
+            }
+          })
+        },
+        error: (response) => {
+          if (response.status == 500) {
+            alert("email or username already taken")
           }
-        })
-      },
-      error: (response) => {
-        if (response.status == 500) {
-          alert("email or username already taken")
         }
-      }
-    })
+      })
+    }
   }
 }
