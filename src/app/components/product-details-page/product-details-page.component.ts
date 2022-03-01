@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductModel } from 'src/app/models/product/product.model';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-details-page',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailsPageComponent implements OnInit {
 
-  constructor() { }
+  currentlySelectedProduct:ProductModel = new ProductModel(0, "", "", 0, 0, false, 0);
+  //currentlySelectedProduct:ProductModel = new ProductModel(0, "", "", 0, 0, false, 0, new ArrayBuffer(0));
+  productArray:ProductModel[] = [];
+
+  constructor(private productService:ProductService) { }
 
   ngOnInit(): void {
+    this.testGetAllProducts();
+    console.log(this.productArray);
+  }
+
+  testGetAllProducts():void {
+    this.productService.getAllProducts().subscribe(
+      (response:ProductModel[]) => {
+        this.productArray = response;
+
+        //let yeet:any;
+
+        for (let yeet of response) console.log("Here's the response: " + yeet.productDescription);
+      }
+    )
   }
 
 }

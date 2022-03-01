@@ -12,7 +12,8 @@ export class ProductService {
 
   backendURL:string = "http://localhost:9000/";
 
-  currentlySelectedProduct:ProductModel = new ProductModel(0, "", "", 0, 0, false, 0, new ArrayBuffer(0));
+  //currentlySelectedProduct:ProductModel = new ProductModel(0, "", "", 0, 0, false, 0, new ArrayBuffer(0));
+  currentlySelectedProduct:ProductModel = new ProductModel(0, "", "", 0, 0, false, 0);
 
   constructor(private http:HttpClient) { }
 

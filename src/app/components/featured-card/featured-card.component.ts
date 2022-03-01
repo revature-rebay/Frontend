@@ -16,4 +16,16 @@ export class FeaturedCardComponent implements OnInit {
   console.log(this.singleproduct);
   }
 
+  /*
+  "
+        onAdd({
+          productId: singleproduct.productId,
+          productPrice: singleproduct.productPrice,
+          productImage: singleproduct.productImage,
+          productName: singleproduct.productName,
+          maxQuantity: singleproduct.currentStock
+        })
+      "
+  */
+
 }
