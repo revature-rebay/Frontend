@@ -14,7 +14,7 @@ export class MainComponent implements OnInit {
   constructor(private productService:ProductService) { }
 
   ngOnInit(): void {
-    this.productService.getFeaturedProducts().subscribe((response: ProductModel[])=> this.featuredProducts = response)
+    this.productService.getFeaturedProducts().subscribe((response: ProductModel[])=> this.featuredProducts = response);
     console.log(this.featuredProducts);
   }
 

@@ -13,7 +13,7 @@ export class FeaturedCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  console.log(this.singleproduct)
+  console.log(this.singleproduct);
   }
 
 }
