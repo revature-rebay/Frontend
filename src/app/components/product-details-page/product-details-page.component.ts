@@ -14,24 +14,25 @@ export class ProductDetailsPageComponent implements OnInit {
   productArray:ProductModel[] = [];
 
   displayProduct!:ProductModel; 
+  displayImage!:string; 
 
   constructor(private productService:ProductService) { }
 
   ngOnInit(): void {
     this.testGetAllProducts();
     console.log(this.productArray);
-    this.setDisplayProduct(); 
-    console.log(this.displayProduct);
+     
+    
   }
 
   testGetAllProducts():void {
     this.productService.getAllProducts().subscribe(
       (response:ProductModel[]) => {
         this.productArray = response;
-
         //let yeet:any;
-
         for (let yeet of response) console.log("Here's the response: " + yeet.productDescription);
+        this.setDisplayProduct();
+        console.log(this.displayProduct);
       }
     )
   }
@@ -39,6 +40,7 @@ export class ProductDetailsPageComponent implements OnInit {
   setDisplayProduct():void { 
     //this.displayProduct = this.productService.currentlySelectedProduct; 
     this.displayProduct = this.productArray[3]; 
+    this.displayImage = "assets/images/" + this.displayProduct.productName + ".jpg";
   }
 
 }
