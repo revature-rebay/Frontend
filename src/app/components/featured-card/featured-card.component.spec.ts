@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { FeaturedCardComponent } from './featured-card.component';
 
@@ -8,7 +10,8 @@ describe('FeaturedCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FeaturedCardComponent ]
+      declarations: [ FeaturedCardComponent ],
+      imports: [RouterTestingModule, HttpClientTestingModule]
     })
     .compileComponents();
   });

@@ -31,20 +31,17 @@ export class LoginService {
   }
 
   removeUser():void {
-    //this function is used when logging out. It erases cached information about the user that was previously
-    //logged in
+    // this function is used when logging out
+    // It erases cached information about the user that was previously logged in
     this.currentUser  = new User();
   }
 
-  logout():Observable<number> {
-    //if there's currently a user logged in, log them out by making a call to the backend and removing their
-    //stored data in this service
-    let logoutSuccess = this.http.put(this.url + "login", this.currentUser) as Observable<number>;
-    this.removeUser();
-    return logoutSuccess;
+  logout():Observable<any> {
+    return this.http.post(this.url + "user/logout", { withCredentials: true });
   }
 
   getCurrentUser():User {
+    // original endpoint for getting current user - still available for use
     // return this.http.get<User>(this.url + "user/current", { withCredentials: true });
     return this.currentUser;
   }
