@@ -16,6 +16,8 @@ import { CartPanelContentComponent } from './components/cart-panel-content/cart-
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProductPageComponent } from './components/product-page/product-page.component';
+import { CartDetailPageComponent } from './components/cart-detail-page/cart-detail-page.component';
+import { CartDetailPageItemComponent } from './components/cart-detail-page-item/cart-detail-page-item.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { ProductPageComponent } from './components/product-page/product-page.com
     CartPanelContentComponent,
     HeaderComponent,
     NavbarComponent,
-    ProductPageComponent
+    ProductPageComponent,
+    CartDetailPageComponent,
+    CartDetailPageItemComponent
   ],
   imports: [
     BrowserModule,
