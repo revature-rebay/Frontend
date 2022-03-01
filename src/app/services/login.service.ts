@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class LoginService {
 
   currentUser: User = new User(); // I added this line
 
-  url: string = "http://localhost:9000/";
+  url: string = environment.serverURL;
 
   // constructor(private currentUser: User ,private http: HttpClient) { 
   constructor(private http: HttpClient) { 
