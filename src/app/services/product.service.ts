@@ -14,6 +14,9 @@ export class ProductService {
 
   //currentlySelectedProduct:ProductModel = new ProductModel(0, "", "", 0, 0, false, 0, new ArrayBuffer(0));
   currentlySelectedProduct:ProductModel = new ProductModel(0, "", "", 0, 0, false, 0);
+  allProducts:ProductModel[] = [];
+
+  searchQuery:string = "";
 
   constructor(private http:HttpClient) { }
 

@@ -12,6 +12,7 @@ import { FeaturedCardComponent } from './components/featured-card/featured-card.
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SalesItemComponent } from './components/sales-item/sales-item.component';
 import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProductDetailsPageComponent } from './components/product-details-page/p
     FeaturedCardComponent,
     NavbarComponent,
     SalesItemComponent,
-    ProductDetailsPageComponent
+    ProductDetailsPageComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,
