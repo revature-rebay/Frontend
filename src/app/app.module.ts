@@ -9,6 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { FeaturedCardComponent } from './components/featured-card/featured-card.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProductPageComponent } from './components/product-page/product-page.component';
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ProductPageComponent } from './components/product-page/product-page.com
     LoginComponent,
     MainComponent,
     FeaturedCardComponent,
+    NavbarComponent,
     ProductPageComponent
   ],
   imports: [

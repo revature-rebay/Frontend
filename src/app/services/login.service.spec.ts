@@ -51,7 +51,7 @@ fdescribe('LoginService', () => {
 
   it('should return an empty cookie', ()=>{
 
-    let cookie:string = "";
+    let cookie:number = 0;
 
     spyOn(service, 'logout').and.returnValue(of(cookie));
 

@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
 
         if (this.user != null) {
           this.router.navigate([`main`]);
+          this.loginService.currentUser = this.user;
         }
       },
       error: (response) => {
