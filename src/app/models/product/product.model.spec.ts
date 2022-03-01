@@ -1,7 +1,7 @@
-import { Product } from '../product.model';
+import { Product } from './product.model';
 
 describe('Product', () => {
   it('should create an instance', () => {
-    expect(new Product()).toBeTruthy();
+    expect(new Product(0, "", "", 0, 0, false, 0)).toBeTruthy();
   });
 });
