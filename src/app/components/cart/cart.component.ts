@@ -56,12 +56,14 @@ export class CartComponent implements OnInit, DoCheck {
     
   }
   
-  //TODO should be a cartDTO
   update(cartItem:CartDTO){
-    //TODO, should be a cartDTO 
-    // this.cartService.updateProductQuantity().subscribe(res => {
-    //   console.log(res);
-    // })
+    cartItem.userId = this.loginService.currentUser.id,
+    this.cartService.updateProductQuantity(cartItem).subscribe(res => {
+      console.log(res)
+      this.cart = res;
+      this.currSize = res.length;
+      if(this.currSize == 0) this.size = 0;
+    })
   }
 
   deleteProduct(): void{

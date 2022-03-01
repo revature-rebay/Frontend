@@ -33,7 +33,7 @@ export class CartItemComponent implements OnInit {
 
   updateProduct(event:MouseEvent){
     const cartdto = <CartDTO>({
-      userId: 1,
+      userId: 1, //dummy
       quantity: parseInt(this.updateQuantity),
       productId: parseInt((<HTMLSpanElement>event.target).id)
     })

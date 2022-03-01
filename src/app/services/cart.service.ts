@@ -74,7 +74,7 @@ export class CartService {
     return respone;
   }
 
-  updateProductQuantity(cartItem:CartItem):Observable<CartItem[]> {
+  updateProductQuantity(cartItem:CartDTO):Observable<CartItem[]> {
     const httpOptions= {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -82,7 +82,7 @@ export class CartService {
       })
     };
     const body = JSON.stringify(cartItem);
-    return this.http.put<CartItem[]>(`${this.baseURL}update`, body, httpOptions);
+    return this.http.put<CartItem[]>(`${this.baseURL}cart/update`, body, httpOptions);
   }
 
 
