@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { CartDTO } from 'src/app/models/cart-dto';
 import { CartItem } from 'src/app/models/cart-item';
 import { CartService } from 'src/app/services/cart.service';
@@ -11,8 +11,10 @@ import { LoginService } from 'src/app/services/login.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, DoCheck {
   cart!: CartItem[];
+  size = 0;
+  currSize = 0;
   userId: string = '1';
   userQuantityInput: string = '';
   userIdInput: string = '';
@@ -22,13 +24,26 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService, private loginService:LoginService) {}
 
   ngOnInit(): void {
-    //TODO Change form hardcoded UserId
-    this.getCart(this.loginService.currentUser.id.toString())
+    // this.getCart(this.loginService.currentUser.id.toString())
+  }
+
+  ngDoCheck(): void {
+    //TODO
+    //can we store cart locally so as to not make multiple api calls
+    //can do a check here to see if a cart is stored locally, if so return that else make call
+    if(this.cart == undefined) { 
+      this.getCart(this.loginService.currentUser.id.toString());
+    } 
+    else if(this.size != this.currSize) {
+      this.getCart(this.loginService.currentUser.id.toString());
+    }     
   }
 
   getCart(userId: string): void {
     this.cartService.getCart(userId).subscribe((res) => {
       this.cart = res;
+      this.size = res.length;
+      this.currSize = this.size;
     });
     // this.cart = this.cartService.getCart(userId);
   }
@@ -39,7 +54,15 @@ export class CartComponent implements OnInit {
         this.cart = res;
       });
     
-  } 
+  }
+  
+  //TODO should be a cartDTO
+  update(cartItem:CartDTO){
+    //TODO, should be a cartDTO 
+    // this.cartService.updateProductQuantity().subscribe(res => {
+    //   console.log(res);
+    // })
+  }
 
   deleteProduct(): void{
     const cartdto = <CartDTO>({
@@ -59,8 +82,9 @@ export class CartComponent implements OnInit {
   tempDel(event:number){
     // this.cart = this.cartService.tempDel(event);
     this.cartService.deleteProduct(<CartDTO>{userId:this.loginService.currentUser.id, quantity:0, productId:event}).subscribe(res => {
-      console.log(res); //is not reached, error is thrown, status 400, but table is updated
       this.cart = res;
+      this.currSize = res.length;
+      if(this.currSize == 0) this.size = 0;
     });
   }
 }
