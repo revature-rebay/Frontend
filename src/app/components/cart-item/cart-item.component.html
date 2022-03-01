@@ -1,54 +1,25 @@
-<!-- <div class="bg-light">
-    <p>{{itemQuantity}}</p>
-    <p>{{productName}}</p>
-    <p>{{productPrice}}</p>
-    <p>{{productImage}}</p>
-</div> -->
-
-<!-- <p>{{productDesc}}</p> -->
-
-<div class="bg-light m-4 py-3 row">
+<div class="bg-light m-4 py-3 row">  
+    
+    
     <div class="col">
+        <!--TODO update for a product image-->
         <img class="rounded img-fluid" src="../../../assets/black_hat.jpeg" alt="Revature Hat">
     </div>
 
     <div class="col">
-        <p class="fst-italic">Awesome hat for a sunny day</p>
-        <p class="fw-bold text-end mt-5 me-1">{{10.05 | currency}}</p>
-    </div>
-</div>
+        <div class="row">
+            <span class="fw-normal fst-italic float-left">{{productDesc}}</span>
+            
+            <span class="fw-bold float-right">{{productPrice | currency}} 
+            
+                <span (click)="deleteProduct($event)" id={{productId}} class="delete material-icons align-middle">delete</span>
+            </span>
+        </div>
 
-<div class="bg-light m-4 py-3 row">
-    <div class="col">
-        <img class="rounded img-fluid" src="../../../assets/black_hat.jpeg" alt="Revature Hat">
-    </div>
-
-    <div class="col">
-        <p class="fst-italic">Awesome hat for a sunny day</p>
-        <p class="fw-bold text-end mt-5 me-1">{{10.05 | currency}}</p>
-    </div>
-</div>
-
-
-<div class="bg-light m-4 py-3 row">
-    <div class="col">
-        <img class="rounded img-fluid" src="../../../assets/black_hat.jpeg" alt="Revature Hat">
-    </div>
-
-    <div class="col">
-        <p class="fst-italic">Awesome hat for a sunny day</p>
-        <p class="fw-bold text-end mt-5 me-1">{{10.05 | currency}}</p>
-    </div>
-</div>
-
-<div class="bg-light m-4 py-3 row">
-    <div class="col">
-        <img class="rounded img-fluid" src="../../../assets/black_hat.jpeg" alt="Revature Hat">
-    </div>
-
-    <div class="col">
-        <p class="fst-italic">Awesome hat for a sunny day</p>
-        <p class="fw-bold text-end mt-5 me-1">{{10.05 | currency}}</p>
+        <div class="row mt-5">            
+            <p class="fw-normal text-end bottom-0 end-0">Quantity : <input type="text" size="1" inputmode="numeric" pattern="[1-9]{1}[0-9]{0,2}" placeholder={{itemQuantity}} [(ngModel)]="updateQuantity"></p>          
+        </div>
+        
     </div>
 </div>
 

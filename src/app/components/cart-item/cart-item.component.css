@@ -1,0 +1,15 @@
+.delete {
+    color:red;
+    transition: .5s ease;
+    opacity: .2;
+}
+
+.delete:hover, .add:hover {
+    opacity: 1;
+}
+
+.add {
+    color: green;
+    transition: .5s ease;
+    opacity: .2;
+}

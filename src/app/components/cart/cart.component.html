@@ -2,21 +2,16 @@
 <!-- <span><input type="text" [(ngModel)]= 'userIdInput' placeholder="User ID Input"> <button (click)="deleteProduct()">delete</button></span> -->
 <!-- <span><input type="text" [(ngModel)]= 'userProductInput' placeholder="User Product Input"><button (click)="addProductCart()">add</button></span> -->
 
-<!-- <div *ngFor="let cartItem of cart">
-
-    <app-cart-item
+<div *ngFor="let cartItem of cart">
+    <app-cart-item (deleteEvent)="tempDel($event)"
     [itemQuantity] = cartItem.quantity
+    [productDesc] = cartItem.product.productDescription
     [productName] = cartItem.product.productName
     [productPrice] = cartItem.product.productPrice
     [productImage] = cartItem.product.productImage
-    
+    [productId] = cartItem.product.productId
     ></app-cart-item>
-</div> -->
-
-<app-cart-item>
-
-</app-cart-item>
+</div>
 
 
 
-<!-- [productDesc] = cartItem.product.productDesc -->

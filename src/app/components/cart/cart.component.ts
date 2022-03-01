@@ -26,9 +26,10 @@ export class CartComponent implements OnInit {
   }
 
   getCart(userId: string): void {
-    this.cartService.getCart(userId).subscribe((res) => {
-      this.cart = res;
-    });
+    // this.cartService.getCart(userId).subscribe((res) => {
+    //   this.cart = res;
+    // });
+    this.cart = this.cartService.getCart(userId);
   }
 
   addProductCart(/*possible input*/): void {
@@ -51,5 +52,9 @@ export class CartComponent implements OnInit {
         this.cart =res;
       }
     );
+  }
+
+  tempDel(event:number){
+    this.cart = this.cartService.tempDel(event);
   }
 }
