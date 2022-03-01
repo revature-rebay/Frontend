@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css']  
 })
 export class LoginComponent implements OnInit {
 
@@ -23,8 +25,7 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() : void {}
 
   login() {
 
@@ -56,9 +57,12 @@ export class LoginComponent implements OnInit {
     this.user.email = this.email;
     this.user.firstName = this.firstName;
     this.user.lastName = this.lastName;
-
+    let regex = /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{10,16}$/;
+    if (!regex.test(this.passWord)) {
+      alert("Password must not contain white spaces, must contain one uppercase letter, digit, symbol, and must be 10-16 characters long")
+    }
     this.loginService.registerUser(this.user).subscribe({
-      next: () => {
+      next: () => {  
         this.loginService.login(this.user).subscribe({
           next: () => {
             this.router.navigate([`main`]);
