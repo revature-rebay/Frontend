@@ -1,1 +1,21 @@
-<p>product-details-page works!</p>
+<h3>{{this.displayProduct.productName}}</h3>
+<img [src]= 'displayImage' >
+<p>{{this.displayProduct.productDescription}}</p>
+<br *ngIf="isFeatured()">
+<h2 *ngIf="isFeatured()">This is currently one of our featured items!</h2>
+<br>
+<h2 *ngIf="onSale()">THIS ITEM IS CURRENTLY ON SALE!!</h2>
+<h3 *ngIf="onSale()">The price with the sale is: {{salePrice | number : '1.2-2'}}</h3>
+<h3 *ngIf="onSale()" style="color:red">With this sale applied you save: {{this.saleDifferential  | number : '1.2-2'}}!!</h3>
+<h3 *ngIf="!onSale()">The price for this item is: {{this.displayProduct.productPrice | number : '1.2-2'}}</h3>
+<p>Stock: {{this.displayProduct.currentStock}}</p>
+
+
+
+<!-- productId: number;
+  productName: string;
+  productDescription: string;
+  productPrice: number;
+  discountPercentage: number;
+  featuredProduct: boolean;
+  currentStock: number; -->
