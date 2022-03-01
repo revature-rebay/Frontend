@@ -1,3 +1,13 @@
 .border-primary {
     border-color: #F26925 !important;
 }
+
+.delete {
+    color:red;
+    transition: .5s ease;
+    opacity: .2;
+}
+
+.delete:hover, .add:hover {
+    opacity: 1;
+}
