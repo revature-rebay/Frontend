@@ -6,7 +6,7 @@
     transition: all 0.2s;
     overflow: hidden;
 }
-.product-card__image {
+img {
         width: 100%;
         object-fit: cover;
         border-bottom: 1px solid #ccc;
