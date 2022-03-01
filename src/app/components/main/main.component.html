@@ -68,12 +68,18 @@
         <h2>Featured Products</h2>
       </div>
       <div class="featured__list">
-        <app-featured-card
-          *ngFor="let featured of products"
-          [singleproduct]="featured"
-        >
-        </app-featured-card>
+          <div *ngFor="let featured of featuredProducts">
+              <div>
+                <app-featured-card [singleproduct]="featured"></app-featured-card>
+            </div>
+          </div>
+       
       </div>
     </div>
 </div>
 <!-- Featured Product-->
+<!--  <app-featured-card
+          *ngFor="let featured of featuredProducts"
+          [singleproduct]="featured"
+        >
+        </app-featured-card> -->
