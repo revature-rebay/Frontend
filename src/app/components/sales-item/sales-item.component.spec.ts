@@ -2,22 +2,23 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { ProductPageComponent } from './product-page.component';
+import { SalesItemComponent } from './sales-item.component';
 
-describe('ProductPageComponent', () => {
-  let component: ProductPageComponent;
-  let fixture: ComponentFixture<ProductPageComponent>;
+describe('SalesItemComponent', () => {
+  let component: SalesItemComponent;
+  let fixture: ComponentFixture<SalesItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProductPageComponent ],
-      imports: [RouterTestingModule, HttpClientTestingModule]
+      // declarations: [ ProductPageComponent ],
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      declarations: [ SalesItemComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProductPageComponent);
+    fixture = TestBed.createComponent(SalesItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -10,7 +10,7 @@ import { ProductModel } from '../models/product/product.model';
 })
 export class ProductService {
 
-  backendURL:string = "http://localhost:8080/";
+  backendURL:string = "http://localhost:9000/";
 
   currentlySelectedProduct:ProductModel = new ProductModel(0, "", "", 0, 0, false, 0, new ArrayBuffer(0));
 
@@ -30,6 +30,18 @@ export class ProductService {
 
   getDiscountedProducts():Observable<ProductModel[]> {
     return this.http.get(this.backendURL + "products/discount") as Observable<ProductModel[]>;
+  }
+
+  addNewProduct(prod:ProductModel):Observable<boolean> {
+    return this.http.post(this.backendURL + "products", prod) as Observable<boolean>;
+  }
+
+  updateProduct(prod:ProductModel):Observable<boolean> {
+    return this.http.put(this.backendURL + "products", prod) as Observable<boolean>;
+  }
+
+  removeProduct(id:number):Observable<boolean> {
+    return this.http.delete(this.backendURL + "products/" + id) as Observable<boolean>;
   }
 
   setCurrentlySelectedProduct(product:ProductModel):void {

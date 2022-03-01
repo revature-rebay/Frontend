@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
-import { ProductPageComponent } from './components/product-page/product-page.component';
+import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
+import { SalesItemComponent } from './components/sales-item/sales-item.component';
 
 const routes: Routes = [{
   path: 'main',
@@ -11,8 +12,11 @@ const routes: Routes = [{
   path: 'login',
   component: LoginComponent
 }, {
-  path: 'product_page',
-  component: ProductPageComponent
+  path: 'product_details_page',
+  component: ProductDetailsPageComponent
+},{
+  path: 'sales',
+  component:SalesItemComponent
 }
 ];
 
