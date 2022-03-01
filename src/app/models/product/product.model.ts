@@ -1,7 +1,6 @@
+export class Product {
 
-export class ProductModel {
-
-  productId: number;
+    productId: number;
   productName: string;
   productDescription: string;
   productPrice: number;
@@ -21,5 +20,4 @@ export class ProductModel {
     this.currentStock = currentStock;
     //this.productImage = productImage;
    }
-
 }

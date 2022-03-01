@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductModel } from 'src/app/models/product/product.model';
+import { Product } from 'src/app/models/product/product.model';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -10,8 +10,8 @@ import { ProductService } from 'src/app/services/product.service';
 export class SearchResultsComponent implements OnInit {
 
   currentSearch:string = "";
-  allProducts:ProductModel[] = [];
-  filteredProducts:ProductModel[] = [];
+  allProducts:Product[] = [];
+  filteredProducts:Product[] = [];
 
   constructor(private productService:ProductService) { }
 
