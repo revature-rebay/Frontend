@@ -14,7 +14,9 @@ export class ProductDetailsPageComponent implements OnInit {
   productArray:ProductModel[] = [];
 
   displayProduct!:ProductModel; 
-  displayImage!:string; 
+  displayImage!:string;
+  salePrice:number = 0;
+  saleDifferential:number = 0;
 
   constructor(private productService:ProductService) { }
 
@@ -39,8 +41,22 @@ export class ProductDetailsPageComponent implements OnInit {
 
   setDisplayProduct():void { 
     //this.displayProduct = this.productService.currentlySelectedProduct; 
-    this.displayProduct = this.productArray[3]; 
+    this.displayProduct = this.productArray[2]; 
     this.displayImage = "assets/images/" + this.displayProduct.productName + ".jpg";
+    if (this.displayProduct.discountPercentage > 0) {
+      this.salePrice = this.displayProduct.productPrice * (1 - this.displayProduct.discountPercentage);
+      this.saleDifferential = this.displayProduct.productPrice - this.salePrice;
+    }
+  }
+
+  onSale():boolean {
+    if (this.displayProduct.discountPercentage > 0) return true;
+    return false;
+  }
+
+  isFeatured():boolean {
+    if (this.displayProduct.featuredProduct == true) return true;
+    return false;
   }
 
 }
