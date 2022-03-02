@@ -8,7 +8,9 @@
 }
 img {
         width: 100%;
+        height: auto;
         object-fit: cover;
+        border-bottom: solid #F26925;
 }
 .product-card__info {
       flex-grow: 1;
@@ -19,9 +21,7 @@ img {
           font-weight: 600;
           padding-right: .1rem;
 }
-.product-sale{
-  font-size: 1rem;
-}
+
 header{
       display: flex;
         align-items: center;
