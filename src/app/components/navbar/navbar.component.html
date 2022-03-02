@@ -15,8 +15,8 @@
             <!-- Search Bar -->
           <div class="col-md-4">
             <form class="d-flex input-group w-auto my-auto mb-3 mb-md-0">
-                <input autocomplete="off" type="search" class="form-control rounded" placeholder="Search Rebay" style="margin-top:15px;"/>
-                <button style="background-color:#F26925; margin-top:15px;">
+                <input name="search-bar" [(ngModel)]="searchQuery" autocomplete="off" type="search" class="form-control rounded" placeholder="Search Rebay" style="margin-top:15px;"/>
+                <button (click)="applySearch()" style="background-color:#F26925; margin-top:15px;">
                     <span class="input-group-text border-0 d-none d-lg-flex" style="background-color:#F26925;" >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -71,7 +71,7 @@
           </li>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-            <a routerLinkActive="true" routerLink="featured-card" style="text-decoration: none; margin-top:20px;">Clearance</a>
+            <a routerLinkActive="true" routerLink="sales" style="text-decoration: none; margin-top:20px;">Clearance</a>
           </li>
         </ul>
             <!-- Featured & Clearance Links -->

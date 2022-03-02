@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login.service';
 import { NavigationService } from 'src/app/services/navigation.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,8 +13,9 @@ import { NavigationService } from 'src/app/services/navigation.service';
 export class NavbarComponent implements OnInit {
 
     currentUser!: User;
+    searchQuery:string = "";
 
-  constructor(public user: LoginService, private router:Router, private navService: NavigationService) {
+  constructor(public user: LoginService, private router:Router, private navService: NavigationService, private productService:ProductService) {
     this.updateNavbarUser();
    }
 
@@ -35,11 +37,13 @@ export class NavbarComponent implements OnInit {
 
   logOut():void {
     this.user.logout().subscribe(
-      (response:number) => {
-        if (response == 0) alert("successfully logged out.")
-
-        //redirect to the main page if not there already
-        this.router.navigateByUrl("");
+      (response) => {
+        if (response.status == 200){ // check the header response from logout request
+          alert("successfully logged out.") 
+          this.user.removeUser();
+          //redirect to the main page if not there already
+          // this.router.navigateByUrl(""); // maybe route back to login page? don't know how we wanna set this up
+        }
       }
     )
   }
@@ -47,6 +51,11 @@ export class NavbarComponent implements OnInit {
   //displays user cart as a slide in side panel
   toggleSideNav() {
     this.navService.toggleShowNav();
+}
+    applySearch():void {
+    //let Bar document.getElementById("search-bar")
+    this.productService.searchQuery = this.searchQuery;
+    this.router.navigateByUrl("search_results");
   }
 
 }

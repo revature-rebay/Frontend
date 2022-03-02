@@ -15,9 +15,13 @@ import { CartPanelComponent } from './components/cart-panel/cart-panel.component
 import { CartPanelContentComponent } from './components/cart-panel-content/cart-panel-content.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { ProductPageComponent } from './components/product-page/product-page.component';
 import { CartDetailPageComponent } from './components/cart-detail-page/cart-detail-page.component';
 import { CartDetailPageItemComponent } from './components/cart-detail-page-item/cart-detail-page-item.component';
+import { SalesItemComponent } from './components/sales-item/sales-item.component';
+import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
+import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
+
 
 @NgModule({
   declarations: [
@@ -31,16 +35,19 @@ import { CartDetailPageItemComponent } from './components/cart-detail-page-item/
     CartPanelContentComponent,
     HeaderComponent,
     NavbarComponent,
-    ProductPageComponent,
     CartDetailPageComponent,
-    CartDetailPageItemComponent
+    CartDetailPageItemComponent,
+    SalesItemComponent,
+    ProductDetailsPageComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    PasswordStrengthMeterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

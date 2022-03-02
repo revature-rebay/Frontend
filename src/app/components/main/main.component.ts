@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductModel } from 'src/app/models/product/product.model';
 import { NavigationService } from 'src/app/services/navigation.service';
+import { Product } from 'src/app/models/product/product.model';
+import { ProductService } from 'src/app/services/product.service';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -8,10 +10,13 @@ import { NavigationService } from 'src/app/services/navigation.service';
 })
 export class MainComponent implements OnInit {
 
-  products: ProductModel[] = [];
-  constructor(private navService: NavigationService) { }
+  products: Product[] = [];
+  featuredProducts: Product[] = [];
+  constructor(private productService:ProductService, private navService: NavigationService) { }
 
   ngOnInit(): void {
+    this.productService.getFeaturedProducts().subscribe((response: Product[])=> this.featuredProducts = response);
+    console.log(this.featuredProducts);
   }
 
 

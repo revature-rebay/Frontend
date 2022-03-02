@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class LoginService {
 
   currentUser: User = new User(); // I added this line
 
-  url: string = "http://localhost:9000/";
+  url: string = environment.serverURL;
 
   // constructor(private currentUser: User ,private http: HttpClient) { 
   constructor(private http: HttpClient) { 
@@ -31,20 +32,17 @@ export class LoginService {
   }
 
   removeUser():void {
-    //this function is used when logging out. It erases cached information about the user that was previously
-    //logged in
+    // this function is used when logging out
+    // It erases cached information about the user that was previously logged in
     this.currentUser  = new User();
   }
 
-  logout():Observable<number> {
-    //if there's currently a user logged in, log them out by making a call to the backend and removing their
-    //stored data in this service
-    let logoutSuccess = this.http.put(this.url + "login", this.currentUser) as Observable<number>;
-    this.removeUser();
-    return logoutSuccess;
+  logout():Observable<any> {
+    return this.http.post(this.url + "user/logout", { withCredentials: true });
   }
 
   getCurrentUser():User {
+    // original endpoint for getting current user - still available for use
     // return this.http.get<User>(this.url + "user/current", { withCredentials: true });
     return this.currentUser;
   }
