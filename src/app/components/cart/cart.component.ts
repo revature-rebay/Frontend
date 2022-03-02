@@ -41,9 +41,14 @@ export class CartComponent implements OnInit, DoCheck {
 
   getCart(userId: string): void {
     this.cartService.getCart(userId).subscribe((res) => {
-      this.cart = res;
-      this.size = res.length;
-      this.currSize = this.size;
+      if(res){
+        this.cart = res;
+        this.size = res.length;
+        this.currSize = this.size;
+      }
+      else {
+        this.cart = new Array();
+      }
     });
     // this.cart = this.cartService.getCart(userId);
   }

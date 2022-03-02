@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { CartDTO } from 'src/app/models/cart-dto';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-cart-detail-page-item',
@@ -14,9 +16,27 @@ export class CartDetailPageItemComponent implements OnInit {
   @Input() productImage !: ArrayBuffer;
   @Input() productId !: number;
   @Input() currentStock !: number;
+  updateQuantity !: string;
 
-  constructor() { }
+  @Output() deleteEvent = new EventEmitter<number>();
+  @Output() updateEvent = new EventEmitter<CartDTO>();
+
+  constructor(private cartService:CartService) { }
 
   ngOnInit(): void {
+  }
+
+  deleteProduct(event:MouseEvent): void{
+    console.log((<HTMLSpanElement>event.target).id);
+    this.deleteEvent.emit(parseInt((<HTMLSpanElement>event.target).id));
+  }
+
+  updateProduct(event:MouseEvent){
+    const cartdto = <CartDTO>({
+      userId: 1, //dummy
+      quantity: parseInt(this.updateQuantity),
+      productId: parseInt((<HTMLSpanElement>event.target).id)
+    })
+    this.updateEvent.emit(cartdto);
   }
 }

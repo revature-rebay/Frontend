@@ -1,6 +1,6 @@
 
 <div>
-    <app-cart-detail-page-item *ngFor="let cartItem of cart"
+    <app-cart-detail-page-item *ngFor="let cartItem of cart" (deleteEvent)="deleteProduct($event)" (updateEvent)="update($event)"
 [itemQuantity] = cartItem.quantity
 [productDesc] = cartItem.product.productDescription
 [productName] = cartItem.product.productName
