@@ -1,3 +1,4 @@
+<p *ngIf="!anyProducts()"> Sorry, the search query returned no results. Please refine your search and try again.</p>
 <div class="container" *ngFor='let p of filteredProducts'>
     <br/>
     <div class="prod-info-main prod-wrap clearfix">
@@ -13,7 +14,7 @@
             <div class="col-md-7 col-sm-12 col-xs-12">
                 <div class="product-detail">
                     <h5 class="name">
-                        <button (click)="goToDetailsPage(p)" style="color:#F26925">
+                        <button (click)="getDetails(p.productId)" style="color:#F26925">
 
                             {{p.productName}}
 

@@ -17,6 +17,8 @@ export class SearchResultsComponent implements OnInit {
   constructor(private productService:ProductService, private router:Router) { }
 
   ngOnInit(): void {
+    //reset the current array
+    this.filteredProducts = [];
     this.currentSearch = this.productService.searchQuery;
     this.getAllProducts();
   }
@@ -40,6 +42,16 @@ export class SearchResultsComponent implements OnInit {
     this.router.navigateByUrl("product_details_page");
   }
 
+  getDetails(productId:number){
+    this.router.navigate(['/product_details_page/'+ productId])
+    
+  }
+
+  anyProducts():boolean {
+    if (this.filteredProducts.length == 0) return false;
+    return true;
+  }
+
   filteringAlgorithm():void {
     //
 
@@ -55,13 +67,13 @@ export class SearchResultsComponent implements OnInit {
 
     //First and foremost, if the search bar is blank then don't show any products
     if (this.currentSearch == "") {
-      console.log("Please enter a search query");
+      //console.log("Please enter a search query");
       return;
     }
 
     //Split the search query into individual words so that each one can be checked against product names independently
     let searchWords:string[] = this.currentSearch.split(" ");
-    console.log(searchWords);
+    //console.log(searchWords);
 
     //compare all words in the query against every product in the allProducts array
     for (let product of this.allProducts) {
@@ -70,14 +82,14 @@ export class SearchResultsComponent implements OnInit {
 
         //first we check for an exact match
         if (productName == currentSearchWord) {
-          console.log("found a match:" + productName);
+          //console.log("found a match:" + productName);
           this.filteredProducts.push(product);
           continue; //move onto the next product if match is found
         }
 
         //check to see if any products fully contain the search string
         if (productName.includes(currentSearchWord) || currentSearchWord.includes(productName)) {
-          console.log("found a match:" + productName);
+          //console.log("found a match:" + productName);
           this.filteredProducts.push(product);
           continue; //move onto the next product if match is found
         }
@@ -116,7 +128,7 @@ export class SearchResultsComponent implements OnInit {
         }
 
         if (charactersFound / currentSearchWord.length >= 0.80) {
-          console.log("found a match:" + productName);
+          //console.log("found a match:" + productName);
           this.filteredProducts.push(product);
           continue; //move onto the next product if match is found
         }

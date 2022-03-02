@@ -59,7 +59,7 @@ export class ProductService {
   }
 
   getLoadedProductById(productId:number):Product {
-    console.log("here's all the products: " + this.allProducts[0].productId);
+    //console.log("here's all the products: " + this.allProducts[0].productId);
     // let foundProduct = this.allProducts.find(prod => {productId === prod.productId});
     // if (foundProduct) {
     //   return foundProduct;
