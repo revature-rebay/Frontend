@@ -21,6 +21,7 @@ import { SalesItemComponent } from './components/sales-item/sales-item.component
 import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
 import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     CartDetailPageItemComponent,
     SalesItemComponent,
     ProductDetailsPageComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
