@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { CartItem } from '../models/cart-item';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Product } from '../models/product/product.model';
 import { CartDTO } from '../models/cart-dto';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -12,7 +12,7 @@ import { CartDTO } from '../models/cart-dto';
 })
 export class CartService {
 
-  baseURL: string = "http://localhost:9000/";
+  baseURL: string = environment.serverURL;
   
   cart !: CartItem[];
 

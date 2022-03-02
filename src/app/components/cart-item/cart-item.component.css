@@ -11,3 +11,11 @@
 .border-primary {
     border-color: #F26925 !important;
 }
+
+.btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:visited {
+    background-color: #F26925 !important;
+}
+.btn {
+    border-color: #F26925 !important;
+    transition: none !important;
+}
