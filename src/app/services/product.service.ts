@@ -18,7 +18,13 @@ export class ProductService {
 
   searchQuery:string = "";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) { 
+    this.getAllProducts().subscribe(
+      (response:Product[]) => {
+        this.allProducts = response;
+      }
+    )
+  }
 
   getAllProducts():Observable<Product[]> {
     return this.http.get(this.backendURL + "products") as Observable<Product[]>;
@@ -59,6 +65,22 @@ export class ProductService {
 
   setCurrentlySelectedProduct(product:Product):void {
     this.currentlySelectedProduct = product;
+  }
+
+  getLoadedProductById(productId:number):Product {
+    console.log("here's all the products: " + this.allProducts[0].productId);
+    // let foundProduct = this.allProducts.find(prod => {productId === prod.productId});
+    // if (foundProduct) {
+    //   return foundProduct;
+    // }
+
+    // console.log("couldn't find product");
+    // return new Product(0, "", "", 0, 0, false, 0);
+    for (let prod of this.allProducts) {
+      if (prod.productId == productId) return prod;
+    }
+
+    return new Product(0, "", "", 0, 0, false, 0);
   }
 
   getTestImage():Observable<string> {

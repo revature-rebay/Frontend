@@ -8,6 +8,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { UpdateProductComponent } from './components/update-product/update-product.component';
+import { RedirectComponent } from './components/redirect/redirect.component';
 
 const routes: Routes = [{
   path: 'main',
@@ -16,7 +17,7 @@ const routes: Routes = [{
   path: 'login',
   component: LoginComponent
 }, {
-  path: 'product_details_page',
+  path: 'product_details_page/:productId',
   component: ProductDetailsPageComponent
 },{
   path: 'sales',
@@ -33,6 +34,9 @@ const routes: Routes = [{
 },{
   path: 'update_product',
   component:UpdateProductComponent
+}, {
+  path: 'redirect',
+  component:RedirectComponent
 }
 ];
 

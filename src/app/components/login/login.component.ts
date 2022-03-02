@@ -3,11 +3,14 @@ import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css']  
 })
+
+
 export class LoginComponent implements OnInit {
 
   id: number = 0;
@@ -23,8 +26,7 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit() : void {}
 
   login() {
 
@@ -34,11 +36,10 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.user).subscribe({
       next: response => {
         this.user = response
-        console.log(this.user);
 
         if (this.user != null) {
           this.router.navigate([`main`]);
-          this.loginService.currentUser = this.user;
+          this.loginService.currentUser = this.user; // using this now to set current user
         }
       },
       error: (response) => {
@@ -57,19 +58,27 @@ export class LoginComponent implements OnInit {
     this.user.firstName = this.firstName;
     this.user.lastName = this.lastName;
 
-    this.loginService.registerUser(this.user).subscribe({
-      next: () => {
-        this.loginService.login(this.user).subscribe({
-          next: () => {
-            this.router.navigate([`main`]);
+    let regex = /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{9,16}$/;
+    
+    if (!regex.test(this.passWord)) {
+      alert("Password can't have white spaces, must contain one symbol, digit & uppercase letter AND must be 9-16 characters long")
+    } else {
+      this.loginService.registerUser(this.user).subscribe({
+        next: () => {  
+          this.loginService.login(this.user).subscribe({
+            next: (response) => {
+              this.user = response
+              this.loginService.currentUser = this.user
+              this.router.navigate([`main`]);
+            }
+          })
+        },
+        error: (response) => {
+          if (response.status == 500) {
+            alert("email or username already taken")
           }
-        })
-      },
-      error: (response) => {
-        if (response.status == 500) {
-          alert("email or username already taken")
         }
-      }
-    })
+      })
+    }
   }
 }

@@ -18,6 +18,10 @@ img {
 .product-price {
           font-size: 1.375rem;
           font-weight: 600;
+          padding-right: .1rem;
+}
+.product-sale{
+  font-size: 1rem;
 }
 header{
       display: flex;
@@ -35,10 +39,12 @@ header{
 }
 button {
         height: 48px;
-        width: 100%;
-        border: none;
-        background-color: #fff;
-        border-top: 1px solid #ccc;
+        width: 38%;
+        margin-left:32%;
+        margin-bottom: 5%;
+        border-style: solid;
+        border-color: black;
+        background-color:#F26925;
         cursor: pointer;
         transition: background-color 0.2s;
 }

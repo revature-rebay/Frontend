@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product/product.model';
 import { ProductService } from 'src/app/services/product.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-product-details-page',
@@ -9,39 +11,54 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductDetailsPageComponent implements OnInit {
 
-  currentlySelectedProduct:Product = new Product(0, "", "", 0, 0, false, 0);
+  //currentlySelectedProduct:Product = new Product(0, "", "", 0, 0, false, 0);
   //currentlySelectedProduct:ProductModel = new ProductModel(0, "", "", 0, 0, false, 0, new ArrayBuffer(0));
-  productArray:Product[] = [];
+  //productArray:Product[] = [];
+
+
 
   displayProduct!:Product; 
   displayImage!:string;
   salePrice:number = 0;
   saleDifferential:number = 0;
 
-  constructor(private productService:ProductService) { }
+  constructor(private productService:ProductService, private activeRoute:ActivatedRoute) { }
 
-  ngOnInit(): void {
-    this.testGetAllProducts();
-    console.log(this.productArray);
+  // ngOnInit(): void {
+  //   //
+  //   this.testGetAllProducts();
+  //   console.log(this.productArray);
      
     
-  }
+  // }
 
-  testGetAllProducts():void {
-    this.productService.getAllProducts().subscribe(
-      (response:Product[]) => {
-        this.productArray = response;
-        //let yeet:any;
-        for (let yeet of response) console.log("Here's the response: " + yeet.productDescription);
-        this.setDisplayProduct();
-        console.log(this.displayProduct);
-      }
-    )
-  }
+  ngOnInit() {
+    // First get the product id from the current route.
+    const routeParams = this.activeRoute.snapshot.paramMap;
+    const productIdFromRoute = Number(routeParams.get('productId'));
 
-  setDisplayProduct():void { 
-    //this.displayProduct = this.productService.currentlySelectedProduct; 
-    this.displayProduct = this.productArray[9]; 
+    //console.log(productIdFromRoute);
+  
+    // Find the product that correspond with the id provided in route.
+    this.displayProduct = this.productService.getLoadedProductById(productIdFromRoute);
+  }
+  
+
+  // testGetAllProducts():void {
+  //   this.productService.getAllProducts().subscribe(
+  //     (response:Product[]) => {
+  //       this.productArray = response;
+  //       //let yeet:any;
+  //       for (let yeet of response) console.log("Here's the response: " + yeet.productDescription);
+  //       this.setDisplayProduct();
+  //       console.log(this.displayProduct);
+  //     }
+  //   )
+  // }
+
+  setDisplayProduct(productId:number):void { 
+    this.displayProduct = this.productService.currentlySelectedProduct; 
+    //this.displayProduct = this.productArray[9]; 
     this.displayImage = "assets/images/" + this.displayProduct.productName + ".jpg";
     if (this.displayProduct.discountPercentage > 0) {
       this.salePrice = this.displayProduct.productPrice * (1 - this.displayProduct.discountPercentage);
