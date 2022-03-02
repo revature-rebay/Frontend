@@ -1,12 +1,11 @@
-import { HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
 import { User } from '../models/user';
 import { LoginService } from './login.service';
 
 
 describe('LoginService', () => {
+  /*
   let service: LoginService;
   let httpMock: HttpTestingController;
 
@@ -23,69 +22,96 @@ describe('LoginService', () => {
     expect(service).toBeTruthy();
   });
 
+
   it('should create a new user', ()=>{
     
-    let status:number = 201;
-    let user:User = new User();
+    let user:User = new User({userName:'flodev', passWord:'password', email:'flodev@gmail.com', firstName:'Eric', lastName:'Florence'});
 
-    spyOn(service, 'registerUser').and.returnValue(of(status));
+    service.registerUser(user).subscribe((testUser) =>{
+      expect(testUser).toEqual(user);
+    })
 
-    service.registerUser(user).subscribe((data) => {
-      expect(data).toEqual(status);
-    });
-    expect(service.registerUser).toHaveBeenCalled;
+    const req = httpMock.expectOne(`${service.url}user`);
+
+    expect(req.request.method).toBe("POST");
+
+    req.flush(user);
+
+    httpMock.verify();
+
   })
 
   it('should return a cookie and the user', ()=>{
 
-    let user:User = new User();
+    let user:User = new User({id:1, userName:'flodev', passWord:'password', email:'flodev@gmail.com', firstName:'Eric', lastName:'Florence', roleId:2});
+    let loginUser:User = new User();
+    loginUser.userName = 'flodev';
+    loginUser.passWord = 'password';
 
-    spyOn(service, 'login').and.returnValue(of(user));
-
-    service.login(user).subscribe((response)=>{
-      expect(response).toEqual(user);
+    service.login(loginUser).subscribe((testUser) =>{
+      expect(testUser).toEqual(user);
     });
-    expect(service.login).toHaveBeenCalled;
+
+    const req = httpMock.expectOne(`${service.url}user/login`);
+
+    expect(req.request.method).toBe("POST");
+
+    req.flush(user);
+
+    httpMock.verify();
 
   })
 
-  it('should return an empty cookie', ()=>{
+  it('should return status 200 for loggin out', ()=>{
 
-    let cookie:number = 0;
+    let response:number = 200;
 
-    spyOn(service, 'logout').and.returnValue(of(cookie));
-
-    service.logout().subscribe((response)=>{
-      expect(response).toEqual(cookie);
+    service.logout().subscribe((status) =>{
+      expect(status).toEqual(response);
     })
-    expect(service.logout).toHaveBeenCalled;
+
+    const req = httpMock.expectOne(`${service.url}user/logout`);
+
+    expect(req.request.method).toBe("POST");
+
+    req.flush(response);
+
+    httpMock.verify();
 
   })
-/*
-  it('should return the user who is currently logged in', ()=>{
 
-    let user:User = new User();
 
-    spyOn(service, 'getCurrentUser').and.returnValue(of(user));
+  // BELONGED TO ORIGINAL REQUEST FOR GET CURRENT USER, FOR USE LATER IF NEEDED
+  // it('should return the user who is currently logged in', ()=>{
 
-    service.getCurrentUser().subscribe((response)=>{
-      expect(response).toEqual(user);
-    })
-    expect(service.getCurrentUser).toHaveBeenCalled;
+  //   let user:User = new User();
 
-  })
+  //   spyOn(service, 'getCurrentUser').and.returnValue(of(user));
+
+  //   service.getCurrentUser().subscribe((response)=>{
+  //     expect(response).toEqual(user);
+  //   })
+  //   expect(service.getCurrentUser).toHaveBeenCalled;
+
+  // })
 
   it('should return a user matching an id', ()=>{
 
-    let user:User = new User();
+    let user:User = new User({id:1, userName:'flodev', passWord:'password', email:'flodev@gmail.com', firstName:'Eric', lastName:'Florence'});
 
-    spyOn(service, 'getUserById').and.returnValue(of(user));
+    service.getUserById(1).subscribe((testUser) =>{
+      expect(user).toEqual(testUser);
+    })
 
-    service.getUserById(1).subscribe((response)=>{
-      expect(response).toEqual(user);
-    });
-    expect(service.getUserById).toHaveBeenCalled;
+    const req = httpMock.expectOne(`${service.url}user/1`);
+
+    expect(req.request.method).toBe("GET");
+
+    req.flush(user);
+
+    httpMock.verify();
 
   })
 */
+
 });

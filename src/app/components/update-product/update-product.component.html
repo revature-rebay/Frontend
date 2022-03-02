@@ -1,5 +1,5 @@
 <div > <div class=" text-center mt-5 ">
-    <h1>Add Product</h1>
+    <h1>Update Product</h1>
 </div>
 <div class="row ">
     <div class="col-lg-7 mx-auto">
@@ -12,13 +12,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group"> 
                                         <label for="productName">Product Title <span style="color:red;">*</span></label>
-                                        <input [(ngModel)]="productName" id="productName" type="text" name="ProductName" class="form-control" placeholder="Enter Product Name" required="required">
+                                        <input id="productName" type="text" name="ProductName" class="form-control" placeholder="Enter Product Name" required="required" [(ngModel)]="productName">
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group"> 
                                         <label for="productPrice" >Price <span style="color:red;">*</span></label>
-                                        <input id="productPrice" class="form-control" placeholder="Enter Price" type="text" (blur)="transformAmount($event)" [(ngModel)]="formattedPriceAmount" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                                        <input id="productPrice" class="form-control" placeholder="Enter Price" type="text" (blur)="transformAmount($event)" [(ngModel)]="formattedAmount" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');">
                                     </div>
                                 </div>
                             </div>
@@ -26,16 +26,16 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label for="stock">Stock <span style="color:red;">*</span></label>
-                                        <input [(ngModel)]="stock" id="stock" type="number" name="stock" class="form-control" placeholder="Enter stock #" required="required">
+                                        <input id="stock" type="number" name="stock" class="form-control" placeholder="Enter stock #" required="required" [(ngModel)]="stock">
 
                                         <label for="featured">Featured</label><br>&nbsp;
-                                        <input [(ngModel)]="featured" style="width:15px;" id="featured" type="checkbox">
+                                        <input style="width:15px;" id="featured" type="checkbox" [(ngModel)]="featured">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <label for="discount">Discount</label>
                                     <div class="input-group mb-2">
-                                        <input [(ngModel)]="discount" style="text-align:right;" type="number" class="form-control" id="stock" placeholder="Enter Discount">
+                                        <input style="text-align:right;" type="number" class="form-control" id="stock" placeholder="Enter Discount" [(ngModel)]="discount">
                                         <div class="input-group-append">
                                             <div class="input-group-text">%</div>
                                           </div>
@@ -46,11 +46,11 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="description">Product Description <span style="color:red;">*</span></label>
-                                        <textarea [(ngModel)]="description" id="description" name="message" class="form-control" placeholder="Enter Product Description here" rows="2" required="required" data-error="Please, leave us a message."></textarea>
+                                        <label for="form_message">Product Description <span style="color:red;">*</span></label>
+                                        <textarea id="form_message" name="message" class="form-control" placeholder="Enter Product Description here" rows="2" required="required" data-error="Please, leave us a message." [(ngModel)]="productDescription"></textarea>
                                     </div>
                                 </div>
-                                <div class="text-center"> <button (click) = "addProduct()" id="addbtn" class="pt-2 btn-block" style="background-color: #ff7937; border-radius:5px; padding-bottom: 8px; margin-top: 20px;">Add Product</button></div>
+                                <div class="text-center"> <button (click)="productUpdated()" id="updatebtn" class="pt-2 btn-block" style="background-color: #ff7937; border-radius:5px; padding-bottom: 8px; margin-top: 20px;">Update Product</button></div>
                             </div>
                         </div>
                     </div>

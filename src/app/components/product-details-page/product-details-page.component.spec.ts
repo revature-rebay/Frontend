@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { Product } from 'src/app/models/product/product.model';
 import { ProductService } from 'src/app/services/product.service';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { ProductDetailsPageComponent } from './product-details-page.component';
 
 fdescribe('ProductDetailsPageComponent', () => {
@@ -13,8 +13,9 @@ fdescribe('ProductDetailsPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
-      declarations: [ ProductDetailsPageComponent ]
+
+      declarations: [ ProductDetailsPageComponent ],
+      imports: [RouterTestingModule, HttpClientTestingModule]
     })
     .compileComponents();
   });
@@ -28,17 +29,6 @@ fdescribe('ProductDetailsPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  //May get rid of this method later
-  //We can just inject the productService and access the array from there
-  it('should get a list of products from the product service', () => {
-    let products: Product[] = [new Product(1, "", "", 0, 10, false, 0), new Product(2, "", "", 0, 0, true, 0)];
-    let productServiceSpy = jasmine.createSpyObj('ProductService', ['getAllProducts']);
-    let getProductsSpy = productServiceSpy.getAllProducts.and.returnValue(of(products));
-
-    component.testGetAllProducts();
-    expect(component.productArray).toEqual(products);
-  })
 
   it('should tell if the currently displayed product is discounted', () => {
     //on sale product

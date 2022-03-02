@@ -48,10 +48,17 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
+<<<<<<< HEAD
     browsers: ['Chrome'],
     //browsers: ['ChromeHeadless'],
     singleRun: false,
     //singleRun: true,
+=======
+    // browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
+    //singleRun: false,
+    singleRun: true,
+>>>>>>> c0cbb2b4f10fd2b6f7a99738441336efcc26dac4
     restartOnFileChange: true
   });
 };

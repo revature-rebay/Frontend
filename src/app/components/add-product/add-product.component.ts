@@ -1,4 +1,6 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product/product.model';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -9,62 +11,56 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class AddProductComponent implements OnInit {
 
-  currentlySelectedProduct:Product = new Product(0, "", "", 0, 0, false, 0);
+  productName:string = "";
+  stock!:number;
+  featured:boolean = false;
+  discount!:number;
+  description:string = "";
 
-  productArray:Product[] = [];
+  formattedPriceAmount:any;
+  amount!: number;
+  InputValue:any;
 
-  displayProduct!:Product; 
-  displayImage!:string;
-  salePrice:number = 0;
-  saleDifferential:number = 0;
-
-  // pImage:string =  "assets/images/" + this.displayProduct.productName + ".jpg";
-
-  constructor(private productService:ProductService) { }
+  constructor(private currencyPipe : CurrencyPipe, private router:Router, private productService:ProductService) { }
 
   ngOnInit(): void {
-    this.getAllProducts();
-    console.log(this.getAllProducts());
-    
-    console.log(this.productArray);
-     
-    
   }
 
-  getAllProducts():void {
-    this.productService.getAllProducts().subscribe(
-      (response:Product[]) => {
-        this.productArray = response;
-        //let yeet:any;
-        for (let yeet of response) console.log("Here's the response: " + yeet);
-        this.setDisplayProduct();
-        console.log(this.displayProduct);
-      }
-    )
+  transformAmount(element:any){
+    this.formattedPriceAmount = this.currencyPipe.transform(this.formattedPriceAmount, '$');
+
+    element.target.value = this.formattedPriceAmount;
   }
 
-  setDisplayProduct():void { 
-    //this.displayProduct = this.productService.currentlySelectedProduct; 
-    this.displayProduct = this.productArray[9]; 
-    this.displayImage = "assets/images/" + this.displayProduct.productName + ".jpg";
-    if (this.displayProduct.discountPercentage > 0) {
-      this.salePrice = this.displayProduct.productPrice * (1 - this.displayProduct.discountPercentage);
-      this.saleDifferential = this.displayProduct.productPrice - this.salePrice;
+  setvalue(value:any) {
+    this.InputValue = value.replace('%','')+"%"    
+  }
+
+  addProduct(): void {
+    //make sure no fields are blank, then create a product and send to the backend
+
+    if (this.productName == "" || this.formattedPriceAmount == 0 || this.stock == 0 || this.description == "") {
+      alert("Must fill out all required fields.");
     }
-  }
+    else {
+      //first create a new product object
+      let product:Product = new Product(0, this.productName, this.description, this.formattedPriceAmount, this.discount, this.featured, this.stock);;
 
-  setImage(p: Product):any {
-    return "assets/images/" + p.productName + ".jpg";
-  }
+      //create new product here using the usService
+      this.productService.addNewProduct(product).subscribe(
+        (response:boolean)=>{
+            //successfully created a new product, make sure to log it in and then redirect to the main page
+            if (response == true){
+            this.productService.updateAllProduct();
+            alert("New product was created successfully!");
+            this.router.navigateByUrl("");
+          }else{
+            alert("Product was not successfuly added");
+          }
+        }
+      )
+    }
 
-  onSale():boolean {
-    if (this.displayProduct.discountPercentage > 0) return true;
-    return false;
-  }
-
-  isFeatured():boolean {
-    if (this.displayProduct.featuredProduct == true) return true;
-    return false;
   }
 
 }
