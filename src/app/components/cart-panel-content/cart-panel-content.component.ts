@@ -11,6 +11,10 @@ export class CartPanelContentComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+
+
+    
   }
 
 }

@@ -108,6 +108,17 @@ export class CartService {
   return this.http.delete(`${this.baseURL + userId}`, httpOptions);
  }
 
+ checkout(userId: string): void {
+  const httpOptions= {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      Authorization: 'my-auth-token',
+      observe: 'response'
+    })
+  };
+  this.http.put(`${this.baseURL}cart/checkout/${userId}`, httpOptions);
+ }
+
  //remove - was just for temp testing
 //  tempDel(productId:number){
 //    this.cart = this.getCart("1").filter(item => {
