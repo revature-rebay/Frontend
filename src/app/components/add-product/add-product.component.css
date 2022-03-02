@@ -4,6 +4,7 @@
     background-color:#F26925;
     border:groove;
     padding:10px;
+    border-radius: 5px;
 }
 #addbtn:hover{
     transform: scale(.9);
