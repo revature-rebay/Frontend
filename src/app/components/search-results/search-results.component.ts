@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product/product.model';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -10,10 +11,10 @@ import { ProductService } from 'src/app/services/product.service';
 export class SearchResultsComponent implements OnInit {
 
   currentSearch:string = "";
-  allProducts:Product[] = [];
+  allProducts:Product[] = []; //TODO: pull this from the service with routing parameters
   filteredProducts:Product[] = []; //TODO: consider making this a set so we don't get any repeat products
 
-  constructor(private productService:ProductService) { }
+  constructor(private productService:ProductService, private router:Router) { }
 
   ngOnInit(): void {
     this.currentSearch = this.productService.searchQuery;
@@ -31,7 +32,17 @@ export class SearchResultsComponent implements OnInit {
     )
   }
 
+  goToDetailsPage(product:Product):void {
+    //set the currently selected product in the product service
+    this.productService.currentlySelectedProduct = product;
+
+    //then route to the product details page
+    this.router.navigateByUrl("product_details_page");
+  }
+
   filteringAlgorithm():void {
+    //
+
     //Loop through all products in the database (which are stored in the allProducts array) and add any products
     //that pass all the search criteria listed below to the filteredProducts array.
 

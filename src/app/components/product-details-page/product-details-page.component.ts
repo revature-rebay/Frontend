@@ -24,6 +24,7 @@ export class ProductDetailsPageComponent implements OnInit {
     this.testGetAllProducts();
     console.log(this.productArray);
      
+    //pull
     
   }
 
@@ -40,8 +41,8 @@ export class ProductDetailsPageComponent implements OnInit {
   }
 
   setDisplayProduct():void { 
-    //this.displayProduct = this.productService.currentlySelectedProduct; 
-    this.displayProduct = this.productArray[9]; 
+    this.displayProduct = this.productService.currentlySelectedProduct; 
+    //this.displayProduct = this.productArray[9]; 
     this.displayImage = "assets/images/" + this.displayProduct.productName + ".jpg";
     if (this.displayProduct.discountPercentage > 0) {
       this.salePrice = this.displayProduct.productPrice * (1 - this.displayProduct.discountPercentage);

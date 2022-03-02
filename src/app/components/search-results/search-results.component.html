@@ -1,5 +1,4 @@
-<p>Currently searching on this phrase: {{currentSearch}}</p>
-<div class="container" *ngFor='let p of allProducts'>
+<div class="container" *ngFor='let p of filteredProducts'>
     <br/>
     <div class="prod-info-main prod-wrap clearfix">
         <div class="row">
@@ -14,11 +13,11 @@
             <div class="col-md-7 col-sm-12 col-xs-12">
                 <div class="product-detail">
                     <h5 class="name">
-                        <a href="#" style="color:#F26925">
+                        <button (click)="goToDetailsPage(p)" style="color:#F26925">
 
                             {{p.productName}}
 
-                        </a>
+                        </button>
                     </h5>
                     <p class="price-container">
 
