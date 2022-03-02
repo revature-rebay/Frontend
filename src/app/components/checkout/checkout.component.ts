@@ -33,6 +33,12 @@ export class CheckoutComponent implements OnInit {
         country: '',
         zipcode: '',
       }),
+      payment: this.fb.group({
+        cardNumber: '',
+        month: '',
+        year: '',
+        securityCode: '',
+      })
     });
   }
 
