@@ -17,7 +17,7 @@ export class FeaturedCardComponent implements OnInit {
   }
 
   getDetails(){
-    this.router.navigate(['/product/'+this.singleproduct.productId])
+    this.router.navigate(['/product_details_page/'+this.singleproduct.productId])
   }
 
 }
