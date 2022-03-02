@@ -113,4 +113,13 @@ export class SearchResultsComponent implements OnInit {
     }
   }
 
+  setImage(p:Product):string{
+    return 'assets/images/' + p.productName + '.jpg'; 
+  }
+
+  onSale(p:Product):boolean {
+    if (p.discountPercentage > 0) return true;
+    return false;
+  }
+  
 }
