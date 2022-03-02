@@ -18,6 +18,16 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.productService.searchQuery);
     this.currentSearch = this.productService.searchQuery;
+    this.testGetAllProducts(); 
+  }
+
+  testGetAllProducts():void {
+    this.productService.getAllProducts().subscribe(
+      (response:Product[]) => {
+        this.allProducts = response
+        console.log(this.allProducts);
+      }
+    )
   }
 
   filteringAlgorithm():void {
@@ -28,4 +38,13 @@ export class SearchResultsComponent implements OnInit {
     //when their done (potential blocker, waiting on them to finish code for us to steal!)
   }
 
+  setImage(p:Product):string{
+    return 'assets/images/' + p.productName + '.jpg'; 
+  }
+
+  onSale(p:Product):boolean {
+    if (p.discountPercentage > 0) return true;
+    return false;
+  }
+  
 }
