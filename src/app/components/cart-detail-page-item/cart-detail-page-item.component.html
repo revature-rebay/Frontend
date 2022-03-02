@@ -6,20 +6,25 @@
         </div>
     
         <div class="col">
-                <p>Product Name: {{productName}}</p>
-                <p>Description: {{productDesc}}</p>
+                <p class="fs-5 fw-bold" >Product Name: {{productName}}</p>
+                <p class="fst-italic">Description: {{productDesc}}</p>
         </div>
         
 
-        <div class="col-2">
-                <input type="number" name="quantity" placeholder={{itemQuantity}} min="1" max={{currentStock}} size="2">
-                <button class="btn btn-secondary">Update</button>
-                
-        </div>  
+        <div class="col-1 mr-2">
+                <div class="row">
+                <input class="" type="number" name="quantity" placeholder={{itemQuantity}} min="1" max={{currentStock}} size="2"  [(ngModel)]="updateQuantity">
+                </div>
+                <div class="row mt-2">
+                <button class="btn btn-sm btn-secondary rounded" id={{productId}} (click)="updateProduct($event)">Update</button>      
+                </div>
+        </div> 
+        
+             
 
         <div class="col-2">
-            <span>Price:{{productPrice | currency}}</span>
-            <span id={{productId}} class="delete material-icons align-middle">delete</span>
+            <span class="fw-bold">Price:{{productPrice | currency}}</span>
+            <span id={{productId}} class="delete material-icons align-middle" (click)="deleteProduct($event)">delete</span>
         </div>
 </div>
 </div>

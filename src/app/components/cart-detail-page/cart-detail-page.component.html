@@ -1,15 +1,16 @@
 
 <div>
-    <app-cart-detail-page-item *ngFor="let cartItem of cart"
+    <app-cart-detail-page-item *ngFor="let cartItem of cart" (deleteEvent)="deleteProduct($event)" (updateEvent)="update($event)"
 [itemQuantity] = cartItem.quantity
 [productDesc] = cartItem.product.productDescription
 [productName] = cartItem.product.productName
 [productPrice] = cartItem.product.productPrice
-[productImage] = cartItem.product.productImage
 [productId] = cartItem.product.productId
 [currentStock] = cartItem.product.currentStock
 ></app-cart-detail-page-item>
 </div>
+<!-- [productImage] = cartItem.product.productImage -->
+
 
 
 

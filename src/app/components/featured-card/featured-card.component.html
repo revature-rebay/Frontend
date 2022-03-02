@@ -1,6 +1,6 @@
-<div class="product-card" *ngIf="(singleproduct.featuredProduct == true)">
+<div class="product-card" >
   <div class="product-card__image" routerLink="/product/{{ singleproduct.productId }}">
-    <img src="{{ singleproduct.productImage }}" alt="" />
+    <img src="assets/images/swag_mug.png" alt="" />
   </div>
   <div class="product-card__info">
     <header>
@@ -11,14 +11,13 @@
     </header>
   </div>
   <div class="product-card__cta">
-    <button
+    <button class="btn btn-dark" style="background-color:#F26925"
       nz-button
       [disabled]="singleproduct.currentStock === 0"
       (click)="
         onAdd({
           productId: singleproduct.productId,
           productPrice: singleproduct.productPrice,
-          productImage: singleproduct.productImage,
           productName: singleproduct.productName,
           maxQuantity: singleproduct.currentStock
         })

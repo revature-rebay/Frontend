@@ -28,7 +28,8 @@
                                         placeholder="Create your username" [(ngModel)]="userName"> </div>
                                 <br>
                                 <div class="group"><input id="pass" type="password" class="input" data-type="password"
-                                        placeholder="Create your password" [(ngModel)]="passWord"> </div>
+                                        placeholder="Create your password" [(ngModel)]="passWord"></div>
+                                        <password-strength-meter [password]="passWord" class="password-feedback"></password-strength-meter>
                                 <br>
                                 <div class="group"><input id="pass" type="text" class="input"
                                         placeholder="Enter your email address" [(ngModel)]="email"> </div>
