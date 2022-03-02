@@ -21,7 +21,7 @@ export class ProductDetailsPageComponent implements OnInit {
   constructor(private productService:ProductService) { }
 
   ngOnInit(): void {
-    this.testGetAllProducts();
+    //this.testGetAllProducts();
     console.log(this.productArray);
      
     

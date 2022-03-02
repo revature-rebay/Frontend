@@ -6,7 +6,7 @@ import { User } from '../models/user';
 import { LoginService } from './login.service';
 
 
-fdescribe('LoginService', () => {
+describe('LoginService', () => {
   let service: LoginService;
   let httpMock: HttpTestingController;
 
@@ -61,7 +61,7 @@ fdescribe('LoginService', () => {
     expect(service.logout).toHaveBeenCalled;
 
   })
-
+/*
   it('should return the user who is currently logged in', ()=>{
 
     let user:User = new User();
@@ -87,5 +87,5 @@ fdescribe('LoginService', () => {
     expect(service.getUserById).toHaveBeenCalled;
 
   })
-
+*/
 });
