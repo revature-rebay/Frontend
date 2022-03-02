@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { LoginService } from 'src/app/services/login.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +12,9 @@ import { LoginService } from 'src/app/services/login.service';
 export class NavbarComponent implements OnInit {
 
     currentUser!: User;
+    searchQuery:string = "";
 
-  constructor(public user: LoginService, private router:Router) {
+  constructor(public user: LoginService, private router:Router, private productService:ProductService) {
     this.updateNavbarUser();
    }
 
@@ -42,6 +44,12 @@ export class NavbarComponent implements OnInit {
         this.router.navigateByUrl("");
       }
     )
+  }
+
+  applySearch():void {
+    //let Bar document.getElementById("search-bar")
+    this.productService.searchQuery = this.searchQuery;
+    this.router.navigateByUrl("search_results");
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductModel } from 'src/app/models/product/product.model';
+import { Product } from 'src/app/models/product/product.model';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -9,11 +9,11 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class AddProductComponent implements OnInit {
 
-  currentlySelectedProduct:ProductModel = new ProductModel(0, "", "", 0, 0, false, 0);
+  currentlySelectedProduct:Product = new Product(0, "", "", 0, 0, false, 0);
 
-  productArray:ProductModel[] = [];
+  productArray:Product[] = [];
 
-  displayProduct!:ProductModel; 
+  displayProduct!:Product; 
   displayImage!:string;
   salePrice:number = 0;
   saleDifferential:number = 0;
@@ -33,7 +33,7 @@ export class AddProductComponent implements OnInit {
 
   getAllProducts():void {
     this.productService.getAllProducts().subscribe(
-      (response:ProductModel[]) => {
+      (response:Product[]) => {
         this.productArray = response;
         //let yeet:any;
         for (let yeet of response) console.log("Here's the response: " + yeet);
@@ -53,7 +53,7 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-  setImage(p: ProductModel):any {
+  setImage(p: Product):any {
     return "assets/images/" + p.productName + ".jpg";
   }
 

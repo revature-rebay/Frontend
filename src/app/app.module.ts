@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -13,6 +12,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SalesItemComponent } from './components/sales-item/sales-item.component';
 import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import { AddProductComponent } from './components/add-product/add-product.compon
     NavbarComponent,
     SalesItemComponent,
     ProductDetailsPageComponent,
-    AddProductComponent
+    AddProductComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,
