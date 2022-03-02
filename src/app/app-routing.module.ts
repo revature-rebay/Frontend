@@ -6,6 +6,7 @@ import { ProductDetailsPageComponent } from './components/product-details-page/p
 import { SalesItemComponent } from './components/sales-item/sales-item.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { RedirectComponent } from './components/redirect/redirect.component';
 
 const routes: Routes = [{
   path: 'main',
@@ -25,6 +26,9 @@ const routes: Routes = [{
 },{
   path: 'search_results',
   component:SearchResultsComponent
+}, {
+  path: 'redirect',
+  component:RedirectComponent
 }
 ];
 
