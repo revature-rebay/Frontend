@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -12,7 +12,7 @@ import { FeaturedCardComponent } from './components/featured-card/featured-card.
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SalesItemComponent } from './components/sales-item/sales-item.component';
 import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
-import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+import { PasswordStrengthMeterModule, } from 'angular-password-strength-meter';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 
 
@@ -25,15 +25,21 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     NavbarComponent,
     SalesItemComponent,
     ProductDetailsPageComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    
   ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     NgbModule,
-    PasswordStrengthMeterModule
+    PasswordStrengthMeterModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
