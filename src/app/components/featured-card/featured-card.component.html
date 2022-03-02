@@ -1,7 +1,7 @@
 <div class="product-card"[routerLink]="['product_details_page', singleproduct.productId]">
   <div >
   <div class="product-card__image">
-    <img src="assets/images/swag_mug.png" alt="" />
+    <img src="assets/images/{{singleproduct.productName}}.jpg">
   </div>
   <div class="product-card__info">
     <header>
@@ -20,7 +20,8 @@
   </div>
 </div>
   <div class="product-card__cta">
-    <button class="btn btn-dark">
+    <button class="btn btn-dark"> 
+      <!-- add to cart function here -->
       {{ singleproduct.currentStock === 0 ? "Out of stock" : "Add to cart" }}
     </button>
   </div>
