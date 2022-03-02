@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.user).subscribe({
       next: response => {
         this.user = response
-        console.log(this.user);
 
         if (this.user != null) {
           this.router.navigate([`main`]);
@@ -67,7 +66,9 @@ export class LoginComponent implements OnInit {
       this.loginService.registerUser(this.user).subscribe({
         next: () => {  
           this.loginService.login(this.user).subscribe({
-            next: () => {
+            next: (response) => {
+              this.user = response
+              this.loginService.currentUser = this.user
               this.router.navigate([`main`]);
             }
           })
