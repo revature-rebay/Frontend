@@ -24,6 +24,15 @@ export class ProductService {
     return this.http.get(this.backendURL + "products") as Observable<Product[]>;
   }
 
+  updateAllProduct():void {
+    this.getAllProducts().subscribe(
+      (response:Product[]) => {
+        this.allProducts = response;
+      }
+    )
+
+  }
+
   getProduct(productId:number):Observable<Product> {
     return this.http.get(this.backendURL + "products/" + productId) as Observable<Product>;
   }

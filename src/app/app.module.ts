@@ -11,8 +11,11 @@ import { FeaturedCardComponent } from './components/featured-card/featured-card.
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SalesItemComponent } from './components/sales-item/sales-item.component';
 import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
-import { AddProductComponent } from './components/add-product/add-product.component';
+import { ProductsComponent } from './components/products/products.component'
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { CurrencyPipe } from '@angular/common';
+import { UpdateProductComponent } from './components/update-product/update-product.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +26,11 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     NavbarComponent,
     SalesItemComponent,
     ProductDetailsPageComponent,
+    ProductsComponent,
+    SearchResultsComponent,
     AddProductComponent,
-    SearchResultsComponent
+    UpdateProductComponent
+
   ],
   imports: [
     BrowserModule,
@@ -33,7 +39,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     HttpClientModule,
     NgbModule
   ],
-  providers: [],
+  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
 

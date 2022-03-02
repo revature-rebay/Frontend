@@ -4,8 +4,10 @@ import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
 import { SalesItemComponent } from './components/sales-item/sales-item.component';
-import { AddProductComponent } from './components/add-product/add-product.component';
+import { ProductsComponent } from './components/products/products.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { UpdateProductComponent } from './components/update-product/update-product.component';
 
 const routes: Routes = [{
   path: 'main',
@@ -20,11 +22,17 @@ const routes: Routes = [{
   path: 'sales',
   component:SalesItemComponent
 },{
-  path: 'add_product',
-  component: AddProductComponent
+  path: 'products',
+  component: ProductsComponent
 },{
   path: 'search_results',
   component:SearchResultsComponent
+},{
+  path: 'add_product',
+  component:AddProductComponent
+},{
+  path: 'update_product',
+  component:UpdateProductComponent
 }
 ];
 
