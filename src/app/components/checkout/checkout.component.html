@@ -1,6 +1,47 @@
-<div>
+<form [formGroup]="checkoutForm" (ngSubmit)="onCheckout()">
+<label>First Name:
+    <input type="text" formControlName="firstName" placeholder="required">
+</label>
+<br>
+<label>Last Name:
+    <input type="text" formControlName="lastName" placeholder="required">
+</label>
+<br>
+<label>Phone Number:
+    <input type="text" formControlName="phoneNumber" placeholder="required">
+</label>
+<br>
+<br>
+<label>Address:
+    <div formGroupName = "address">
+        <label>
+            Street:
+            <input type="text" formControlName="street" placeholder="required">
+        </label>
+        <br>
+        <label>
+            City:
+            <input type="text" formControlName="city" placeholder="required">
+        </label>
+        <br>
+        <label>
+            State:
+            <input type="text" formControlName="state" placeholder="required">
+        </label>
+        <br>
+        <label>
+            Country:
+            <input type="text" formControlName="country" placeholder="required">
+        </label>
+        <br>
+        <label>
+            ZIP Code:
+            <input type="text" formControlName="zipcode" placeholder="required">
+        </label>
+        
+    </div>
+    
+</label>
 
-
-    <button class="btn btn-secondary rounded-pill ms-4 mt-2" (click)="checkout()">Checkout Now</button>
-
-</div>
+<button id="checkout_btn">Checkout</button>
+</form>

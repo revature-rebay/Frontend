@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
@@ -47,7 +47,8 @@ import { SearchResultsComponent } from './components/search-results/search-resul
     FormsModule,
     HttpClientModule,
     NgbModule,
-    PasswordStrengthMeterModule
+    PasswordStrengthMeterModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
