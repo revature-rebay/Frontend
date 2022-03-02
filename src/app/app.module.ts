@@ -12,8 +12,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SalesItemComponent } from './components/sales-item/sales-item.component';
 import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { RedirectComponent } from './components/redirect/redirect.component';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { RedirectComponent } from './components/redirect/redirect.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    PasswordStrengthMeterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
