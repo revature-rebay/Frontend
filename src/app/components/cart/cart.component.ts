@@ -4,8 +4,6 @@ import { CartItem } from 'src/app/models/cart-item';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
 
-
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',

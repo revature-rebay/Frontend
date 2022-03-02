@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CartItem } from '../models/cart-item';
 import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ProductModel } from '../models/product/product.model';
+import { Product } from '../models/product/product.model';
 import { CartDTO } from '../models/cart-dto';
 
 
