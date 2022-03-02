@@ -1,0 +1,62 @@
+#addbtn{
+    margin-bottom:10px;
+    margin-left: 10px;
+    background-color:#F26925;
+    border:groove;
+    padding:10px;
+}
+#addbtn:hover{
+    transform: scale(.9);
+}
+
+img{
+    height:200px;
+    width:200px;
+    border:solid 2px;
+    margin-bottom: 25px;
+}
+
+tr{
+    border-bottom:1px solid black;
+}
+
+#editbtn{
+    margin-top: 30px;
+    float:right;
+    color:blue;
+    border:1px groove;
+    border-radius:5px;
+    background-color:rgb(255, 255, 255);
+}
+#editbtn:hover{
+    color:white;
+    background-color:blue;
+    border:none;
+}
+
+#deletebtn{
+    float:right;
+    color:red;
+    border:1px groove;
+    border-radius:5px;
+    background-color:rgb(255, 255, 255);
+}
+#deletebtn:hover{
+    color:white;
+    background-color:red;
+    border:none;
+}
+
+#pDescription{
+    font-style: italic;
+}
+
+#pName{
+    margin-top:10px;
+    font-family: Poiret one;
+    text-transform: uppercase;
+}
+
+#quantity{
+    font-style: italic;
+}
