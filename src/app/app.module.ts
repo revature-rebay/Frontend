@@ -40,7 +40,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     CartDetailPageItemComponent,
     SalesItemComponent,
     ProductDetailsPageComponent,
-    SearchResultsComponent,
+    SearchResultsComponent, 
     CheckoutComponent
   ],
   imports: [

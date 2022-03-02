@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-checkout',
@@ -38,15 +38,14 @@ export class CheckoutComponent implements OnInit {
         month: '',
         year: '',
         securityCode: '',
-      })
+      }),
+      couponCode: ''
     });
   }
 
   onCheckout() {
-    console.log(this.checkoutForm);
-  }
-
-  checkout(): void {
+    console.log(this.checkoutForm.value);
     this.cartService.checkout(this.loginService.currentUser.id.toString());
   }
+
 }

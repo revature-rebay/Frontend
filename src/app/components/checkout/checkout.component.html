@@ -1,71 +1,93 @@
-<form [formGroup]="checkoutForm" (ngSubmit)="onCheckout()">
-<label>First Name:
-    <input type="text" formControlName="firstName" placeholder="required">
-</label>
-<br>
-<label>Last Name:
-    <input type="text" formControlName="lastName" placeholder="required">
-</label>
-<br>
-<label>Phone Number:
-    <input type="text" formControlName="phoneNumber" placeholder="required">
-</label>
-<br>
-<br>
-<label>Address:
-    <div formGroupName = "address">
-        <label>
-            Street:
-            <input type="text" formControlName="street" placeholder="required">
-        </label>
-        <br>
-        <label>
-            City:
-            <input type="text" formControlName="city" placeholder="required">
-        </label>
-        <br>
-        <label>
-            State:
-            <input type="text" formControlName="state" placeholder="required">
-        </label>
-        <br>
-        <label>
-            Country:
-            <input type="text" formControlName="country" placeholder="required">
-        </label>
-        <br>
-        <label>
-            ZIP Code:
-            <input type="text" formControlName="zipcode" placeholder="required">
-        </label>
+<div class="container-xl">
+
+    <div class="row">
+
         
+            <form [formGroup]="checkoutForm" (ngSubmit)="onCheckout()" class="row col-10">
+                <div class="col-8">
+                    <label>First Name:
+                        <input type="text" formControlName="firstName" placeholder="required">
+                    </label>
+                    <br>
+                    <label>Last Name:
+                        <input type="text" formControlName="lastName" placeholder="required">
+                    </label>
+                    <br>
+                    <label>Phone Number:
+                        <input type="text" formControlName="phoneNumber" placeholder="required">
+                    </label>
+                    <br>
+                    <br>
+                    <label>Address:
+                        <div formGroupName = "address">
+                            <label>
+                                Street:
+                                <input type="text" formControlName="street" placeholder="required">
+                            </label>
+                            <br>
+                            <label>
+                                City:
+                                <input type="text" formControlName="city" placeholder="required">
+                            </label>
+                            <br>
+                            <label>
+                                State:
+                                <input type="text" formControlName="state" placeholder="required">
+                            </label>
+                            <br>
+                            <label>
+                                Country:
+                                <input type="text" formControlName="country" placeholder="required">
+                            </label>
+                            <br>
+                            <label>
+                                ZIP Code:
+                                <input type="text" formControlName="zipcode" placeholder="required">
+                            </label>
+                            
+                        </div>
+                    
+                    </label>    
+                            <label> Payment:
+                                <div formGroupName="payment">
+                                    <label>
+                                        Card Number:
+                                        <input type="text" formControlName="cardNumber" placeholder="required" required>
+                                    </label>
+                                    <label>
+                                        Month:
+                                        <input type="text" formControlName="month" placeholder="required" required>
+                                    </label>
+                                    <label>
+                                        Year:
+                                        <input type="text" formControlName="year" placeholder="required" required>
+                                    </label>
+                                    <label>
+                                        Security Code:
+                                        <input type="text" formControlName="securityCode" placeholder="required" required>
+                                    </label>
+                                </div>
+                    
+                            </label>
+                </div>
+
+                <div class="col-2">
+                    <label>Coupon Code:
+                        <input type="text" formControlName="couponCode">
+                    </label>
+                </div>
+                
+                <button id="checkout_btn">Checkout</button>
+                </form>
+
+            <div class="col-2">
+                <p>Text</p>
+            </div>
+        
+
     </div>
 
-    
-        <label> Payment:
-            <div formGroupName="payment">
-                <label>
-                    Card Number:
-                    <input type="text" formControlName="cardNumber" placeholder="required" required>
-                </label>
-                <label>
-                    Month:
-                    <input type="text" formControlName="month" placeholder="required" required>
-                </label>
-                <label>
-                    Year:
-                    <input type="text" formControlName="year" placeholder="required" required>
-                </label>
-                <label>
-                    Security Code:
-                    <input type="text" formControlName="securityCode" placeholder="required" required>
-                </label>
-            </div>
+</div>
 
-        </label>
-    
-    
-</label>
 
-<button id="checkout_btn">Checkout</button>
-</form>
+
