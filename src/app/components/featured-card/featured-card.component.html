@@ -1,7 +1,10 @@
-<div class="product-card"[routerLink]="['product_details_page', singleproduct.productId]">
+<!--<div class="product-card"[routerLink]="['product_details_page', singleproduct.productId]">-->
+<!--changed the [routerLink] directive to a (click) directive, for some reason the router link wasn't working for me but I left the original code commented on line 1-->
+
+<div class="product-card" (click) = "getDetails()">
   <div >
   <div class="product-card__image">
-    <img src="assets/images/swag_mug.png" alt="" />
+    <img src="assets/images/{{singleproduct.productName}}.jpg" alt="" />
   </div>
   <div class="product-card__info">
     <header>
@@ -22,11 +25,6 @@
   <div class="product-card__cta">
     <button class="btn btn-dark">
       {{ singleproduct.currentStock === 0 ? "Out of stock" : "Add to cart" }}
-    </button>
-  </div>
-  <div class="product-card__cta">
-    <button class="btn btn-dark" (click)="getDetails()">
-      See Product Details
     </button>
   </div>
 </div>
