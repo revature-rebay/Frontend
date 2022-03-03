@@ -38,14 +38,14 @@ export class AddProductComponent implements OnInit {
 
   addProduct(): void {
     //make sure no fields are blank, then create a product and send to the backend
-
+    
     if (this.productName == "" || this.formattedPriceAmount == 0 || this.stock == 0 || this.description == "") {
       alert("Must fill out all required fields.");
     }
     else {
       //first create a new product object
-      let product:Product = new Product(0, this.productName, this.description, this.formattedPriceAmount, this.discount, this.featured, this.stock);
-
+      let product:Product = new Product(0, this.productName, this.description, this.formattedPriceAmount, this.discount / 100, this.featured, this.stock);
+      product.productPrice = parseInt(product.productPrice.toString().substring(1));
       //create new product here using the usService
       this.productService.addNewProduct(product).subscribe(
         (response:boolean)=>{
