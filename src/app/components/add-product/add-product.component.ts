@@ -44,7 +44,7 @@ export class AddProductComponent implements OnInit {
     }
     else {
       //first create a new product object
-      let product:Product = new Product(0, this.productName, this.description, this.formattedPriceAmount, this.discount, this.featured, this.stock);;
+      let product:Product = new Product(0, this.productName, this.description, this.formattedPriceAmount, this.discount, this.featured, this.stock);
 
       //create new product here using the usService
       this.productService.addNewProduct(product).subscribe(
