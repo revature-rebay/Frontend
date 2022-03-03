@@ -10,6 +10,7 @@ import { Product } from 'src/app/models/product/product.model';
 export class FeaturedCardComponent implements OnInit {
   @Input() singleproduct!:Product;
   @Input() onAdd:any;
+  displayName!:string;
 
   constructor(private router:Router) { }
 
@@ -20,4 +21,7 @@ export class FeaturedCardComponent implements OnInit {
     this.router.navigate(['/product_details_page/'+this.singleproduct.productId])
   }
 
+  getName(){
+    this.displayName = this.singleproduct.productName.replace("_", " ")
+  }
 }
