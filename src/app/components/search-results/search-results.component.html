@@ -4,7 +4,7 @@
     <div class="prod-info-main prod-wrap clearfix">
         <div class="row">
             <div class="col-md-3 col-sm-12 col-xs-12">
-                <img [src]='setImage(p)' class="img-fluid">
+                <img [src]='setImage(p)' (error)="updateImageUrl($event)" class="img-fluid">
                 <span class="tag2 hot" *ngIf='onSale(p)'>
 
                     SALE
