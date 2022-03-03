@@ -8,6 +8,9 @@
     </div>
 
     <div *ngIf="!togglePayment" [@toggleCheckout]>
+        <div class="d-flex flex-row">
+            <p class="fs-5">Personal Details</p>
+        </div>
         <div class=" bg-secondary bg-opacity-10 p-2 mb-3">
             <div class="d-flex flex-row">
                 <label for="firstName">
@@ -46,7 +49,7 @@
     
                 <div class="d-flex flex-row">
                     <label class="" for="address2">
-                        <input id="address2" type="text" formControlName="address2" placeholder="Address 2">
+                        <input  id="address2" type="text" formControlName="address2" placeholder="Address 2">
                     </label>
                 </div>
     
@@ -90,6 +93,13 @@
                     <label for="payment">
                         <input id="payment" type="text" formControlName="cardNumber" placeholder="Credit Cart Number" required>
                     </label>
+                    <label class="m-2" for="fname"></label>
+                    <div id="fname" class="icon-container align-middle">
+                      <i class="fa fa-cc-visa fa-2x mr-1" style="color:navy;"></i>
+                      <i class="fa fa-cc-amex fa-2x mr-1" style="color:blue;"></i>
+                      <i class="fa fa-cc-mastercard fa-2x mr-1" style="color:red;"></i>
+                      <i class="fa fa-cc-discover fa-2x mr-1" style="color:orange;"></i>
+                    </div>
                 </div>
 
                 <div class="d-flex d-row">
