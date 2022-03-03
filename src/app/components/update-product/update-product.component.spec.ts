@@ -1,4 +1,7 @@
+import { CurrencyPipe } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { UpdateProductComponent } from './update-product.component';
 
@@ -8,7 +11,9 @@ describe('UpdateProductComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UpdateProductComponent ]
+      imports: [ HttpClientTestingModule, RouterTestingModule ],
+      declarations: [ UpdateProductComponent ],
+      providers: [ CurrencyPipe ]
     })
     .compileComponents();
   });

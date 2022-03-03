@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product/product.model';
 import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { delay } from 'rxjs';
-
 
 @Component({
   selector: 'app-product-details-page',
