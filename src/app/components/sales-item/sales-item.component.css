@@ -35,10 +35,10 @@ img {
 .list-item__details{
     flex-grow: 1;
     position: relative;
-    padding: 22px 0;
     padding-right: 18px;
 }
 .title{
+    margin-top: 0%;
     margin-bottom: 8px;
     font-size: 1.125rem;
     font-weight: 500;
@@ -48,3 +48,12 @@ img {
     font-size: 1rem;
 }
 
+.list-item:hover {
+    transform: scale(1.0125);
+}
+
+.product-price,  .title{
+    font-size: 1.375rem;
+    font-weight: 600;
+    padding-right: .1rem;
+}
