@@ -37,7 +37,8 @@ const routes: Routes = [{
 }, {
   path: 'redirect/:destination',
   component:RedirectComponent
-},
+}
+
 ];
 
 @NgModule({
