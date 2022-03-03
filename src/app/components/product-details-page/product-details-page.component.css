@@ -1,0 +1,12 @@
+.product-image {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    transition: all 0.2s;
+    overflow: hidden;
+}
+
+@media screen and (min-width: 1024px) {
+    .product-image:hover {
+        transform: scale(2.0);
+      }
+  }

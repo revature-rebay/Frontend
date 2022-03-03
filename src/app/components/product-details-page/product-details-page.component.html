@@ -1,21 +1,35 @@
-<h3 id="productName">{{this.displayProduct.productName}}</h3>
-<img [src]= 'displayImage' >
-<p id="productDescription">{{this.displayProduct.productDescription}}</p>
-<br *ngIf="isFeatured()">
-<h2 id="featuredProduct" *ngIf="isFeatured()">This is currently one of our featured items!</h2>
-<br>
-<h2 id="onSale" *ngIf="onSale()">THIS ITEM IS CURRENTLY ON SALE!!</h2>
-<h3 *ngIf="onSale()">The price with the sale is: {{salePrice | number : '1.2-2'}}</h3>
-<h3 *ngIf="onSale()" style="color:red">With this sale applied you save: {{this.saleDifferential  | number : '1.2-2'}}!!</h3>
-<h3 id="fullPrice"*ngIf="!onSale()">The price for this item is: {{this.displayProduct.productPrice | number : '1.2-2'}}</h3>
-<p>Stock: {{this.displayProduct.currentStock}}</p>
-
-
-
-<!-- productId: number;
-  productName: string;
-  productDescription: string;
-  productPrice: number;
-  discountPercentage: number;
-  featuredProduct: boolean;
-  currentStock: number; -->
+<div class=" text-center mt-5 ">
+  <h1>Product Details</h1>
+</div>
+<div class="row ">
+  <div class="col-lg-7 mx-auto">
+      <div class="card mt-2 mx-auto p-4 bg-light">
+          <div class="card-body bg-light">
+              <div class="container">
+                <div style="margin:0px;">
+                  <p *ngIf="isFeatured()" style="color:green; margin: 0px;"><b>**This is currently one of our featured items!**</b></p>
+                  <p *ngIf="onSale()" style="color:red; margin: 0px;"><b>**This item is currently on sale!**</b></p>
+                </div>
+                <br>
+                <div style="text-align:center">
+                  <h3>{{this.displayProduct.productName | uppercase}}</h3>
+                  <img class="product-image" [src]= 'displayImage' >
+                  <p>{{this.displayProduct.productDescription}}</p>
+                  <br *ngIf="isFeatured()">
+                  <h2 *ngIf="onSale()">THIS ITEM IS CURRENTLY ON SALE!!</h2>
+                  <h3 *ngIf="onSale()">The price with the sale is: {{salePrice | number : '1.2-2'}}</h3>
+                  <h3 *ngIf="onSale()" style="color:red">With this sale applied you save: {{this.saleDifferential  | number : '1.2-2'}}!!</h3>
+                  <h3 *ngIf="!onSale()">Current Price: ${{this.displayProduct.productPrice | number : '1.2-2'}}</h3>
+                  <p>Current Stock: {{this.displayProduct.currentStock}}</p>
+                  <div class="product-card__cta">
+                    <button class="btn btn-dark">
+                      {{this.displayProduct.currentStock === 0 ? "Out of stock" : "Add to cart"}}
+                    </button>
+                  </div>
+                </div>
+                
+              </div>
+          </div>
+      </div>
+    </div>
+</div>
