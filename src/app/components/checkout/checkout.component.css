@@ -1,0 +1,51 @@
+.border-secondary {
+    border-color: #F26925 !important;
+}
+
+#paymentIcon {
+    color: #F26925;
+}
+#infoIcon {
+    color: #474C55;
+}
+#paymentIcon:hover {
+    transition: 0.3s ease;
+    opacity: 1;
+    cursor: pointer;
+}
+#infoIcon:hover {
+    transition: 0.3s ease;
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+.paymentIconOff {
+    opacity: 0.3;
+}
+
+.infoIconOff {
+    opacity: 0.3;
+}
+
+.infoIconOn {
+    opacity: 1;
+}
+
+.paymentIconOn {
+    opacity: 1;
+}
+
+
+.bg-secondary {
+    color: #474C55 !important;
+}
+
+.btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:visited {
+    background-color: #F26925 !important;
+}
+.btn {
+    border-color: #F26925 !important;
+    transition: none !important;
+}
+

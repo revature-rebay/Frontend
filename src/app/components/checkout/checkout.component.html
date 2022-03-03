@@ -1,93 +1,171 @@
-<div class="container-xl">
+<div class="d-flex justify-content-center">
+    
+<form [formGroup]="checkoutForm" (ngSubmit)="onCheckout()" class="p-2">
 
-    <div class="row">
-
-        
-            <form [formGroup]="checkoutForm" (ngSubmit)="onCheckout()" class="row col-10">
-                <div class="col-8">
-                    <label>First Name:
-                        <input type="text" formControlName="firstName" placeholder="required">
-                    </label>
-                    <br>
-                    <label>Last Name:
-                        <input type="text" formControlName="lastName" placeholder="required">
-                    </label>
-                    <br>
-                    <label>Phone Number:
-                        <input type="text" formControlName="phoneNumber" placeholder="required">
-                    </label>
-                    <br>
-                    <br>
-                    <label>Address:
-                        <div formGroupName = "address">
-                            <label>
-                                Street:
-                                <input type="text" formControlName="street" placeholder="required">
-                            </label>
-                            <br>
-                            <label>
-                                City:
-                                <input type="text" formControlName="city" placeholder="required">
-                            </label>
-                            <br>
-                            <label>
-                                State:
-                                <input type="text" formControlName="state" placeholder="required">
-                            </label>
-                            <br>
-                            <label>
-                                Country:
-                                <input type="text" formControlName="country" placeholder="required">
-                            </label>
-                            <br>
-                            <label>
-                                ZIP Code:
-                                <input type="text" formControlName="zipcode" placeholder="required">
-                            </label>
-                            
-                        </div>
-                    
-                    </label>    
-                            <label> Payment:
-                                <div formGroupName="payment">
-                                    <label>
-                                        Card Number:
-                                        <input type="text" formControlName="cardNumber" placeholder="required" required>
-                                    </label>
-                                    <label>
-                                        Month:
-                                        <input type="text" formControlName="month" placeholder="required" required>
-                                    </label>
-                                    <label>
-                                        Year:
-                                        <input type="text" formControlName="year" placeholder="required" required>
-                                    </label>
-                                    <label>
-                                        Security Code:
-                                        <input type="text" formControlName="securityCode" placeholder="required" required>
-                                    </label>
-                                </div>
-                    
-                            </label>
-                </div>
-
-                <div class="col-2">
-                    <label>Coupon Code:
-                        <input type="text" formControlName="couponCode">
-                    </label>
-                </div>
-                
-                <button id="checkout_btn">Checkout</button>
-                </form>
-
-            <div class="col-2">
-                <p>Text</p>
-            </div>
-        
-
+    <div class="d-flex flex-row justify-content-center">
+        <span [ngClass]="togglePayment ? 'infoIconOff' : 'infoIconOn'" class="material-icons-outlined p-2" id="infoIcon" (click)="toggle($event)">info</span>
+        <span [ngClass]="togglePayment ? 'paymentIconOn' : 'paymentIconOff'" class="material-icons-outlined p-2" id="paymentIcon" (click)="toggle($event)">payments</span>
     </div>
 
+    <div *ngIf="!togglePayment" [@toggleCheckout]>
+        <div class=" bg-secondary bg-opacity-10 p-2 mb-3">
+            <div class="d-flex flex-row">
+                <label for="firstName">
+                    <input id="firstName" type="text" formControlName="firstName" placeholder="First Name">
+                </label>
+                <label class="ml-2" for="lastName">
+                    <input id="lastName" type="text" formControlName="lastName" placeholder="Last Name">
+                </label>
+            </div>
+        
+            <div class="d-flex flex-row">
+                <label for="phoneNumber">
+                    <input id="phoneNumber" type="text" formControlName="phoneNumber" placeholder="Phone Number">
+                </label>
+            </div>
+        </div>
+        
+    
+        <div class="d-flex flex-row">
+            <p class="fs-5">Billing Address</p>
+        </div>
+    
+        <div class="bg-secondary bg-opacity-10 p-2">
+            <div formGroupName = "address">
+                <div>
+                    <label for="country">
+                        <input id="country" type="text" formControlName="country" placeholder="" class="form-control">
+                    </label>
+                </div>
+    
+                <div class="d-flex flex-row">
+                    <label class="" for="street">
+                        <input id="street" type="text" formControlName="street" placeholder="Street Address">
+                    </label>
+                </div>
+    
+                <div class="d-flex flex-row">
+                    <label class="" for="address2">
+                        <input id="address2" type="text" formControlName="address2" placeholder="Address 2">
+                    </label>
+                </div>
+    
+                <div class="d-flex flex-row">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="poBox">
+                        <label class="form-check-label" for="poBox">
+                        PO Box
+                        </label>
+                    </div>
+                </div>
+    
+                <div class="d-flex flex-row">
+                    <label for="city">
+                        <input id="city" type="text" formControlName="city" placeholder="City">
+                    </label>
+                    <label for="state" class="ml-2">
+                        <select (change)="changeState($event)" id="state" formControlName="state" class="form-select middle-align" aria-label="Default select example">
+                            <option *ngFor="let state of states">{{state}}</option>
+                        </select>
+                    </label>
+                </div>
+    
+                <div class="d-flex flex-row">
+                    <label id="zipCode">
+                        <input id="zipCode" type="text" formControlName="zipcode" placeholder="Zip Code">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="togglePayment" [@toggleCheckout]>
+        <div class="d-flex flex-row">
+            <p class="fs-5">Payment</p>
+        </div>
+
+        <div class="bg-secondary bg-opacity-10 p-2">
+            <div formGroupName = "payment">
+                <div class="d-flex d-row">
+                    <label for="payment">
+                        <input id="payment" type="text" formControlName="cardNumber" placeholder="Credit Cart Number" required>
+                    </label>
+                </div>
+
+                <div class="d-flex d-row">
+                    <label for="month">
+                        <input id="month" type="text" formControlName="month" placeholder="Month" required>
+                    </label>
+                    <label for="year"> 
+                        <input class="ml-2" id="year" type="text" formControlName="year" placeholder="Year" required>
+                    </label>
+                </div>
+
+                <div class="d-flex d-row">
+                    <label for="securityCode">
+                        <input id="securityCode" type="text" formControlName="securityCode" placeholder="Security Code" required>
+                    </label>
+                </div>
+            </div>
+            <div class="d-flex flex-row">
+                <button type="submit" class="btn btn-secondary rounded" id="checkout_btn">Place Your Order</button>
+            </div>
+        </div>    
+    </div>          
+</form>
+    
+    <!--Order Summary-->
+    <div class="d-flex flex-row align-self-baseline mt-5">
+        <div class="p-2 fst-italic border border-2 border-secondary">
+            
+            <div class="border-bottom text-center fs-4">
+                Order Summary
+            </div>
+
+            <div class="d-flex flex-row border-bottom justify-content-between">
+                <p>1 Toaster</p>
+                <p>$5.00</p>
+            </div>
+
+
+            <div class="d-flex flex-row justify-content-between">
+                <p>Subtotal</p>
+                <p>$5.00</p>
+            </div>
+
+            <div class="d-flex flex-row border-bottom justify-content-between">
+                <p>Estimated Sales Tax</p>
+                <p>$3.60</p>
+            </div>
+            
+            <div class="d-flex flex-row justify-content-between fw-bold">
+                <p>Total</p>
+                <p>$8.60</p>
+            </div>
+
+
+
+            <form [formGroup]="coupon" (ngSubmit)="applyCoupon()" >
+                <label for="coupon">
+                    <input id="coupon" type="text" formControlName="coupon" placeholder="Discount Code">
+                </label>
+                <div class="d-flex flex-row">
+                    <button type="submit" class="btn btn-secondary rounded" id="checkout_btn">Apply</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
 </div>
+                
+
+                
+                
+
+            
+        
+
+
 
 
 

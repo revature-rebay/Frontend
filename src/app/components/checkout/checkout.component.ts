@@ -1,15 +1,21 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
-import { FormGroup, FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormGroup, FormBuilder} from '@angular/forms';
+import { States } from 'src/app/models/states';
+import { checkoutAnimation } from 'src/app/animations/checkoutAnimations';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
+  animations: [checkoutAnimation]
 })
 export class CheckoutComponent implements OnInit {
   checkoutForm!: FormGroup;
+  coupon !: FormGroup;
+  togglePayment !: boolean;
+  states = States.states;
 
   constructor(
     private cartService: CartService,
@@ -18,19 +24,24 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.togglePayment = false;
     this.initializeForm();
   }
 
   initializeForm(): void {
     this.checkoutForm = this.fb.group({
-      firstName: 'Name here',
-      lastName: '',
+      firstName: this.loginService.currentUser.firstName,
+      lastName: this.loginService.currentUser.lastName,
       phoneNumber: '',
       address: this.fb.group({
         street: '',
+        address2: '',
         city: '',
         state: '',
-        country: '',
+        country: [{
+          value: 'United States of America',
+          disabled: true
+        }],
         zipcode: '',
       }),
       payment: this.fb.group({
@@ -38,14 +49,35 @@ export class CheckoutComponent implements OnInit {
         month: '',
         year: '',
         securityCode: '',
-      }),
-      couponCode: ''
+      })
     });
+
+    //coupon
+    this.coupon = this.fb.group({
+      coupon: ''
+    })
   }
 
   onCheckout() {
     console.log(this.checkoutForm.value);
     this.cartService.checkout(this.loginService.currentUser.id.toString());
+    this.checkoutForm.reset();
+  }
+
+  applyCoupon() {
+    console.log(this.coupon.value)
+    this.coupon.reset();
+  }
+
+  toggle(event:MouseEvent){
+    if((<HTMLSpanElement>event.target).id === 'infoIcon') this.togglePayment = false;
+    else this.togglePayment = true;
+  }
+
+  changeState(e: any) {
+    this.checkoutForm.value.state?.setValue(e.target.value, {
+      onlySelf: true,
+    });
   }
 
 }

@@ -22,6 +22,9 @@ import { ProductDetailsPageComponent } from './components/product-details-page/p
 import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { CountriesComponent } from './components/countries/countries.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -41,7 +44,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     SalesItemComponent,
     ProductDetailsPageComponent,
     SearchResultsComponent, 
-    CheckoutComponent
+    CheckoutComponent,
+    CountriesComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     HttpClientModule,
     NgbModule,
     PasswordStrengthMeterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
