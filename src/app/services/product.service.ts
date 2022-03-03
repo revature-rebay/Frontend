@@ -19,18 +19,14 @@ export class ProductService {
   searchQuery:string = "";
 
   constructor(private http:HttpClient) { 
-    this.getAllProducts().subscribe(
-      (response:Product[]) => {
-        this.allProducts = response;
-      }
-    )
+    this.updateAllProducts();
   }
 
   getAllProducts():Observable<Product[]> {
     return this.http.get(this.backendURL + "products") as Observable<Product[]>;
   }
 
-  updateAllProduct():void {
+  updateAllProducts():void {
     this.getAllProducts().subscribe(
       (response:Product[]) => {
         this.allProducts = response;
@@ -85,6 +81,17 @@ export class ProductService {
 
   getTestImage():Observable<string> {
     return this.http.get(this.backendURL + "products/imgTest", {responseType: 'text'}) as Observable<string>;
+  }
+
+  localUpdateProduct(product:Product):void {
+    //search the allProducts[] array on the product whose id matches the id of the given product and update it to reflect
+    //the given product
+    for (let prod of this.allProducts) {
+      if (prod.productId == product.productId) {
+        prod = product;
+        return;
+      }
+    }
   }
 
 

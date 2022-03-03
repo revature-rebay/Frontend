@@ -32,7 +32,7 @@ const routes: Routes = [{
   path: 'add_product',
   component:AddProductComponent
 },{
-  path: 'update_product',
+  path: 'update_product/:productId',
   component:UpdateProductComponent
 }, {
   path: 'redirect',

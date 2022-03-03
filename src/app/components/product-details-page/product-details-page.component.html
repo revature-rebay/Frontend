@@ -16,8 +16,7 @@
                   <img class="product-image" [src]= 'displayImage' >
                   <p>{{this.displayProduct.productDescription}}</p>
                   <br *ngIf="isFeatured()">
-                  <h2 *ngIf="onSale()">THIS ITEM IS CURRENTLY ON SALE!!</h2>
-                  <h3 *ngIf="onSale()">The price with the sale is: {{salePrice | number : '1.2-2'}}</h3>
+                  <h3 *ngIf="onSale()">Current Price: ${{salePrice | number : '1.2-2'}}</h3>
                   <h3 *ngIf="onSale()" style="color:red">With this sale applied you save: {{this.saleDifferential  | number : '1.2-2'}}!!</h3>
                   <h3 *ngIf="!onSale()">Current Price: ${{this.displayProduct.productPrice | number : '1.2-2'}}</h3>
                   <p>Current Stock: {{this.displayProduct.currentStock}}</p>

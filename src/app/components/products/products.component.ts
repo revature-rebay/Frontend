@@ -73,7 +73,8 @@ export class ProductsComponent implements OnInit {
   }
 
   editbtnClick=  () => {
-    this.router.navigateByUrl('/update_product');
+    //TODO: need to get the correct product from the array
+    this.router.navigate(['/update_product/'+this.productArray[2].productId])
   }
 
   deletebtnClick=(id:number) => {

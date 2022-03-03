@@ -1,8 +1,8 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product/product.model'
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-product',
@@ -23,15 +23,28 @@ export class UpdateProductComponent implements OnInit {
   amount!: number;
   InputValue:any;
 
-  constructor(private productService:ProductService, private currencyPipe : CurrencyPipe, private router:Router) {
+  constructor(private productService:ProductService, private currencyPipe : CurrencyPipe, private router:Router, private activatedRoute:ActivatedRoute) {
     this.product = new Product(0, "", "", 0, 0, false, 0);
    }
 
   ngOnInit(): void {
     // this.product = this.productService.getAllProducts(); //TODO: change this to getCurrentProduct() Once pulled changes from branch
+    
+
+    // First get the product id from the current route.
+    const routeParams = this.activatedRoute.snapshot.paramMap;
+    const productIdFromRoute = Number(routeParams.get('productId'));
+
+    // Find the product that correspond with the id provided in route.
+    this.setDisplayProduct(productIdFromRoute);
+  }
+
+  setDisplayProduct(productId:number):void { 
+    this.product = this.productService.getLoadedProductById(productId);
+    
     this.productName = this.product.productName;
     this.stock = this.product.currentStock;
-    this.discount = this.product.discountPercentage;
+    this.discount = this.product.discountPercentage * 100;
     this.featured = this.product.featuredProduct;
     this.productDescription = this.product.productDescription;
     this.formattedAmount = this.product.productPrice;
@@ -51,16 +64,32 @@ export class UpdateProductComponent implements OnInit {
 
     this.product.productName = this.productName;
     this.product.currentStock = this.discount;
-    this.product.discountPercentage = this.discount;
+    this.product.discountPercentage = this.discount / 100;
     this.product.featuredProduct = this.featured;
     this.product.productDescription = this.productDescription;
     this.product.productPrice = this.formattedAmount;
+
+    //drop the dollar sign from the front of the price string
+    this.product.productPrice = parseInt(this.product.productPrice.toString().substring(1));
+
+
+  //  this.product.productPrice = Number(this.product.productPrice);
+  //  console.log(this.product.productPrice);
 
     this.productService.updateProduct(this.product).subscribe({
       next:(product:boolean)=>{
 
         //If the product exists then we get a 200 response and update the current product in the productService
-        this.productService.updateProduct(this.product); //the current product is now logged in and we store its details for potential later use
+        if (product == true) {
+          //this means the update worked in the DB
+          this.productService.updateAllProducts(); //the current product is now logged in and we store its details for potential later use
+          //this.productService
+        }
+        else {
+          //the update failed for somereason
+        }
+
+        
         
         //redirect to the main page
         this.router.navigateByUrl("");
@@ -71,4 +100,5 @@ export class UpdateProductComponent implements OnInit {
     });
   }
 
+  
 }

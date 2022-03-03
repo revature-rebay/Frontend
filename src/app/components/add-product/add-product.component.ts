@@ -51,7 +51,7 @@ export class AddProductComponent implements OnInit {
         (response:boolean)=>{
             //successfully created a new product, make sure to log it in and then redirect to the main page
             if (response == true){
-            this.productService.updateAllProduct();
+            this.productService.updateAllProducts();
             alert("New product was created successfully!");
             this.router.navigateByUrl("");
           }else{
