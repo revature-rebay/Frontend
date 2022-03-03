@@ -21,6 +21,9 @@ const routes: Routes = [{
 },{
   path: 'search_results',
   component:SearchResultsComponent
+},{
+  path: 'sales/product_details_page/:productId',
+  component: ProductDetailsPageComponent
 }
 ];
 
