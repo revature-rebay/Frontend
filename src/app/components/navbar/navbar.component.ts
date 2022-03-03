@@ -53,7 +53,7 @@ export class NavbarComponent implements OnInit {
   applySearch():void {
     //let Bar document.getElementById("search-bar")
     this.productService.searchQuery = this.searchQuery;
-    this.router.navigateByUrl("redirect");
+    this.router.navigateByUrl("redirect/search_results");
   }
 
 }
