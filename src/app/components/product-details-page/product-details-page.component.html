@@ -13,7 +13,7 @@
                 <br>
                 <div style="text-align:center">
                   <h3>{{this.displayProduct.productName | uppercase}}</h3>
-                  <img [src]= 'displayImage' >
+                  <img class="product-image" [src]= 'displayImage' >
                   <p>{{this.displayProduct.productDescription}}</p>
                   <br *ngIf="isFeatured()">
                   <h2 *ngIf="onSale()">THIS ITEM IS CURRENTLY ON SALE!!</h2>
