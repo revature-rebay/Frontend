@@ -10,12 +10,7 @@ describe('SalesItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-<<<<<<< HEAD
-      imports: [ HttpClientTestingModule ],
-=======
-      // declarations: [ ProductPageComponent ],
       imports: [RouterTestingModule, HttpClientTestingModule],
->>>>>>> c0cbb2b4f10fd2b6f7a99738441336efcc26dac4
       declarations: [ SalesItemComponent ]
     })
     .compileComponents();

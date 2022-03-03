@@ -44,8 +44,7 @@ import { RedirectComponent } from './components/redirect/redirect.component';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    PasswordStrengthMeterModule,
-    
+    PasswordStrengthMeterModule
   ],
   providers: [CurrencyPipe],
   bootstrap: [AppComponent]
