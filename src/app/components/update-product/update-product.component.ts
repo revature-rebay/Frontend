@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product/product.model'
 import { ActivatedRoute, Router } from '@angular/router';
+import { JsonpClientBackend } from '@angular/common/http';
 
 @Component({
   selector: 'app-update-product',
@@ -63,7 +64,7 @@ export class UpdateProductComponent implements OnInit {
   productUpdated():void {
 
     this.product.productName = this.productName;
-    this.product.currentStock = this.discount;
+    this.product.currentStock = this.stock;
     this.product.discountPercentage = this.discount / 100;
     this.product.featuredProduct = this.featured;
     this.product.productDescription = this.productDescription;
@@ -71,6 +72,8 @@ export class UpdateProductComponent implements OnInit {
 
     //drop the dollar sign from the front of the price string
     this.product.productPrice = parseInt(this.product.productPrice.toString().substring(1));
+
+    console.log("before sending to the db: " + JSON.stringify(this.product));
 
 
   //  this.product.productPrice = Number(this.product.productPrice);
@@ -83,6 +86,7 @@ export class UpdateProductComponent implements OnInit {
         if (product == true) {
           //this means the update worked in the DB
           this.productService.updateAllProducts(); //the current product is now logged in and we store its details for potential later use
+          console.log("after sedngin to the db: " + JSON.stringify(this.product));
           //this.productService
         }
         else {
