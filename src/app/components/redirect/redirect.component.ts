@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-redirect',
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class RedirectComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
     //I was having trouble getting the search button (which is located inside of
@@ -16,7 +16,12 @@ export class RedirectComponent implements OnInit {
     //was clicked while already on the search page. Clicking the search button
     //now loads of this 'redirect' component first which currently only serves 
     //to redirect to the 'searc_results' page
-    this.router.navigateByUrl("search_results");
-  }
 
+    const routeParams = this.activatedRoute.snapshot.paramMap;
+    const destinationFromRoute = routeParams.get('destination');
+
+    if(destinationFromRoute){
+      this.router.navigateByUrl(destinationFromRoute);
+    }
+  }
 }

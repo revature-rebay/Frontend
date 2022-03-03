@@ -59,6 +59,17 @@ export class ProductService {
     return this.http.delete(this.backendURL + "products/" + id) as Observable<boolean>;
   }
 
+  removeLocalProduct(id:number):void{
+    //search the allProducts[] array on the product whose id matches the id of the given product and update it to reflect
+    //the given product
+    for (let prod:number = 0; prod < this.allProducts.length; prod++) {
+      if (this.allProducts[prod].productId == id) {
+        this.allProducts.splice(prod, 1);
+        return;
+      }
+    }
+  }
+
   setCurrentlySelectedProduct(product:Product):void {
     this.currentlySelectedProduct = product;
   }

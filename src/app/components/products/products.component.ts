@@ -72,13 +72,27 @@ export class ProductsComponent implements OnInit {
     this.router.navigateByUrl('/add_product');
   }
 
-  editbtnClick=  () => {
+  editbtnClick=  (id:number) => {
     //TODO: need to get the correct product from the array
-    this.router.navigate(['/update_product/'+this.productArray[2].productId])
+    
+    this.router.navigate(['/update_product/'+ id]);
   }
 
   deletebtnClick=(id:number) => {
-    return this.productService.removeProduct(id);
+    this.productService.removeProduct(id).subscribe({
+      next:(product:boolean)=>{
+        
+          this.productService.removeLocalProduct(id); //the current product is now logged in and we store its details for potential later use
+          //this.productService
+
+        //redirect to the main page
+        this.router.navigate(['/redirect/products']);
+      },
+      error:()=>{
+        console.log("Something went wrong when attempting to update this product.")
+      }
+    });
+    // this.productService.removeProduct(id);
   }
 
 }

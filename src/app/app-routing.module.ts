@@ -35,9 +35,9 @@ const routes: Routes = [{
   path: 'update_product/:productId',
   component:UpdateProductComponent
 }, {
-  path: 'redirect',
+  path: 'redirect/:destination',
   component:RedirectComponent
-}
+},
 ];
 
 @NgModule({
