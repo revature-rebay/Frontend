@@ -1,12 +1,13 @@
 <div class="product-card"[routerLink]="['product_details_page', singleproduct.productId]">
   <div >
-  <div class="product-card__image">
+  <div>
     <img src="assets/images/{{singleproduct.productName}}.jpg">
   </div>
   <div class="product-card__info">
     <header>
       <div class="title">
-        <div class="product-name">{{ singleproduct.productName }}</div>
+        <div class="product-name">{{getName()}}
+          {{ displayName }}</div>
       </div>
       <div *ngIf="singleproduct.discountPercentage > 0.0;">
         <div class ="product-price">{{ singleproduct.productPrice-(singleproduct.productPrice*singleproduct.discountPercentage) | currency: "USD" }}</div>
