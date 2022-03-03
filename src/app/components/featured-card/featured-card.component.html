@@ -1,7 +1,10 @@
-<div class="product-card"[routerLink]="['product_details_page', singleproduct.productId]">
+<!--<div class="product-card"[routerLink]="['product_details_page', singleproduct.productId]">-->
+<!--changed the [routerLink] directive to a (click) directive, for some reason the router link wasn't working for me but I left the original code commented on line 1-->
+
+<div class="product-card" (click) = "getDetails()">
   <div >
-  <div>
-    <img src="assets/images/{{singleproduct.productName}}.jpg">
+  <div class="product-card__image">
+    <img src="assets/images/{{singleproduct.productName}}.jpg" alt="" />
   </div>
   <div class="product-card__info">
     <header>

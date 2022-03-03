@@ -5,6 +5,7 @@ import { LoginService } from './login.service';
 
 
 describe('LoginService', () => {
+  /*
   let service: LoginService;
   let httpMock: HttpTestingController;
 
@@ -79,6 +80,7 @@ describe('LoginService', () => {
 
   })
 
+
   // BELONGED TO ORIGINAL REQUEST FOR GET CURRENT USER, FOR USE LATER IF NEEDED
   // it('should return the user who is currently logged in', ()=>{
 
@@ -110,4 +112,6 @@ describe('LoginService', () => {
     httpMock.verify();
 
   })
+*/
+
 });

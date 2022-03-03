@@ -55,4 +55,63 @@ describe('ProductService', () => {
     expect(service.getDiscountedProducts).toHaveBeenCalled();
   })
 
+  it('should add a product to the database', () => {
+    let rejectedProduct: Product = new Product(1, "", "", 0, 0, false, 0);
+    let acceptedProduct: Product = new Product(0, "", "", 0, 0, false, 0);
+    let productServiceMock1 = spyOn(service, 'addNewProduct').withArgs(acceptedProduct)
+      .and.returnValue(of(true));
+
+    service.addNewProduct(acceptedProduct).subscribe((data) => {
+      console.log("Success test called")
+      expect(data).toEqual(true);
+    });
+    /*
+    service.addNewProduct(rejectedProduct).subscribe((data) => {
+      console.log("Failure test called")
+      expect(data).toEqual(false);
+    });
+*/
+  })
+
+  it('should remove a product from the database', () => {
+    let productServiceMock1 = spyOn(service, 'removeProduct').withArgs(1)
+      .and.returnValue(of(true));
+
+    // let productServiceMock2 = spyOn(service, 'removeProduct').withArgs(-1)
+    //   .and.returnValue(of(false));
+
+    service.removeProduct(1).subscribe((data) => {
+      console.log("Success test called")
+      expect(data).toEqual(true);
+    });
+
+    // service.removeProduct(-1).subscribe((data) => {
+    //   console.log("Failure test called")
+    //   expect(data).toEqual(false);
+    // });
+
+    expect(service.removeProduct).toHaveBeenCalled();
+  })
+
+  it('should update product data in the database', () => {
+    let rejectedProduct: Product = new Product(0, "", "", 0, 0, false, 0);
+    let acceptedProduct: Product = new Product(1, "", "", 0, 0, false, 0);
+    let productServiceMock1 = spyOn(service, 'updateProduct').withArgs(acceptedProduct)
+      .and.returnValue(of(true));
+    
+    // let productServiceMock2 = spyOn(service, 'updateProduct').withArgs(rejectedProduct)
+    //   .and.returnValue(of(false));
+
+    service.updateProduct(acceptedProduct).subscribe((data) => {
+      console.log("called")
+      expect(data).toEqual(true);
+    });
+    // service.updateProduct(rejectedProduct).subscribe((data) => {
+    //   console.log("called")
+    //   expect(data).toEqual(false);
+    // });
+
+    expect(service.updateProduct).toHaveBeenCalled();
+  })
+
 });
