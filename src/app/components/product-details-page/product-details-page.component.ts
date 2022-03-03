@@ -33,7 +33,7 @@ export class ProductDetailsPageComponent implements OnInit {
 
   setDisplayProduct(productId:number):void { 
     this.displayProduct = this.productService.getLoadedProductById(productId);
-    this.displayImage = "assets/images/" + this.displayProduct.productName + ".jpg";
+    //this.displayImage = "assets/images/" + this.displayProduct.productName + ".jpg";
     if (this.displayProduct.discountPercentage > 0) {
       this.salePrice = this.displayProduct.productPrice * (1 - this.displayProduct.discountPercentage);
       this.saleDifferential = this.displayProduct.productPrice - this.salePrice;
@@ -50,4 +50,7 @@ export class ProductDetailsPageComponent implements OnInit {
     return false;
   }
 
+  updateImageURL(){
+    this.displayImage = "assets/images/stockImage.jpg";
+  }
 }
