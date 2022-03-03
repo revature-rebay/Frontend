@@ -17,10 +17,6 @@ export class FeaturedCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getDetails(){
-    this.router.navigate(['/product_details_page/'+this.singleproduct.productId])
-  }
-
   getName(){
     this.displayName = this.singleproduct.productName.replace("_", " ")
   }
