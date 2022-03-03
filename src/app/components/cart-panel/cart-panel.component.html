@@ -25,7 +25,7 @@
                     shopping_cart
                     </span>Review Cart</button>
                 <button class="btn btn-secondary rounded-pill ms-4 mt-2" routerLinkActive="true" routerLink="checkout" (click)="onSidebarClose()">Checkout Now</button>
-                <p class="text-end mt-4 me-5">Subtotal: {{890 | currency}}</p>
+                <p class="text-end mt-4 me-5">Subtotal: {{getSubTotal() | currency}}</p>
                 </div>
             
         </div>

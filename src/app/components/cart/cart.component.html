@@ -1,9 +1,5 @@
-<!-- <span><input type="text" [(ngModel)]= 'userQuantityInput' placeholder="User Quantity Input"><button>Update</button> </span> -->
-<!-- <span><input type="text" [(ngModel)]= 'userIdInput' placeholder="User ID Input"> <button (click)="deleteProduct()">delete</button></span> -->
-<!-- <span><input type="text" [(ngModel)]= 'userProductInput' placeholder="User Product Input"><button (click)="addProductCart()">add</button></span> -->
-
 <div *ngFor="let cartItem of cart">
-    <app-cart-item (deleteEvent)="deleteProduct($event)" (updateEvent)="update($event)"
+    <app-cart-item
     [itemQuantity] = cartItem.quantity
     [productDesc] = cartItem.product.productDescription
     [productName] = cartItem.product.productName

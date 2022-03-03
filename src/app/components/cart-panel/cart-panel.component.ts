@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { SideNavDirection } from 'src/app/models/side-nav-direction';
+import { CartService } from 'src/app/services/cart.service';
 import { NavigationService } from 'src/app/services/navigation.service';
+import { CartItem } from 'src/app/models/cart-item';
 
 @Component({
   selector: 'app-cart-panel',
@@ -9,7 +12,6 @@ import { NavigationService } from 'src/app/services/navigation.service';
 })
 export class CartPanelComponent implements OnInit {
 
- 
   showNav !:boolean;
 
   @Input() sidenavTemplateRef: any;
@@ -19,7 +21,12 @@ export class CartPanelComponent implements OnInit {
   navWidth: number = 400;
   direction: SideNavDirection = SideNavDirection.Right;
   
-  constructor(private navService: NavigationService) {}
+  constructor(private navService: NavigationService, private cartService:CartService) {
+  }
+
+  getSubTotal():number{
+    return this.cartService.getSubTotal();
+  }
 
   ngOnInit(): void {
     this.navService.showNav.subscribe(showNav => this.showNav = showNav);

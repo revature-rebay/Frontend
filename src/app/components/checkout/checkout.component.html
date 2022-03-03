@@ -132,25 +132,29 @@
                 Order Summary
             </div>
 
-            <div class="d-flex flex-row border-bottom justify-content-between">
-                <p>1 Toaster</p>
-                <p>$5.00</p>
+            <div class="d-flex flex-column border-bottom justify-content-between">
+                <div *ngFor="let item of cart">
+                    <div class="d-flex justify-content-between">
+                        <p>{{item.quantity}}x  {{item.product.productName | titlecase}}</p>
+                        <p>{{item.product.productPrice | currency}}</p>
+                    </div>
+                </div>
             </div>
 
 
             <div class="d-flex flex-row justify-content-between">
                 <p>Subtotal</p>
-                <p>$5.00</p>
+                <p>{{getSubTotal() | currency}}</p>
             </div>
 
             <div class="d-flex flex-row border-bottom justify-content-between">
                 <p>Estimated Sales Tax</p>
-                <p>$3.60</p>
+                <p>{{getTax() | currency}}</p>
             </div>
             
             <div class="d-flex flex-row justify-content-between fw-bold">
                 <p>Total</p>
-                <p>$8.60</p>
+                <p>{{getTotal() | currency}}</p>
             </div>
 
 

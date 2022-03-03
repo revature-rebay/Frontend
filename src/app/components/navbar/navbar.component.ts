@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
+import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -15,12 +16,16 @@ export class NavbarComponent implements OnInit {
     currentUser!: User;
     searchQuery:string = "";
 
-  constructor(public user: LoginService, private router:Router, private navService: NavigationService, private productService:ProductService) {
+  constructor(public user: LoginService, private router:Router, private navService: NavigationService, private productService:ProductService, private cartService:CartService) {
     this.updateNavbarUser();
    }
 
   ngOnInit(): void {
     this.updateNavbarUser();
+  }
+
+  getCartQuantity(): number{
+    return this.cartService.getCartQuantity();
   }
 
   updateNavbarUser(): void {

@@ -4,6 +4,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { FormGroup, FormBuilder} from '@angular/forms';
 import { States } from 'src/app/models/states';
 import { checkoutAnimation } from 'src/app/animations/checkoutAnimations';
+import { CartItem } from 'src/app/models/cart-item';
 
 @Component({
   selector: 'app-checkout',
@@ -16,12 +17,15 @@ export class CheckoutComponent implements OnInit {
   coupon !: FormGroup;
   togglePayment !: boolean;
   states = States.states;
+  cart !: CartItem[];
 
   constructor(
     private cartService: CartService,
     private loginService: LoginService,
     private fb: FormBuilder
-  ) {}
+  ) {
+    this.cartService.monitorCart.subscribe(res => this.cart = res);
+  }
 
   ngOnInit(): void {
     this.togglePayment = false;
@@ -56,6 +60,18 @@ export class CheckoutComponent implements OnInit {
     this.coupon = this.fb.group({
       coupon: ''
     })
+  }
+
+  getTotal():number {
+    return this.getSubTotal() * 1.07;
+  }
+
+  getTax():number {
+    return this.getSubTotal() * .07;
+  }
+
+  getSubTotal():number{
+    return this.cartService.getSubTotal();
   }
 
   onCheckout() {

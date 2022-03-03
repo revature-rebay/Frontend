@@ -5,6 +5,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CartDTO } from '../models/cart-dto';
 import { environment } from 'src/environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -13,14 +14,38 @@ import { environment } from 'src/environments/environment';
 export class CartService {
 
   baseURL: string = environment.serverURL;
+  public monitorCart: BehaviorSubject<CartItem[]> = new BehaviorSubject<CartItem[]>([]);
   
-  cart !: CartItem[];
+  constructor(private http: HttpClient) { 
+  }
 
-  constructor(private http:  HttpClient) { 
+  getSubTotal(){
+    let subtotal = 0;
+    this.monitorCart.subscribe(res => {
+      res.forEach(item => {
+        subtotal += (item.product.productPrice * item.quantity)
+      })
+    });
+    return subtotal;
+  }
+
+  getCartQuantity(){
+    let total = 0;
+    this.monitorCart.subscribe(res => {
+      res.forEach(item => {
+        total += (item.quantity)
+      })
+    });
+    return total;
+  }
+
+  private cartObservableUpdate(currentCart:Observable<CartItem[]>){
+    currentCart.subscribe(res => {
+      this.monitorCart.next(res);
+    });
   }
 
   getCart(userId:string):Observable<CartItem[]>{
-    // getCart(userId:string):CartItem[]{
    
     const httpOptions = {
       headers: new HttpHeaders({
@@ -30,33 +55,9 @@ export class CartService {
     };
 
     //TODO Get UserId dynamicaly
-    return this.http.get<CartItem[]>(`${this.baseURL}cart/${userId}`, httpOptions);
-    
-    
-    // let product = new ProductModel(1, 'TV', 'Giant Screen TV', 50, 0, true, 50, new ArrayBuffer(56));
-    // let item = {
-    //   id:1,
-    //   quantity:2,
-    //   product: product
-    // };
-
-    // let product2 = new ProductModel(2, 'Fridge','Modern design', 150, 0, true, 50, new ArrayBuffer(56));
-
-    // let item2 = {
-    //   id:1,
-    //   quantity:5,
-    //   product: product2
-    // };
-
-    // let product3 = new ProductModel(3, 'PC','Budget PC', 250, 0, true, 50, new ArrayBuffer(56));
-
-    // let item3 = {
-    //   id:1,
-    //   quantity:1,
-    //   product: product3
-    // };
-
-    // return [item, item2, item3]
+    let currentCart = this.http.get<CartItem[]>(`${this.baseURL}cart/${userId}`, httpOptions);
+    this.cartObservableUpdate(currentCart);
+    return currentCart;
   }
 
   addProductToCart(userId:string, productId:string, quantity:string):Observable<any[]>{
@@ -69,9 +70,9 @@ export class CartService {
       quantity:Number.parseInt(quantity)
     };
     console.log(body);
-    let respone = this.http.post<any>(this.baseURL+"cart/add", body).pipe()
-    console.log(respone);
-    return respone;
+    let response = this.http.post<any>(this.baseURL+"cart/add", body).pipe()
+    this.cartObservableUpdate(response);
+    return response;
   }
 
   updateProductQuantity(cartItem:CartDTO):Observable<CartItem[]> {
@@ -82,7 +83,9 @@ export class CartService {
       })
     };
     const body = JSON.stringify(cartItem);
-    return this.http.put<CartItem[]>(`${this.baseURL}cart/update`, body, httpOptions);
+    let response = this.http.put<CartItem[]>(`${this.baseURL}cart/update`, body, httpOptions);
+    this.cartObservableUpdate(response);
+    return response;
   }
 
 
@@ -94,7 +97,9 @@ export class CartService {
       })
     };
     const body = JSON.stringify(cartItem);
-    return this.http.put<CartItem[]>(`${this.baseURL}cart/delete`, body, httpOptions);
+    let response = this.http.put<CartItem[]>(`${this.baseURL}cart/delete`, body, httpOptions);
+    this.cartObservableUpdate(response);
+    return response;
   }
 
  clearCart(userId: string): Observable<Object> {
@@ -105,10 +110,12 @@ export class CartService {
       observe: 'response'
     })
   };
-  return this.http.delete(`${this.baseURL + userId}`, httpOptions);
+  let response = this.http.delete(`${this.baseURL + userId}`, httpOptions);
+  this.monitorCart.next([]);
+  return response
  }
 
- checkout(userId: string): void {
+ checkout(userId: string):Observable<CartItem[]> {
   const httpOptions= {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -116,15 +123,6 @@ export class CartService {
       observe: 'response'
     })
   };
-  this.http.put(`${this.baseURL}cart/checkout/${userId}`, httpOptions);
+  return this.http.put<CartItem[]>(`${this.baseURL}cart/checkout/${userId}`, httpOptions);
  }
-
- //remove - was just for temp testing
-//  tempDel(productId:number){
-//    this.cart = this.getCart("1").filter(item => {
-//      if(item.product.productId != productId) return item;
-//      return;
-//    })
-//    return this.cart;
-//  }
 }
