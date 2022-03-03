@@ -144,5 +144,10 @@ export class SearchResultsComponent implements OnInit {
     if (p.discountPercentage > 0) return true;
     return false;
   }
+
+  updateImageUrl(event:Event):void {
+    let htmlEmitter = event.target as HTMLImageElement;
+    htmlEmitter.src = "assets/images/stockImage.jpg";
+  }
   
 }
