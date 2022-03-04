@@ -34,17 +34,20 @@ export class SearchResultsComponent implements OnInit {
     )
   }
 
-  goToDetailsPage(product:Product):void {
-    //set the currently selected product in the product service
-    this.productService.currentlySelectedProduct = product;
+  // goToDetailsPage(product:Product):void {
+  //   //set the currently selected product in the product service
+  //   this.productService.currentlySelectedProduct = product;
 
-    //then route to the product details page
-    this.router.navigateByUrl("product_details_page");
-  }
+  //   //then route to the product details page
+  //   this.router.navigateByUrl("product_details_page");
+  // }
 
   getDetails(productId:number){
-    this.router.navigate(['/product_details_page/'+ productId])
-    
+    if (this.productService.exists(productId)){
+      this.router.navigate(['/product_details_page/'+ productId])
+    }else{
+      alert("This product doesn't exist");
+    }
   }
 
   anyProducts():boolean {
