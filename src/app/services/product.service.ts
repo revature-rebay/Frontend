@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Byte } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Product } from '../models/product/product.model';
 
 
@@ -10,7 +11,8 @@ import { Product } from '../models/product/product.model';
 })
 export class ProductService {
 
-  backendURL:string = "http://localhost:9000/";
+  // backendURL:string = "http://localhost:9000/";
+  backendURL: string = environment.serverURL;
 
   //currentlySelectedProduct:ProductModel = new ProductModel(0, "", "", 0, 0, false, 0, new ArrayBuffer(0));
   currentlySelectedProduct:Product = new Product(0, "", "", 0, 0, false, 0);
