@@ -5,7 +5,7 @@ import { LoginService } from './login.service';
 
 
 describe('LoginService', () => {
-  /*
+
   let service: LoginService;
   let httpMock: HttpTestingController;
 
@@ -43,7 +43,7 @@ describe('LoginService', () => {
 
   it('should return a cookie and the user', ()=>{
 
-    let user:User = new User({id:1, userName:'flodev', passWord:'password', email:'flodev@gmail.com', firstName:'Eric', lastName:'Florence', roleId:2});
+    let user:User = new User({id:1, userName:'flodev', passWord:'password', email:'flodev@gmail.com', firstName:'Eric', lastName:'Florence'});
     let loginUser:User = new User();
     loginUser.userName = 'flodev';
     loginUser.passWord = 'password';
@@ -112,6 +112,6 @@ describe('LoginService', () => {
     httpMock.verify();
 
   })
-*/
+
 
 });

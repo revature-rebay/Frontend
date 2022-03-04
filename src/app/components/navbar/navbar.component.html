@@ -31,7 +31,8 @@
             <div class="d-flex">
 
                 <!-- Cart -->
-                <a class="text-reset me-3" *ngIf= "userLoggedIn()">
+            <div *ngIf= "!isAdmin()">
+              <a class="text-reset me-3" *ngIf= "userLoggedIn()">
                 <!--Cart side panel-->  
                 <app-header></app-header>                  
                 <span style="color:#F26925;" id="cartIcon">
@@ -41,6 +42,8 @@
                 </span>
                 <span class="badge rounded-pill badge-notification bg-danger">{{getCartQuantity()}}</span>
               </a>
+            </div>
+                
                 <!-- Cart -->
 
                     <!-- Sign Up & Login Links -->

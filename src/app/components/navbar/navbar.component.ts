@@ -46,7 +46,7 @@ export class NavbarComponent implements OnInit {
   }
 
   isAdmin():boolean{
-    return this.user.currentUser
+    return this.user.currentUser.admin
   }
 
   logOut():void {
