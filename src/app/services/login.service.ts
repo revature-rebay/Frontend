@@ -38,7 +38,7 @@ export class LoginService {
   }
 
   logout():Observable<any> {
-    return this.http.post(this.url + "user/logout", { withCredentials: true });
+    return this.http.post(this.url + "user/logout", { withCredentials: true, observe:'response' });
   }
 
   getCurrentUser():User {

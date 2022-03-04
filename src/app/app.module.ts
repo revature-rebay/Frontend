@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,13 +18,16 @@ import { CartDetailPageComponent } from './components/cart-detail-page/cart-deta
 import { CartDetailPageItemComponent } from './components/cart-detail-page-item/cart-detail-page-item.component';
 import { SalesItemComponent } from './components/sales-item/sales-item.component';
 import { ProductDetailsPageComponent } from './components/product-details-page/product-details-page.component';
-import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+import { ProductsComponent } from './components/products/products.component'
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CountriesComponent } from './components/countries/countries.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
+import { CurrencyPipe } from '@angular/common';
+import { UpdateProductComponent } from './components/update-product/update-product.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
+import { RedirectComponent } from './components/redirect/redirect.component';
 
 @NgModule({
   declarations: [
@@ -45,8 +47,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProductDetailsPageComponent,
     SearchResultsComponent, 
     CheckoutComponent,
-    CountriesComponent
+    CountriesComponent,
+    ProductsComponent,
+    AddProductComponent,
+    UpdateProductComponent,
+    RedirectComponent
   ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -57,7 +67,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
 

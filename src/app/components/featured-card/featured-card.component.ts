@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product/product.model';
 
 @Component({
@@ -9,23 +10,18 @@ import { Product } from 'src/app/models/product/product.model';
 export class FeaturedCardComponent implements OnInit {
   @Input() singleproduct!:Product;
   @Input() onAdd:any;
+  displayName!:string;
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
-  console.log(this.singleproduct);
   }
 
-  /*
-  "
-        onAdd({
-          productId: singleproduct.productId,
-          productPrice: singleproduct.productPrice,
-          productImage: singleproduct.productImage,
-          productName: singleproduct.productName,
-          maxQuantity: singleproduct.currentStock
-        })
-      "
-  */
+  getDetails(){
+    this.router.navigate(['/product_details_page/'+this.singleproduct.productId])
+  }
 
+  getName(){
+    this.displayName = this.singleproduct.productName.replace("_", " ")
+  }
 }

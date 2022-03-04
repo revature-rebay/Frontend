@@ -41,15 +41,17 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut():void {
-    this.user.logout().subscribe(
-      (response) => {
-        if (response.status == 200){ // check the header response from logout request
-          alert("successfully logged out.") 
-          this.user.removeUser();
-          //redirect to the main page if not there already
-          // this.router.navigateByUrl(""); // maybe route back to login page? don't know how we wanna set this up
-        }
+    this.user.logout().subscribe({
+      next:()=>{
+        alert("successfully logged out.") 
+        this.user.removeUser();
+        //redirect to the main page if not there already
+        // this.router.navigateByUrl(""); // maybe route back to login page? don't know how we wanna set this up
+      },
+      error:()=>{
+        console.log("error");
       }
+    }
     )
   }
 
@@ -60,7 +62,7 @@ export class NavbarComponent implements OnInit {
     applySearch():void {
     //let Bar document.getElementById("search-bar")
     this.productService.searchQuery = this.searchQuery;
-    this.router.navigateByUrl("search_results");
+    this.router.navigateByUrl("redirect/search_results");
   }
 
 }
