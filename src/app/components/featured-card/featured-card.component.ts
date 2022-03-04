@@ -24,10 +24,25 @@ export class FeaturedCardComponent implements OnInit {
     this.router.navigate(['/product_details_page/'+this.singleproduct.productId])
   }
   addCart(){
-    this.cart.addProductToCart((String)(this.login.getCurrentUser().id), (String)(this.singleproduct.productId), '1')
+    this.cart.addProductToCart((String)(this.login.getCurrentUser().id), (String)(this.singleproduct.productId), (String)(this.quantity))
   }
 
   getName(){
     this.displayName = this.singleproduct.productName.replace("_", " ")
+  }
+
+  quantity:number = 1;
+  i=1;
+  plus(){
+    if(this.i < this.singleproduct.currentStock){
+      this.i++;
+      this.quantity = this.i;
+    }
+  }
+  minus(){
+    if(this.i != 1){
+      this.i--;
+      this.quantity = this.i;
+    }
   }
 }

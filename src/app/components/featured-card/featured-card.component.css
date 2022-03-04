@@ -28,6 +28,7 @@ header{
 }
 .title {
     flex-grow: 5;
+    margin-left: 100px;
 }
 .product-name {
   padding-right: 12px;
@@ -36,7 +37,7 @@ header{
   text-transform: uppercase;
   margin-bottom: 4px;
 }
-button {
+.btn {
         height: 48px;
         width: 38%;
         margin-left:32%;
@@ -47,6 +48,22 @@ button {
         cursor: pointer;
         transition: background-color 0.2s;
 }
+button.qtyminus {
+  margin-right: 0.3rem;
+  width: 1.7rem; height: 1.7rem;
+  color: #fff;
+  font-size: 1rem;
+  background: #F26925;
+}
+button.qtyplus {
+  margin-left: 0.3rem;
+  width: 1.7rem; height: 1.7rem;
+  color: #fff;
+  font-size: 1rem;
+  background: #F26925;
+}
+
+
 
 button:hover{
 background: #474C55;
