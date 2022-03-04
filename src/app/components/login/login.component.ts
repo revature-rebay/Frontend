@@ -2,6 +2,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import { AppComponent } from 'src/app/app.component';
 
 
 @Component({
@@ -25,14 +26,21 @@ export class LoginComponent implements OnInit {
   email: string = "";
   user: User = new User();
   checked: boolean = true;
+  visible!: boolean;
 
   constructor(
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private app: AppComponent
   ) { }
 
   ngOnInit() : void {
     this.checked = this.loginService.checked;
+    this.app.visible = false;
+  }
+
+  ngOnDestroy() : void {
+    this.app.visible = true;
   }
 
   login() {

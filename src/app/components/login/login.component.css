@@ -1,5 +1,10 @@
+.image{
+  height:53em; background-size:cover; width:auto;
+  background-image:url('src/assets/images/background.png');
+}
+
 .app {
-  margin: 0 auto;
+  margin: 2.5em 0 0 auto;
   color: #000000;
   font: 600 16px/18px "Open Sans", sans-serif;
   float: right;
