@@ -29,6 +29,7 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 import { RedirectComponent } from './components/redirect/redirect.component';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
+import { FeaturedItemComponent } from './components/featured-item/featured-item.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ThankYouComponent } from './components/thank-you/thank-you.component';
     AddProductComponent,
     UpdateProductComponent,
     RedirectComponent,
-    ThankYouComponent
+    ThankYouComponent,
+    FeaturedItemComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -69,7 +71,6 @@ import { ThankYouComponent } from './components/thank-you/thank-you.component';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
 
