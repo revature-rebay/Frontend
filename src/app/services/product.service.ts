@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Byte } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Product } from '../models/product/product.model';
 
 
@@ -10,10 +11,10 @@ import { Product } from '../models/product/product.model';
 })
 export class ProductService {
 
-  backendURL:string = "http://localhost:9000/";
+  // backendURL:string = "http://localhost:9000/";
+  backendURL: string = environment.serverURL;
 
-  //currentlySelectedProduct:ProductModel = new ProductModel(0, "", "", 0, 0, false, 0, new ArrayBuffer(0));
-  currentlySelectedProduct:Product = new Product(0, "", "", 0, 0, false, 0);
+  // currentlySelectedProduct:Product = new Product(0, "", "", 0, 0, false, 0);
   allProducts:Product[] = [];
 
   searchQuery:string = "";
@@ -70,9 +71,9 @@ export class ProductService {
     }
   }
 
-  setCurrentlySelectedProduct(product:Product):void {
-    this.currentlySelectedProduct = product;
-  }
+  // setCurrentlySelectedProduct(product:Product):void {
+  //   this.currentlySelectedProduct = product;
+  // }
 
   getLoadedProductById(productId:number):Product {
     //console.log("here's all the products: " + this.allProducts[0].productId);
@@ -94,6 +95,10 @@ export class ProductService {
     return this.http.get(this.backendURL + "products/imgTest", {responseType: 'text'}) as Observable<string>;
   }
 
+  getCachedProducts():Product[] {
+    return this.allProducts;
+  }
+
   localUpdateProduct(product:Product):void {
     //search the allProducts[] array on the product whose id matches the id of the given product and update it to reflect
     //the given product
@@ -105,5 +110,14 @@ export class ProductService {
     }
   }
 
+  exists(productId: number): boolean{
+    for (let prod of this.allProducts){
+      if (prod.productId === productId){
+        return true;
+      }
+    }
 
+    return false;
+  }
+  
 }

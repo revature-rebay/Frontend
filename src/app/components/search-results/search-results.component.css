@@ -30,7 +30,9 @@ span.tag2 {
     margin-top:10px;
     font-family: Poiret one;
     text-transform: uppercase;
-    color:#F26925
+    color:black; 
+    background-color:white; 
+    border:none;
 }
 #pDescription{
     font-style: italic;

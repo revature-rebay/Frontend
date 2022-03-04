@@ -1,8 +1,8 @@
 <!--<div class="product-card"[routerLink]="['product_details_page', singleproduct.productId]">-->
 <!--changed the [routerLink] directive to a (click) directive, for some reason the router link wasn't working for me but I left the original code commented on line 1-->
 
-<div class="product-card" (click) = "getDetails()">
-  <div >
+<div class="product-card" >
+  <div (click) = "getDetails()">
   <div class="product-card__image">
     <img src="assets/images/{{singleproduct.productName}}.jpg" alt="" />
   </div>
@@ -24,8 +24,7 @@
   </div>
 </div>
   <div class="product-card__cta">
-    <button class="btn btn-dark"> 
-      <!-- add to cart function here -->
+    <button class="btn btn-dark" (click)="addCart()"> 
       {{ singleproduct.currentStock === 0 ? "Out of stock" : "Add to cart" }}
     </button>
   </div>
