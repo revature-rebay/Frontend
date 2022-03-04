@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
@@ -8,6 +8,10 @@ import { LoginService } from 'src/app/services/login.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']  
+})
+
+@Injectable({
+  providedIn: 'root'
 })
 
 
@@ -20,13 +24,16 @@ export class LoginComponent implements OnInit {
   lastName: string = "";
   email: string = "";
   user: User = new User();
+  checked: boolean = true;
 
   constructor(
     private router: Router,
     private loginService: LoginService
   ) { }
 
-  ngOnInit() : void {}
+  ngOnInit() : void {
+    this.checked = this.loginService.checked;
+  }
 
   login() {
 
@@ -59,26 +66,35 @@ export class LoginComponent implements OnInit {
     this.user.lastName = this.lastName;
 
     let regex = /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{9,16}$/;
+    let emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     
     if (!regex.test(this.passWord)) {
       alert("Password can't have white spaces, must contain one symbol, digit & uppercase letter AND must be 9-16 characters long")
-    } else {
-      this.loginService.registerUser(this.user).subscribe({
-        next: () => {  
-          this.loginService.login(this.user).subscribe({
-            next: (response) => {
-              this.user = response
-              this.loginService.currentUser = this.user
-              this.router.navigate([`main`]);
+    }
+    else if(!emailRegex.test(this.email)){
+        alert("Not a valid a email")
+    }
+    else if(this.userName == "" || this.firstName == "" || this.lastName == ""){
+        alert("Fields can't be empty")
+    }
+    else{
+        this.loginService.registerUser(this.user).subscribe({
+          next: () => {  
+            this.loginService.login(this.user).subscribe({
+              next: (response) => {
+                this.user = response
+                this.loginService.currentUser = this.user
+                console.log(this.user)
+                this.router.navigate([`main`]);
+              }
+            })
+          },
+          error: (response) => {
+            if (response.status == 500) {
+              alert("email or username already taken")
             }
-          })
-        },
-        error: (response) => {
-          if (response.status == 500) {
-            alert("email or username already taken")
           }
-        }
-      })
+        })
     }
   }
 }

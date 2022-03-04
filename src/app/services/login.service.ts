@@ -9,11 +9,13 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginService {
 
+  checked: boolean = true;
+
   currentUser: User = new User(); // I added this line
 
   url: string = environment.serverURL;
+  // url: string = "http://ec2-44-203-89-9.compute-1.amazonaws.com:9000/";
 
-  // constructor(private currentUser: User ,private http: HttpClient) { 
   constructor(private http: HttpClient) { 
     this.currentUser  = new User(); //starts off as a blank user upon instantiation (I added this line)
   }

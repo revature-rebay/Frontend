@@ -1,0 +1,15 @@
+<div *ngFor="let cartItem of cart">
+    <app-cart-item
+    [itemQuantity] = cartItem.quantity
+    [productDesc] = cartItem.product.productDescription
+    [productName] = cartItem.product.productName
+    [productPrice] = cartItem.product.productPrice
+    [productId] = cartItem.product.productId
+    ></app-cart-item>
+</div>
+
+<!-- [productImage] = cartItem.product.productImage -->
+
+
+
+
