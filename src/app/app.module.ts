@@ -67,7 +67,6 @@ import { RedirectComponent } from './components/redirect/redirect.component';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
 

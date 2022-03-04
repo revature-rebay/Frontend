@@ -49,7 +49,7 @@ describe('ProductDetailsPageComponent', () => {
     fixture.detectChanges();
 
     const nameElement: HTMLHeadingElement = fixture.debugElement.nativeElement.querySelector('#productName');
-    expect(nameElement.textContent).toEqual(component.displayProduct.productName);
+    expect(nameElement.textContent).toEqual(component.displayProduct.productName.toUpperCase());
     const descriptionElement: HTMLHeadingElement = fixture.debugElement.nativeElement.querySelector('#productDescription');
     expect(descriptionElement.textContent).toEqual(component.displayProduct.productDescription);
     const featured = fixture.debugElement.query(By.css('#featuredProduct'));

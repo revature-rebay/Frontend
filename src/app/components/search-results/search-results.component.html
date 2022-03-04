@@ -1,5 +1,7 @@
-<p *ngIf="!anyProducts()"> Sorry, the search query returned no results. Please refine your search and try again.</p>
-<div class="container" *ngFor='let p of filteredProducts'>
+<div style="margin:15px; text-align: center;">
+    <h4 *ngIf="!anyProducts()" style="margin: 50px;"> Sorry, your search for "{{currentSearch}}" returned no results. Please refine your search and try again.</h4>
+</div>
+<div class="container border" *ngFor='let p of filteredProducts'>
     <br/>
     <div class="prod-info-main prod-wrap clearfix">
         <div class="row">

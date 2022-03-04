@@ -12,16 +12,17 @@
                 </div>
                 <br>
                 <div style="text-align:center">
-                  <h3>{{this.displayProduct.productName | uppercase}}</h3>
+                  <h3 id="productName">{{this.displayProduct.productName | uppercase}}</h3>
                   <img class="product-image" [src]= 'displayImage' (error)= "updateImageURL()">
-                  <p>{{this.displayProduct.productDescription}}</p>
-                  <br *ngIf="isFeatured()">
-                  <h3 *ngIf="onSale()">Current Price: ${{salePrice | number : '1.2-2'}}</h3>
+                  <p id="productDescription">{{this.displayProduct.productDescription}}</p>
+                  <br id="featuredProduct" *ngIf="isFeatured()">
+                  <h3 id="onSale" *ngIf="onSale()">Current Price: ${{salePrice | number : '1.2-2'}}</h3>
                   <h3 *ngIf="onSale()" style="color:red">With this sale applied you save: {{this.saleDifferential  | number : '1.2-2'}}!!</h3>
                   <h3 *ngIf="!onSale()">Current Price: ${{this.displayProduct.productPrice | number : '1.2-2'}}</h3>
                   <p>Current Stock: {{this.displayProduct.currentStock}}</p>
                   <div class="product-card__cta">
-                    <button class="btn btn-dark">
+                    <input type="number" name="qty" id="qty" min="1" max="10" step="1" [(ngModel)]="quantity" style="margin-right:15px;">
+                    <button class="btn btn-dark" (click)="addToCart()">
                       {{this.displayProduct.currentStock === 0 ? "Out of stock" : "Add to cart"}}
                     </button>
                   </div>

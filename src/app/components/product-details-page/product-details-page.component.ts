@@ -2,6 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product/product.model';
 import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
+import { LoginService } from 'src/app/services/login.service';
+import { NavigationService } from 'src/app/services/navigation.service';
+import { CartItem } from 'src/app/models/cart-item';
+import { CartDTO } from 'src/app/models/cart-dto';
 
 @Component({
   selector: 'app-product-details-page',
@@ -14,8 +19,10 @@ export class ProductDetailsPageComponent implements OnInit {
   displayImage!:string;
   salePrice:number = 0;
   saleDifferential:number = 0;
+  quantity:number = 0;
 
-  constructor(private productService:ProductService, private activeRoute:ActivatedRoute, private router:Router) { }
+  constructor(private productService:ProductService, private activeRoute:ActivatedRoute, private router:Router, private cartService:CartService, 
+    private loginService:LoginService, private navService:NavigationService) { }
 
   ngOnInit() {
     if (this.productService.allProducts.length == 0) {
@@ -52,5 +59,48 @@ export class ProductDetailsPageComponent implements OnInit {
 
   updateImageURL(){
     this.displayImage = "assets/images/stockImage.jpg";
+  }
+
+  addToCart():void {
+    //Before doing anything, make sure the 'quantity' field isn't 0, if so then return from this
+    //function without doing anything
+    if (this.quantity <= 0) return;
+
+    this.cartService.getCart(String(this.loginService.currentUser.id)).subscribe(
+      (response:CartItem[]) => {
+        let found:boolean = false;
+        if (response != null) {
+          for (let item of response) {
+            //check to see if the current item already exists in the cart, if so we need to call updateCart(),
+            //otherwise we need to call addItemToCart()
+            if (item.product.productName == this.displayProduct.productName) {
+              found = true;
+              
+              //create a cart DTO for the item?
+              let newCartDTO:CartDTO = new CartDTO();
+              newCartDTO.userId = this.loginService.currentUser.id;
+              newCartDTO.quantity =  this.quantity + item.quantity; //add to current quantity
+              newCartDTO.productId = this.displayProduct.productId;
+              this.toggleSideNav();
+  
+              //call update function
+              this.cartService.updateProductQuantity(newCartDTO);
+            }
+          }
+        }
+        
+        if (!found) {
+          //call add function
+          this.toggleSideNav();
+          this.cartService.addProductToCart(String(this.loginService.currentUser.id), String(this.displayProduct.productId), String(this.quantity));
+        }
+      }
+    )
+    
+  }
+
+  //displays user cart as a slide in side panel
+  toggleSideNav() {
+    this.navService.toggleShowNav();
   }
 }
