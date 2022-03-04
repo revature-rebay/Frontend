@@ -13,13 +13,14 @@ export class MainComponent implements OnInit {
 
   products: Product[] = [];
   featuredProducts: Product[] = [];
-  currentUser!:User;
-  constructor(private productService:ProductService, private navService: NavigationService) { }
+  salesProducts: Product[] = [];
+  constructor(private productService:ProductService, private navService: NavigationService) { 
+  }
 
   ngOnInit(): void {
     this.productService.getFeaturedProducts().subscribe((response: Product[])=> this.featuredProducts = response);
+    this.productService.getDiscountedProducts().subscribe((response: Product[])=> this.salesProducts = response);
     //console.log(this.featuredProducts);
-    console.log(this.currentUser);
   }
 
 

@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+ngb-carousel {
+    max-width: 700px;
+    margin: 50px auto;
+}
+ngb-carousel img {
+    width: 100%;
+    outline: none;
+}
+ngb-carousel {
+    width: inherit;
+    height: inherit;
+}
+.carousel-inner {
+    overflow: visible;
+}
+.carousel-item {
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+}
+.carousel-item.active{
+    opacity: 1;
+    visibility: visible;
+    z-index: 10;
+}
+.carousel-control-prev {
+     z-index: 20;
+}
+
+.carousel-control-next {
+     z-index: 20;
+}
+.carousel-indicators{
+    z-index: 20;
+}
