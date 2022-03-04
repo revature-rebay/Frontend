@@ -57,6 +57,8 @@ export class AddProductComponent implements OnInit {
             this.router.navigateByUrl("");
           }else{
             alert("Product was not successfuly added");
+            //redirect to the products page
+            this.router.navigate(['/redirect/products']);
           }
         }
       )
