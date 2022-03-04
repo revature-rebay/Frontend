@@ -36,3 +36,13 @@ input[type=checkbox] {
 #addbtn:hover{
     transform: scale(.9);
 }
+
+input[type=text]{
+    background-color:rgb(248, 223, 207);
+}
+input[type=number]{
+    background-color:rgb(248, 223, 207);
+}
+textarea{
+    background-color:rgb(248, 223, 207);
+}

@@ -43,7 +43,7 @@ export class ProductService {
   }
 
   getDiscountedProducts():Observable<Product[]> {
-    return this.http.get(this.backendURL + "products/discount") as Observable<Product[]>;
+    return this.http.get(this.backendURL + "products/clearance") as Observable<Product[]>;
   }
 
   addNewProduct(prod:Product):Observable<boolean> {

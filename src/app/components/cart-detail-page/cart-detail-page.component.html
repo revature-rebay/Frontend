@@ -1,0 +1,25 @@
+
+<div>
+    <app-cart-detail-page-item *ngFor="let cartItem of cart"
+[itemQuantity] = cartItem.quantity
+[productDesc] = cartItem.product.productDescription
+[productName] = cartItem.product.productName
+[productPrice] = cartItem.product.productPrice
+[productId] = cartItem.product.productId
+[currentStock] = cartItem.product.currentStock
+></app-cart-detail-page-item>
+</div>
+<!-- [productImage] = cartItem.product.productImage -->
+
+
+
+
+<div class="footer ml-auto mr-3 mb-3 d-flex justify-content-end fixed-bottom shadow bg-body rounded border border-secondary">
+    <div class="body">
+        <span class="p-2 border border-secondary subtotal">Subtotal: {{getSubTotal() | currency}}</span>
+    </div>
+    <button class="btn btn-secondary" routerLinkActive="true" routerLink="/checkout">Checkout
+    </button>
+</div>
+
+
