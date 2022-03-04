@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { Product } from 'src/app/models/product/product.model';
 import { ProductService } from 'src/app/services/product.service';
