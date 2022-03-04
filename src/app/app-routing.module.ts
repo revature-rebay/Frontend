@@ -12,6 +12,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { UpdateProductComponent } from './components/update-product/update-product.component';
 import { RedirectComponent } from './components/redirect/redirect.component';
+import { FeaturedItemComponent } from './components/featured-item/featured-item.component';
 
 const routes: Routes = [{
   path: 'main',
@@ -51,6 +52,9 @@ const routes: Routes = [{
 }, {
   path: 'redirect/:destination',
   component:RedirectComponent
+},{
+  path:'featured',
+  component:FeaturedItemComponent
 }
 ];
 
