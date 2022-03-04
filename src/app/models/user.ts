@@ -6,7 +6,7 @@ export class User {
     public email: string;
     public firstName: string;
     public lastName: string;
-    public roleId: number;
+    public admin: boolean;
 
     constructor(obj?: any) {
 
@@ -16,6 +16,6 @@ export class User {
         this.email = obj?.email ?? ""
         this.firstName = obj?.firstName ?? ""
         this.lastName = obj?.lastName ?? ""
-        this.roleId = obj?.roleId ?? 0
+        this.admin = obj?.admin ?? false
     }
 }

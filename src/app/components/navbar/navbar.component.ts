@@ -29,12 +29,16 @@ export class NavbarComponent implements OnInit {
     this.user.checked = false;
   }
 
+  loginRoute(){
+    this.user.checked = true;
+  }
+
   getCartQuantity(): number{
     return this.cartService.getCartQuantity();
   }
 
   updateNavbarUser(): void {
-    this.currentUser = this.user.getCurrentUser();
+    this.currentUser = this.user.getCookie();
   }
 
   revealCurrentUser():void {
@@ -43,6 +47,10 @@ export class NavbarComponent implements OnInit {
 
   userLoggedIn():boolean {
     return this.user.userLoggedIn();
+  }
+
+  isAdmin():boolean{
+    return this.user.currentUser.admin
   }
 
   logOut():void {
