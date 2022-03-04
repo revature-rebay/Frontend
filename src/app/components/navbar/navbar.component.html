@@ -46,7 +46,7 @@
                     <!-- Sign Up & Login Links -->
                     <div id="register/login" *ngIf= "!userLoggedIn()">
                       <span>
-                        <a routerLinkActive="true" routerLink="login"  id="signup" style="margin-right:5px; text-decoration: none;">Sign Up</a>
+                        <a routerLinkActive="true" routerLink="login"  id="signup" style="margin-right:5px; text-decoration: none;" (click)="signUpRoute()">Sign Up</a>
                         <span style="color:#F26925;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
                         <a routerLinkActive="true" routerLink="login" style="text-decoration: none;">Login</a>
                       </span>
