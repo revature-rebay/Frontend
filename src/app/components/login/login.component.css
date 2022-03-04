@@ -1,6 +1,9 @@
 .image{
-  height:50em; background-size:cover; width:auto;
+  height:55em; 
+  background-size:cover; 
+  width:auto;
   background-image:url('src/assets/images/background2.png');
+  justify-content: center;
 }
 
 .app {
