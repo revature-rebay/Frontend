@@ -29,6 +29,10 @@ export class NavbarComponent implements OnInit {
     this.user.checked = false;
   }
 
+  loginRoute(){
+    this.user.checked = true;
+  }
+
   getCartQuantity(): number{
     return this.cartService.getCartQuantity();
   }
