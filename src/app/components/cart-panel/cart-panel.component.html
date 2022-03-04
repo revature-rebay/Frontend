@@ -1,0 +1,38 @@
+<!-- side bar main wrapper -->
+<div class="side-nav-bar"
+    [ngClass]="{ 'side-nav-bar-collapsed': !(showNav)}">
+    
+    <!-- overlay -->
+    <div class="side-nav-bar-overlay" 
+    [ngStyle]="{ 'transition': 'background-color ' + duration + 's, visibility ' + duration + 's' }"
+    [ngClass]="{ 'side-nav-bar-overlay-collapsed': !(showNav) }"
+        (click)="onSidebarClose()"></div>
+    
+    <!-- side bar-->
+    <div class="side-nav-bar-menu-container" 
+    [ngStyle]="getSideNavBarStyle()">
+        
+        <!-- close button -->
+        <div class="row">
+            <div class="col-2">
+                <span class="material-icons side-nav-bar-close" (click)="onSidebarClose()">clear</span>
+            </div>
+            <div class="col mt-5">
+                <div class="mt-4">
+                    <p class="text-center me-5">This order ships for free!</p> 
+                </div>
+                <button routerLinkActive="true" routerLink="cart_detail_page" (click)="onSidebarClose()" class="btn btn-outline-secondary rounded-pill mt-2"><span class="shopping-cart material-icons align-middle">
+                    shopping_cart
+                    </span>Review Cart</button>
+                <button class="btn btn-secondary rounded-pill ms-4 mt-2" routerLinkActive="true" routerLink="checkout" (click)="onSidebarClose()">Checkout Now</button>
+                <p class="text-end mt-4 me-5">Subtotal: {{getSubTotal() | currency}}</p>
+                </div>
+            
+        </div>
+
+        <!-- side bar content -->
+        <div class="side-nav-bar-content-container">
+            <ng-container *ngTemplateOutlet="sidenavTemplateRef"></ng-container>
+        </div>
+    </div>
+</div>
