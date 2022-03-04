@@ -1,0 +1,185 @@
+<div class="d-flex justify-content-center">
+    
+<form [formGroup]="checkoutForm" (ngSubmit)="onCheckout()" class="p-2">
+
+    <div class="d-flex flex-row justify-content-center">
+        <span [ngClass]="togglePayment ? 'infoIconOff' : 'infoIconOn'" class="material-icons-outlined p-2" id="infoIcon" (click)="toggle($event)">info</span>
+        <span [ngClass]="togglePayment ? 'paymentIconOn' : 'paymentIconOff'" class="material-icons-outlined p-2" id="paymentIcon" (click)="toggle($event)">payments</span>
+    </div>
+
+    <div *ngIf="!togglePayment" [@toggleCheckout]>
+        <div class="d-flex flex-row">
+            <p class="fs-5">Personal Details</p>
+        </div>
+        <div class=" bg-secondary bg-opacity-10 p-2 mb-3">
+            <div class="d-flex flex-row">
+                <label for="firstName">
+                    <input id="firstName" type="text" formControlName="firstName" placeholder="First Name">
+                </label>
+                <label class="ml-2" for="lastName">
+                    <input id="lastName" type="text" formControlName="lastName" placeholder="Last Name">
+                </label>
+            </div>
+        
+            <div class="d-flex flex-row">
+                <label for="phoneNumber">
+                    <input id="phoneNumber" type="text" formControlName="phoneNumber" placeholder="Phone Number">
+                </label>
+            </div>
+        </div>
+        
+    
+        <div class="d-flex flex-row">
+            <p class="fs-5">Billing Address</p>
+        </div>
+    
+        <div class="bg-secondary bg-opacity-10 p-2">
+            <div formGroupName = "address">
+                <div>
+                    <label for="country">
+                        <input id="country" type="text" formControlName="country" placeholder="" class="form-control">
+                    </label>
+                </div>
+    
+                <div class="d-flex flex-row">
+                    <label class="" for="street">
+                        <input id="street" type="text" formControlName="street" placeholder="Street Address">
+                    </label>
+                </div>
+    
+                <div class="d-flex flex-row">
+                    <label class="" for="address2">
+                        <input  id="address2" type="text" formControlName="address2" placeholder="Address 2">
+                    </label>
+                </div>
+    
+                <div class="d-flex flex-row">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="poBox">
+                        <label class="form-check-label" for="poBox">
+                        PO Box
+                        </label>
+                    </div>
+                </div>
+    
+                <div class="d-flex flex-row">
+                    <label for="city">
+                        <input id="city" type="text" formControlName="city" placeholder="City">
+                    </label>
+                    <label for="state" class="ml-2">
+                        <select (change)="changeState($event)" id="state" formControlName="state" class="form-select middle-align" aria-label="Default select example">
+                            <option *ngFor="let state of states">{{state}}</option>
+                        </select>
+                    </label>
+                </div>
+    
+                <div class="d-flex flex-row">
+                    <label id="zipCode">
+                        <input id="zipCode" type="text" formControlName="zipcode" placeholder="Zip Code">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="togglePayment" [@toggleCheckout]>
+        <div class="d-flex flex-row">
+            <p class="fs-5">Payment</p>
+        </div>
+
+        <div class="bg-secondary bg-opacity-10 p-2">
+            <div formGroupName = "payment">
+                <div class="d-flex d-row">
+                    <label for="payment">
+                        <input id="payment" type="text" formControlName="cardNumber" placeholder="Credit Cart Number" required>
+                    </label>
+                    <label class="m-2" for="fname"></label>
+                    <div id="fname" class="icon-container align-middle">
+                      <i class="fa fa-cc-visa fa-2x mr-1" style="color:navy;"></i>
+                      <i class="fa fa-cc-amex fa-2x mr-1" style="color:blue;"></i>
+                      <i class="fa fa-cc-mastercard fa-2x mr-1" style="color:red;"></i>
+                      <i class="fa fa-cc-discover fa-2x mr-1" style="color:orange;"></i>
+                    </div>
+                </div>
+
+                <div class="d-flex d-row">
+                    <label for="month">
+                        <input id="month" type="text" formControlName="month" placeholder="Month" required>
+                    </label>
+                    <label for="year"> 
+                        <input class="ml-2" id="year" type="text" formControlName="year" placeholder="Year" required>
+                    </label>
+                </div>
+
+                <div class="d-flex d-row">
+                    <label for="securityCode">
+                        <input id="securityCode" type="text" formControlName="securityCode" placeholder="Security Code" required>
+                    </label>
+                </div>
+            </div>
+            <div class="d-flex flex-row">
+                <button type="submit" class="btn btn-secondary rounded" id="checkout_btn">Place Your Order</button>
+            </div>
+        </div>    
+    </div>          
+</form>
+    
+    <!--Order Summary-->
+    <div class="d-flex flex-row align-self-baseline mt-5">
+        <div class="p-2 fst-italic border border-2 border-secondary">
+            
+            <div class="border-bottom text-center fs-4">
+                Order Summary
+            </div>
+
+            <div class="d-flex flex-column border-bottom justify-content-between">
+                <div *ngFor="let item of cart">
+                    <div class="d-flex justify-content-between">
+                        <p>{{item.quantity}}x  {{item.product.productName | titlecase}}</p>
+                        <p>{{item.product.productPrice | currency}}</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="d-flex flex-row justify-content-between">
+                <p>Subtotal</p>
+                <p>{{getSubTotal() | currency}}</p>
+            </div>
+
+            <div class="d-flex flex-row border-bottom justify-content-between">
+                <p>Estimated Sales Tax</p>
+                <p>{{getTax() | currency}}</p>
+            </div>
+            
+            <div class="d-flex flex-row justify-content-between fw-bold">
+                <p>Total</p>
+                <p>{{getTotal() | currency}}</p>
+            </div>
+
+
+
+            <form [formGroup]="coupon" (ngSubmit)="applyCoupon()" >
+                <label for="coupon">
+                    <input id="coupon" type="text" formControlName="coupon" placeholder="Discount Code">
+                </label>
+                <div class="d-flex flex-row">
+                    <button type="submit" class="btn btn-secondary rounded" id="checkout_btn">Apply</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+                
+
+                
+                
+
+            
+        
+
+
+
+
+

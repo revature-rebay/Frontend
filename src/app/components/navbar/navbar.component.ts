@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
+import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
+import { NavigationService } from 'src/app/services/navigation.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -14,13 +16,16 @@ export class NavbarComponent implements OnInit {
     currentUser!: User;
     searchQuery:string = "";
 
-  constructor(public user: LoginService, private router:Router, private productService:ProductService) {
+  constructor(public user: LoginService, private router:Router, private navService: NavigationService, private productService:ProductService, private cartService:CartService) {
     this.updateNavbarUser();
    }
 
   ngOnInit(): void {
     this.updateNavbarUser();
-    
+  }
+
+  getCartQuantity(): number{
+    return this.cartService.getCartQuantity();
   }
 
   updateNavbarUser(): void {
@@ -50,7 +55,11 @@ export class NavbarComponent implements OnInit {
     )
   }
 
-  applySearch():void {
+  //displays user cart as a slide in side panel
+  toggleSideNav() {
+    if(!this.router.url.match('/cart_detail_page')) this.navService.toggleShowNav();
+}
+    applySearch():void {
     //let Bar document.getElementById("search-bar")
     this.productService.searchQuery = this.searchQuery;
     this.router.navigateByUrl("redirect/search_results");

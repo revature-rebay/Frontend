@@ -1,0 +1,38 @@
+.footer {
+    width: fit-content;
+   
+}
+
+.body {
+    background-color: #B9B9BA;
+}
+
+.subtotal {
+    display: table;
+    margin: 0 auto;
+}
+
+
+
+.btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:visited {
+    background-color: #F26925 !important;
+    border-radius: 0;
+}
+.btn {
+    border-color: #F26925 !important;
+    transition: none !important;
+}
+
+.btn-outline-secondary:hover {
+    color: #FFFF !important;
+    background-color: #F26925 !important;
+}
+.btn-outline-secondary {
+    color: #F26925 !important;
+    border-color: #F26925 !important;
+
+}
+
+.border-secondary {
+    border-color: #474C55 !important;
+}
