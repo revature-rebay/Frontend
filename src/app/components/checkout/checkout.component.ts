@@ -37,6 +37,7 @@ export class CheckoutComponent implements OnInit {
       firstName: this.loginService.currentUser.firstName,
       lastName: this.loginService.currentUser.lastName,
       phoneNumber: '',
+      email: this.loginService.currentUser.email,
       address: this.fb.group({
         street: '',
         address2: '',
