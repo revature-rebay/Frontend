@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product/product.model';
 import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-product-details-page',
@@ -14,8 +16,10 @@ export class ProductDetailsPageComponent implements OnInit {
   displayImage!:string;
   salePrice:number = 0;
   saleDifferential:number = 0;
+  quantity:number = 0;
 
-  constructor(private productService:ProductService, private activeRoute:ActivatedRoute, private router:Router) { }
+  constructor(private productService:ProductService, private activeRoute:ActivatedRoute, private router:Router, private cartService:CartService, 
+    private loginService:LoginService) { }
 
   ngOnInit() {
     if (this.productService.allProducts.length == 0) {
@@ -52,5 +56,10 @@ export class ProductDetailsPageComponent implements OnInit {
 
   updateImageURL(){
     this.displayImage = "assets/images/stockImage.jpg";
+  }
+
+  addToCart():void {
+    alert("Item(s) successfully added to cart:");
+    this.cartService.addProductToCart(String(this.loginService.currentUser.id), String(this.displayProduct.productId), String(this.quantity));
   }
 }
