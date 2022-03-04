@@ -22,9 +22,11 @@ export class CartService {
   getSubTotal(){
     let subtotal = 0;
     this.monitorCart.subscribe(res => {
-      res.forEach(item => {
-        subtotal += (item.product.productPrice * item.quantity)
-      })
+      if(res) {
+        res.forEach(item => {
+          subtotal += (item.product.productPrice * item.quantity)
+        })
+      }
     });
     return subtotal;
   }
@@ -32,9 +34,11 @@ export class CartService {
   getCartQuantity(){
     let total = 0;
     this.monitorCart.subscribe(res => {
-      res.forEach(item => {
-        total += (item.quantity)
-      })
+      if(res) {
+        res.forEach(item => {
+          total += (item.quantity)
+        })
+      }
     });
     return total;
   }

@@ -39,7 +39,7 @@ export class CartComponent implements OnInit {
   addProductCart(/*possible input*/): void {
     this.cartService.addProductToCart(this.userIdInput,this.userProductInput,this.userQuantityInput).subscribe(
       res => {
-        this.cart = res;
+        if(res) this.cart = res;
       });
   }
   
