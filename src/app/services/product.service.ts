@@ -18,10 +18,21 @@ export class ProductService {
 
   searchQuery:string = "";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) { 
+    this.updateAllProducts();
+  }
 
   getAllProducts():Observable<Product[]> {
     return this.http.get(this.backendURL + "products") as Observable<Product[]>;
+  }
+
+  updateAllProducts():void {
+    this.getAllProducts().subscribe(
+      (response:Product[]) => {
+        this.allProducts = response;
+      }
+    )
+
   }
 
   getProduct(productId:number):Observable<Product> {
@@ -48,12 +59,50 @@ export class ProductService {
     return this.http.delete(this.backendURL + "products/" + id) as Observable<boolean>;
   }
 
+  removeLocalProduct(id:number):void{
+    //search the allProducts[] array on the product whose id matches the id of the given product and update it to reflect
+    //the given product
+    for (let prod:number = 0; prod < this.allProducts.length; prod++) {
+      if (this.allProducts[prod].productId == id) {
+        this.allProducts.splice(prod, 1);
+        return;
+      }
+    }
+  }
+
   setCurrentlySelectedProduct(product:Product):void {
     this.currentlySelectedProduct = product;
   }
 
+  getLoadedProductById(productId:number):Product {
+    //console.log("here's all the products: " + this.allProducts[0].productId);
+    // let foundProduct = this.allProducts.find(prod => {productId === prod.productId});
+    // if (foundProduct) {
+    //   return foundProduct;
+    // }
+
+    // console.log("couldn't find product");
+    // return new Product(0, "", "", 0, 0, false, 0);
+    for (let prod of this.allProducts) {
+      if (prod.productId == productId) return prod;
+    }
+
+    return new Product(0, "", "", 0, 0, false, 0);
+  }
+
   getTestImage():Observable<string> {
     return this.http.get(this.backendURL + "products/imgTest", {responseType: 'text'}) as Observable<string>;
+  }
+
+  localUpdateProduct(product:Product):void {
+    //search the allProducts[] array on the product whose id matches the id of the given product and update it to reflect
+    //the given product
+    for (let prod of this.allProducts) {
+      if (prod.productId == product.productId) {
+        prod = product;
+        return;
+      }
+    }
   }
 
 
