@@ -31,7 +31,8 @@
             <div class="d-flex">
 
                 <!-- Cart -->
-                <a class="text-reset me-3" *ngIf= "userLoggedIn()">
+            <div *ngIf= "!isAdmin()">
+              <a class="text-reset me-3" *ngIf= "userLoggedIn()">
                 <!--Cart side panel-->  
                 <app-header></app-header>                  
                 <span style="color:#F26925;" id="cartIcon">
@@ -41,12 +42,14 @@
                 </span>
                 <span class="badge rounded-pill badge-notification bg-danger">{{getCartQuantity()}}</span>
               </a>
+            </div>
+                
                 <!-- Cart -->
 
                     <!-- Sign Up & Login Links -->
                     <div id="register/login" *ngIf= "!userLoggedIn()">
                       <span>
-                        <a routerLinkActive="true" routerLink="login"  id="signup" style="margin-right:5px; text-decoration: none;">Sign Up</a>
+                        <a routerLinkActive="true" routerLink="login"  id="signup" style="margin-right:5px; text-decoration: none;" (click)="signUpRoute()">Sign Up</a>
                         <span style="color:#F26925;">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
                         <a routerLinkActive="true" routerLink="login" style="text-decoration: none;">Login</a>
                       </span>
@@ -67,7 +70,7 @@
             <!-- Featured & Clearance Links -->
         <ul class="navbar-nav flex-row">
           <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-            <a routerLinkActive="true" routerLink="featured-card" style="text-decoration: none; margin-top:20px;">Featured</a>
+            <a routerLinkActive="true" routerLink="main" style="text-decoration: none; margin-top:20px;">Featured</a>
           </li>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
@@ -81,7 +84,7 @@
             <span style="color:#F26925;" *ngIf= "userLoggedIn()">Hello, {{this.user.currentUser.firstName}} <span style="color:#af4e1d;">⌄</span></span>
             <div class="dropdown-content" style="background-color:#474C55">
               <a routerLinkActive="true" routerLink="login" *ngIf= "userLoggedIn()">Update Profile</a>
-              <a routerLinkActive="true" routerLink="products" *ngIf= "userLoggedIn()">Products</a>
+              <a routerLinkActive="true" routerLink="product-page" *ngIf= "isAdmin()">Products</a>
               <a routerLinkActive="true" routerLink="main" *ngIf= "userLoggedIn()" (click)="logOut()">Logout</a>
             </div>
         </div>

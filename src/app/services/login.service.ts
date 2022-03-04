@@ -9,11 +9,13 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginService {
 
+  checked: boolean = true;
+
   currentUser: User = new User(); // I added this line
 
   url: string = environment.serverURL;
+  // url: string = "http://ec2-44-203-89-9.compute-1.amazonaws.com:9000/";
 
-  // constructor(private currentUser: User ,private http: HttpClient) { 
   constructor(private http: HttpClient) { 
     this.currentUser  = new User(); //starts off as a blank user upon instantiation (I added this line)
   }
@@ -42,8 +44,6 @@ export class LoginService {
   }
 
   getCurrentUser():User {
-    // original endpoint for getting current user - still available for use
-    // return this.http.get<User>(this.url + "user/current", { withCredentials: true });
     return this.currentUser;
   }
 
@@ -51,4 +51,12 @@ export class LoginService {
     return this.http.get<User>(this.url + "user/" + id, { withCredentials: true });
   }
 
+  getCookie(){
+    this.http.get<User>(this.url + "user/current", { withCredentials: true }) .subscribe({
+      next: (response) =>{
+        this.currentUser=response;
+      }
+    })
+    return this.currentUser; 
+  }
 }
