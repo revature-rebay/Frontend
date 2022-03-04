@@ -1,7 +1,7 @@
 <p *ngIf="!anyProducts()"> Sorry, the search query returned no results. Please refine your search and try again.</p>
-<div class="container" *ngFor='let p of filteredProducts'>
-    <br/>
-    <div class="prod-info-main prod-wrap clearfix">
+<div *ngFor='let p of filteredProducts' id="item" style="border-bottom:1px solid black;">
+    <div class="prod-info-main prod-wrap clearfix" >
+        <br/>
         <div class="row">
             <div class="col-md-3 col-sm-12 col-xs-12">
                 <img [src]='setImage(p)' (error)="updateImageUrl($event)" class="img-fluid">
@@ -14,7 +14,7 @@
             <div class="col-md-7 col-sm-12 col-xs-12">
                 <div class="product-detail">
                     <h5 class="name">
-                        <button (click)="getDetails(p.productId)" style="color:#F26925">
+                        <button (click)="getDetails(p.productId)" id="pName" style="background-color:white; border:none;">
 
                             {{p.productName}}
 
@@ -27,7 +27,7 @@
                     </p>
                     <span class="tag1"></span>
                 </div>
-                <div class="description">
+                <div class="description" id="pDescription">
 
                     <p>{{p.productDescription}}</p>
 
@@ -35,5 +35,4 @@
             </div>
         </div>
     </div>
-    <br/>
 </div>

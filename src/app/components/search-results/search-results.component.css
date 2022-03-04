@@ -1,0 +1,37 @@
+img{
+    height:200px;
+    width:200px;
+    border:solid 2px;
+    margin-bottom: 25px;
+}
+
+#item{
+    border-bottom:1px solid black;
+}
+
+span.hot {
+ 
+    background-color: #F26925
+ 
+}
+span.tag2 {
+    position: absolute;
+    top: 10px;
+    right: 110px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    padding: 10px 0;
+    color: #fff;
+    font-size: 11px;
+    text-align: center
+}
+#pName{
+    margin-top:10px;
+    font-family: Poiret one;
+    text-transform: uppercase;
+    color:#F26925
+}
+#pDescription{
+    font-style: italic;
+}

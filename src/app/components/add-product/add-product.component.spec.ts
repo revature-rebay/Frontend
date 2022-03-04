@@ -8,7 +8,6 @@ import { ProductService } from 'src/app/services/product.service';
 import { AddProductComponent } from './add-product.component';
 
 describe('AddProductComponent', () => {
-  /*
   let component: AddProductComponent;
   let fixture: ComponentFixture<AddProductComponent>;
   let mockProductService: jasmine.SpyObj<ProductService>;
@@ -44,7 +43,7 @@ describe('AddProductComponent', () => {
 
     component.addProduct();
     expect(mockProductService.addNewProduct).toHaveBeenCalled();
-    expect(mockProductService.updateAllProduct).toHaveBeenCalled();
+    expect(mockProductService.updateAllProducts).toHaveBeenCalled();
   });
-*/
+
 });
