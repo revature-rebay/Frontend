@@ -71,7 +71,7 @@ export class UpdateProductComponent implements OnInit {
     this.product.productPrice = this.formattedAmount;
 
     //drop the dollar sign from the front of the price string
-    this.product.productPrice = parseInt(this.product.productPrice.toString().substring(1));
+    this.product.productPrice = parseFloat(this.product.productPrice.toString().substring(1));
 
     console.log("before sending to the db: " + JSON.stringify(this.product));
 
