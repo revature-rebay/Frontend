@@ -12,13 +12,13 @@ export class SearchResultsComponent implements OnInit {
 
   currentSearch:string = "";
   allProducts:Product[] = []; //TODO: pull this from the service with routing parameters
-  filteredProducts:Product[] = []; //TODO: consider making this a set so we don't get any repeat products
+  //filteredProducts:Product[] = []; //TODO: consider making this a set so we don't get any repeat products
+  filteredProducts = new Set<Product>();
 
   constructor(private productService:ProductService, private router:Router) { }
 
   ngOnInit(): void {
-    //reset the current array
-    this.filteredProducts = [];
+    this.filteredProducts.clear(); //clear the current set
     this.currentSearch = this.productService.searchQuery;
     this.getAllProducts();
   }
@@ -48,7 +48,7 @@ export class SearchResultsComponent implements OnInit {
   }
 
   anyProducts():boolean {
-    if (this.filteredProducts.length == 0) return false;
+    if (this.filteredProducts.size == 0) return false;
     return true;
   }
 
@@ -83,14 +83,14 @@ export class SearchResultsComponent implements OnInit {
         //first we check for an exact match
         if (productName == currentSearchWord) {
           //console.log("found a match:" + productName);
-          this.filteredProducts.push(product);
+          this.filteredProducts.add(product);
           continue; //move onto the next product if match is found
         }
 
         //check to see if any products fully contain the search string
         if (productName.includes(currentSearchWord) || currentSearchWord.includes(productName)) {
           //console.log("found a match:" + productName);
-          this.filteredProducts.push(product);
+          this.filteredProducts.add(product);
           continue; //move onto the next product if match is found
         }
 
@@ -129,7 +129,7 @@ export class SearchResultsComponent implements OnInit {
 
         if (charactersFound / currentSearchWord.length >= 0.80) {
           //console.log("found a match:" + productName);
-          this.filteredProducts.push(product);
+          this.filteredProducts.add(product);
           continue; //move onto the next product if match is found
         }
       }
