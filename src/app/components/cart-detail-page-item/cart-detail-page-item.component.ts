@@ -38,4 +38,7 @@ export class CartDetailPageItemComponent implements OnInit {
     })
     this.cartService.updateProductQuantity(cartdto)  
   }
+  setImage():string {
+    return "assets/images/" + this.productName + ".jpg";
+  }
 }

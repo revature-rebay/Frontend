@@ -28,6 +28,7 @@ import { UpdateProductComponent } from './components/update-product/update-produ
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 import { RedirectComponent } from './components/redirect/redirect.component';
+import { ThankYouComponent } from './components/thank-you/thank-you.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { RedirectComponent } from './components/redirect/redirect.component';
     ProductsComponent,
     AddProductComponent,
     UpdateProductComponent,
-    RedirectComponent
+    RedirectComponent,
+    ThankYouComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

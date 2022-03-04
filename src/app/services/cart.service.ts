@@ -43,6 +43,10 @@ export class CartService {
     return total;
   }
 
+  public setCartEmpty(){
+    this.monitorCart.next([]);
+  }
+
   private cartObservableUpdate(currentCart:Observable<CartItem[]>){
     currentCart.subscribe(res => {
       this.monitorCart.next(res);
@@ -119,14 +123,14 @@ export class CartService {
   return response
  }
 
- checkout(userId: string):Observable<CartItem[]> {
+ checkout(userId: string):Observable<any> {
   const httpOptions= {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
       Authorization: 'my-auth-token',
-      observe: 'response'
-    })
+      options: 'response'
+    }), 
   };
-  return this.http.put<CartItem[]>(`${this.baseURL}cart/checkout/${userId}`, httpOptions);
+  return this.http.put(`${this.baseURL}cart/checkout/${userId}`, {options:'response'});
  }
 }

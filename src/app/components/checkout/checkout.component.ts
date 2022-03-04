@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder} from '@angular/forms';
 import { States } from 'src/app/models/states';
 import { checkoutAnimation } from 'src/app/animations/checkoutAnimations';
 import { CartItem } from 'src/app/models/cart-item';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -22,7 +23,8 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private loginService: LoginService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private routerService: Router
   ) {
     this.cartService.monitorCart.subscribe(res => this.cart = res);
   }
@@ -77,8 +79,16 @@ export class CheckoutComponent implements OnInit {
 
   onCheckout() {
     console.log(this.checkoutForm.value);
-    this.cartService.checkout(this.loginService.currentUser.id.toString());
-    this.checkoutForm.reset();
+    this.cartService.checkout(this.loginService.currentUser.id.toString()).subscribe({
+      next:(res)=> {
+        this.cartService.setCartEmpty();
+        this.routerService.navigateByUrl('/thank-you');
+      },
+      error: (res)=> {
+        
+      }
+    });
+    
   }
 
   applyCoupon() {
