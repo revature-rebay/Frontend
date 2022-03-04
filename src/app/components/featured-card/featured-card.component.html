@@ -5,6 +5,11 @@
   <div>
   <div class="product-card__image" (click) = "getDetails()">
     <img src="assets/images/{{singleproduct.productName}}.jpg" alt="" />
+    <span class="tag2 hot" *ngIf="sales">
+
+      SALE
+
+  </span>
   </div>
   <div class="product-card__info">
     <header>

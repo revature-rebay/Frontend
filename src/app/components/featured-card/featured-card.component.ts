@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { single } from 'rxjs';
 import { Product } from 'src/app/models/product/product.model';
 import { User } from 'src/app/models/user';
 import { CartService } from 'src/app/services/cart.service';
@@ -18,6 +19,7 @@ export class FeaturedCardComponent implements OnInit {
   constructor(private router:Router, private cart:CartService, private login:LoginService) { }
 
   ngOnInit(): void {
+    this.sale();
   }
 
   getDetails(){
@@ -30,7 +32,15 @@ export class FeaturedCardComponent implements OnInit {
   getName(){
     this.displayName = this.singleproduct.productName.replace("_", " ")
   }
-
+  sales!:boolean;
+  sale(){
+    if(this.singleproduct.discountPercentage > 0){
+      this.sales = true;
+    }
+    else{
+      this.sales = false;
+    }
+  }
   quantity:number = 1;
   i=1;
   plus(){
