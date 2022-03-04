@@ -42,8 +42,6 @@ export class LoginService {
   }
 
   getCurrentUser():User {
-    // original endpoint for getting current user - still available for use
-    // return this.http.get<User>(this.url + "user/current", { withCredentials: true });
     return this.currentUser;
   }
 
@@ -51,4 +49,12 @@ export class LoginService {
     return this.http.get<User>(this.url + "user/" + id, { withCredentials: true });
   }
 
+  getCookie(){
+    this.http.get<User>(this.url + "user/current", { withCredentials: true }) .subscribe({
+      next: (response) =>{
+        this.currentUser=response;
+      }
+    })
+    return this.currentUser; 
+  }
 }

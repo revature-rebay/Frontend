@@ -79,7 +79,7 @@
             <span style="color:#F26925;" *ngIf= "userLoggedIn()">Hello, {{this.user.currentUser.firstName}} <span style="color:#af4e1d;">⌄</span></span>
             <div class="dropdown-content" style="background-color:#474C55">
               <a routerLinkActive="true" routerLink="login" *ngIf= "userLoggedIn()">Update Profile</a>
-              <a routerLinkActive="true" routerLink="product-page" *ngIf= "userLoggedIn()">Products</a>
+              <a routerLinkActive="true" routerLink="product-page" *ngIf= "isAdmin()">Products</a>
               <a routerLinkActive="true" routerLink="main" *ngIf= "userLoggedIn()" (click)="logOut()">Logout</a>
             </div>
         </div>

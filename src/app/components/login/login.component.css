@@ -179,3 +179,13 @@ a {
     text-align: center;
 }
 .no-gutters{margin: 0px;}
+
+/* input:-webkit-autofill
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    /* text-align: center; */
+    /* font-size: 12px;
+    color:white;
+    transition: background-color 5000s ease-in-out 0s; */
+/* }  */

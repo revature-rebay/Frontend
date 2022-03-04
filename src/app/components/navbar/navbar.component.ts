@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
   }
 
   updateNavbarUser(): void {
-    this.currentUser = this.user.getCurrentUser();
+    this.currentUser = this.user.getCookie();
   }
 
   revealCurrentUser():void {
@@ -33,6 +33,10 @@ export class NavbarComponent implements OnInit {
 
   userLoggedIn():boolean {
     return this.user.userLoggedIn();
+  }
+
+  isAdmin():boolean{
+    return this.user.currentUser
   }
 
   logOut():void {
