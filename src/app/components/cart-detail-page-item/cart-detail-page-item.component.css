@@ -11,3 +11,11 @@
 .delete:hover, .add:hover {
     opacity: 1;
 }
+
+#image { 
+    flex-basis: 200px;
+}
+
+#itemInfo {
+    flex-basis: 400px;
+}

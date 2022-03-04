@@ -57,7 +57,7 @@ export class NavbarComponent implements OnInit {
 
   //displays user cart as a slide in side panel
   toggleSideNav() {
-    this.navService.toggleShowNav();
+    if(!this.router.url.match('/cart_detail_page')) this.navService.toggleShowNav();
 }
     applySearch():void {
     //let Bar document.getElementById("search-bar")
