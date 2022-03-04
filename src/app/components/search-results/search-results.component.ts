@@ -11,8 +11,6 @@ import { ProductService } from 'src/app/services/product.service';
 export class SearchResultsComponent implements OnInit {
 
   currentSearch:string = "";
-  allProducts:Product[] = []; //TODO: pull this from the service with routing parameters
-  //filteredProducts:Product[] = []; //TODO: consider making this a set so we don't get any repeat products
   filteredProducts = new Set<Product>();
 
   constructor(private productService:ProductService, private router:Router) { }
@@ -20,31 +18,11 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit(): void {
     this.filteredProducts.clear(); //clear the current set
     this.currentSearch = this.productService.searchQuery;
-    this.getAllProducts();
-  }
-
-  getAllProducts():void {
-    this.productService.getAllProducts().subscribe(
-      (response:Product[]) => {
-        this.allProducts = response;
-
-        //for now, call filtering algorithm inside of the Observable subscription to avoid undefined errors
-        this.filteringAlgorithm();
-      }
-    )
-  }
-
-  goToDetailsPage(product:Product):void {
-    //set the currently selected product in the product service
-    this.productService.currentlySelectedProduct = product;
-
-    //then route to the product details page
-    this.router.navigateByUrl("product_details_page");
+    this.filteringAlgorithm(this.productService.allProducts);
   }
 
   getDetails(productId:number){
     this.router.navigate(['/product_details_page/'+ productId])
-    
   }
 
   anyProducts():boolean {
@@ -52,9 +30,7 @@ export class SearchResultsComponent implements OnInit {
     return true;
   }
 
-  filteringAlgorithm():void {
-    //
-
+  filteringAlgorithm(allProducts:Product[]):void {
     //Loop through all products in the database (which are stored in the allProducts array) and add any products
     //that pass all the search criteria listed below to the filteredProducts array.
 
@@ -66,30 +42,24 @@ export class SearchResultsComponent implements OnInit {
     */
 
     //First and foremost, if the search bar is blank then don't show any products
-    if (this.currentSearch == "") {
-      //console.log("Please enter a search query");
-      return;
-    }
+    if (this.currentSearch == "") return;
 
     //Split the search query into individual words so that each one can be checked against product names independently
     let searchWords:string[] = this.currentSearch.split(" ");
-    //console.log(searchWords);
 
     //compare all words in the query against every product in the allProducts array
-    for (let product of this.allProducts) {
+    for (let product of allProducts) {
       for (let currentSearchWord of searchWords) {
         let productName = product.productName;
 
         //first we check for an exact match
         if (productName == currentSearchWord) {
-          //console.log("found a match:" + productName);
           this.filteredProducts.add(product);
           continue; //move onto the next product if match is found
         }
 
         //check to see if any products fully contain the search string
         if (productName.includes(currentSearchWord) || currentSearchWord.includes(productName)) {
-          //console.log("found a match:" + productName);
           this.filteredProducts.add(product);
           continue; //move onto the next product if match is found
         }
@@ -128,7 +98,6 @@ export class SearchResultsComponent implements OnInit {
         }
 
         if (charactersFound / currentSearchWord.length >= 0.80) {
-          //console.log("found a match:" + productName);
           this.filteredProducts.add(product);
           continue; //move onto the next product if match is found
         }
