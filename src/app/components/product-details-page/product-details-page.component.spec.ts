@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ProductDetailsPageComponent } from './product-details-page.component';
 import { By } from '@angular/platform-browser';
 
-fdescribe('ProductDetailsPageComponent', () => {
+describe('ProductDetailsPageComponent', () => {
   let component: ProductDetailsPageComponent;
   let fixture: ComponentFixture<ProductDetailsPageComponent>;
   let productService: ProductService;

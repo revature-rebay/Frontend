@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CartPanelComponent } from './cart-panel.component';
@@ -8,6 +9,7 @@ describe('CartPanelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule ],
       declarations: [ CartPanelComponent ]
     })
     .compileComponents();
