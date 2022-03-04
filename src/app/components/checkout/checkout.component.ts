@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
-import { FormGroup, FormBuilder} from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { States } from 'src/app/models/states';
 import { checkoutAnimation } from 'src/app/animations/checkoutAnimations';
 import { CartItem } from 'src/app/models/cart-item';
@@ -11,14 +11,16 @@ import { Router } from '@angular/router';
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
-  animations: [checkoutAnimation]
+  animations: [checkoutAnimation],
 })
 export class CheckoutComponent implements OnInit {
   checkoutForm!: FormGroup;
-  coupon !: FormGroup;
-  togglePayment !: boolean;
+  coupon!: FormGroup;
+  togglePayment!: boolean;
   states = States.states;
-  cart !: CartItem[];
+  cart!: CartItem[];
+  pricePercent: number = 1;
+  
 
   constructor(
     private cartService: CartService,
@@ -26,7 +28,7 @@ export class CheckoutComponent implements OnInit {
     private fb: FormBuilder,
     private routerService: Router
   ) {
-    this.cartService.monitorCart.subscribe(res => this.cart = res);
+    this.cartService.monitorCart.subscribe((res) => (this.cart = res));
   }
 
   ngOnInit(): void {
@@ -45,10 +47,12 @@ export class CheckoutComponent implements OnInit {
         address2: '',
         city: '',
         state: '',
-        country: [{
-          value: 'United States of America',
-          disabled: true
-        }],
+        country: [
+          {
+            value: 'United States of America',
+            disabled: true,
+          },
+        ],
         zipcode: '',
       }),
       payment: this.fb.group({
@@ -56,48 +60,63 @@ export class CheckoutComponent implements OnInit {
         month: '',
         year: '',
         securityCode: '',
-      })
+      }),
     });
 
     //coupon
     this.coupon = this.fb.group({
-      coupon: ''
-    })
+      coupon: '',
+    });
   }
 
-  getTotal():number {
-    return this.getSubTotal() * 1.07;
+  getTotal(): number {
+    return this.getSubTotal() + this.getTax();
   }
 
-  getTax():number {
-    return this.getSubTotal() * .07;
+  getTax(): number {
+    return this.getSubTotal() * 0.07;
   }
 
-  getSubTotal():number{
-    return this.cartService.getSubTotal();
+  getSubTotal(): number {
+    return this.cartService.getSubTotal() * this.pricePercent;
   }
 
   onCheckout() {
     console.log(this.checkoutForm.value);
-    this.cartService.checkout(this.loginService.currentUser.id.toString()).subscribe({
-      next:(res)=> {
-        this.cartService.setCartEmpty();
-        this.routerService.navigateByUrl('/thank-you');
-      },
-      error: (res)=> {
-        
-      }
-    });
-    
+    this.cartService
+      .checkout(this.loginService.currentUser.id.toString())
+      .subscribe({
+        next: (res) => {
+          this.cartService.setCartEmpty();
+          this.routerService.navigateByUrl('/thank-you');
+        },
+        error: (res) => {
+          alert('Something went wrong');
+        },
+      });
   }
 
   applyCoupon() {
-    console.log(this.coupon.value)
+    
+    if(this.coupon.value.coupon == '50OFF'){
+      this.pricePercent = 0.5
+    }
+    else if(this.coupon.value.coupon == '100OFF') {
+      this.pricePercent = 0;
+    }
+    else{
+      this.pricePercent = 1;
+    }
+    
+    
+    console.log(this.coupon.value);
+
     this.coupon.reset();
   }
 
-  toggle(event:MouseEvent){
-    if((<HTMLSpanElement>event.target).id === 'infoIcon') this.togglePayment = false;
+  toggle(event: MouseEvent) {
+    if ((<HTMLSpanElement>event.target).id === 'infoIcon')
+      this.togglePayment = false;
     else this.togglePayment = true;
   }
 
@@ -106,5 +125,4 @@ export class CheckoutComponent implements OnInit {
       onlySelf: true,
     });
   }
-
 }
