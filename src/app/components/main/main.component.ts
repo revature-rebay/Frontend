@@ -13,13 +13,19 @@ export class MainComponent implements OnInit {
 
   products: Product[] = [];
   featuredProducts: Product[] = [];
-  currentUser!:User;
-  constructor(private productService:ProductService, private navService: NavigationService) { }
+  responsiveOptions;
+  constructor(private productService:ProductService, private navService: NavigationService) { 
+    this.responsiveOptions = [{
+      breakpoint: '1024px',
+      numVisible:1,
+      numScroll:3
+    }]
+    
+  }
 
   ngOnInit(): void {
     this.productService.getFeaturedProducts().subscribe((response: Product[])=> this.featuredProducts = response);
     //console.log(this.featuredProducts);
-    console.log(this.currentUser);
   }
 
 
