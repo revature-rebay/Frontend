@@ -10,7 +10,7 @@
         class="list-item"
         *ngFor="let sales of products; index as i"
         [ngStyle]="{ border: i === products.length - 1 && 'none' }"
-        [routerLink]="['product_details_page', sales.productId]"
+        (click) = "getDetails(i+1)"
       >
         <div class="list-item__image">
           <img src="assets/images/{{sales.productName}}.jpg" alt="" />

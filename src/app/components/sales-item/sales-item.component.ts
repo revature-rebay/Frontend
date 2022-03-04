@@ -14,6 +14,9 @@ export class SalesItemComponent implements OnInit {
   
   constructor( private product:ProductService, private router:Router) { 
   }
+  getDetails(i:number){
+    this.router.navigate(['/product_details_page/'+i])
+  }
 
   ngOnInit(): void {
     this.product.getDiscountedProducts().subscribe((response: Product[])=> this.products = response);
