@@ -1,3 +1,4 @@
+
 <div style="margin:15px; text-align: center;">
     <h4 *ngIf="!anyProducts()" style="margin: 50px;"> Sorry, your search for "{{currentSearch}}" returned no results. Please refine your search and try again.</h4>
 </div>
@@ -16,7 +17,7 @@
             <div class="col-md-7 col-sm-12 col-xs-12">
                 <div class="product-detail">
                     <h5 class="name">
-                        <button (click)="getDetails(p.productId)" style="color:#F26925">
+                        <button (click)="getDetails(p.productId)" id="pName">
 
                             {{p.productName}}
 
@@ -29,7 +30,7 @@
                     </p>
                     <span class="tag1"></span>
                 </div>
-                <div class="description">
+                <div class="description" id="pDescription">
 
                     <p>{{p.productDescription}}</p>
 
@@ -37,5 +38,4 @@
             </div>
         </div>
     </div>
-    <br/>
 </div>
