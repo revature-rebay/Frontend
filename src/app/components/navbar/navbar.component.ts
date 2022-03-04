@@ -5,6 +5,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { ProductService } from 'src/app/services/product.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-navbar',
@@ -16,12 +17,16 @@ export class NavbarComponent implements OnInit {
     currentUser!: User;
     searchQuery:string = "";
 
-  constructor(public user: LoginService, private router:Router, private navService: NavigationService, private productService:ProductService, private cartService:CartService) {
+  constructor(public user: LoginService, private router:Router, private navService: NavigationService, private productService:ProductService, private cartService:CartService, public login:LoginComponent) {
     this.updateNavbarUser();
    }
 
   ngOnInit(): void {
     this.updateNavbarUser();
+  }
+
+  signUpRoute(){
+    this.user.checked = false;
   }
 
   getCartQuantity(): number{
