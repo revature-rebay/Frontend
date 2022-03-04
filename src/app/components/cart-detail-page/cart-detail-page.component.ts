@@ -5,6 +5,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { CartDTO } from 'src/app/models/cart-dto';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -17,7 +18,7 @@ export class CartDetailPageComponent implements OnInit {
   //using Behavior subject
   cart !: CartItem[];
 
-  constructor(private cartService:CartService, private loginService:LoginService, private navService:NavigationService) {
+  constructor(private routerService:Router, private cartService:CartService, private loginService:LoginService, private navService:NavigationService) {
     this.cartService.monitorCart.subscribe(res => this.cart = res);
    }
 
@@ -53,6 +54,10 @@ export class CartDetailPageComponent implements OnInit {
         this.cart = res;
       }
     });
+  }
+
+  route(){
+    this.routerService.navigate(['/checkout'])
   }
 
 }
