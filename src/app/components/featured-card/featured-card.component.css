@@ -48,6 +48,12 @@ header{
         cursor: pointer;
         transition: background-color 0.2s;
 }
+.qty {
+	display: flex;
+	flex-wrap: wrap;
+	text-align: center;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 button.qtyminus {
   margin-right: 0.3rem;
   width: 1.7rem; height: 1.7rem;
@@ -63,6 +69,15 @@ button.qtyplus {
   background: #F26925;
 }
 
+.load-more-btn {
+  background-color: #474C55;
+  border-bottom: 2px solid #F26925;
+  border-radius: 2px;
+  border-top: 2px solid #F26925;
+  margin-top: 20px;
+  padding: 9px 0;
+  width: 100%
+}
 
 
 button:hover{

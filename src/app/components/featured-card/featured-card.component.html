@@ -16,7 +16,7 @@
                 <p class="qty">
                     <button class="qtyminus" aria-hidden="true" type="button"
                         (click)="minus()">&minus;</button>
-                    <input type="number" name="qty" id="qty" min="1" max="10" step="1" [value]="quantity">
+                    <input type="number" name="qty" id="qty" min="1" step="1" [value]="quantity" readonly>
                     <button class="qtyplus" aria-hidden="true" type="button"
                         (click)="plus()">&plus;</button>
                 </p>
