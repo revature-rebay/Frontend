@@ -7,7 +7,7 @@ import { Product } from 'src/app/models/product/product.model';
 import { ProductService } from 'src/app/services/product.service';
 import { SearchResultsComponent } from './search-results.component';
 
-fdescribe('SearchResultsComponent', () => {
+describe('SearchResultsComponent', () => {
   let component: SearchResultsComponent;
   let fixture: ComponentFixture<SearchResultsComponent>;
   let mockProductService: jasmine.SpyObj<ProductService>;
@@ -15,10 +15,13 @@ fdescribe('SearchResultsComponent', () => {
   let allProducts: Product[] = [];
 
   beforeEach(async () => {
-    mockProductService = jasmine.createSpyObj('ProductService', ['exists', 'getAllProducts']);
+    allProducts.push(new Product(1, "Black Hat", "It's...a black hat", 15, 10, true, 50));
+    allProducts.push(new Product(2, "Black Shirt", "It's...a black shirt", 20, 5, true, 50));
+
+    mockProductService = jasmine.createSpyObj('ProductService', ['exists', 'getCachedProducts']);
     mockProductService.exists.withArgs(1).and.returnValue(true);
     mockProductService.exists.withArgs(-1).and.returnValue(false);
-    mockProductService.getAllProducts.and.returnValue(of(allProducts));
+    mockProductService.getCachedProducts.and.returnValue(allProducts);
     mockRouter = jasmine.createSpyObj('Router', ['navigate']);
     
     await TestBed.configureTestingModule({
@@ -38,6 +41,15 @@ fdescribe('SearchResultsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should filter all products based on what is in the search bar', () => {
+    component.filteringAlgorithm(allProducts);
+    expect(component.filteredProducts.size == allProducts.length);
+
+    component.currentSearch = "shirt";
+    component.filteringAlgorithm(allProducts);
+    expect(component.filteredProducts.size == 1);
+  })
 
   it('should navigate to the Product Details page if the product exists', () => {
     component.getDetails(1);

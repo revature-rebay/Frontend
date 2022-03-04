@@ -12,11 +12,11 @@
                 </div>
                 <br>
                 <div style="text-align:center">
-                  <h3>{{this.displayProduct.productName | uppercase}}</h3>
+                  <h3 id="productName">{{this.displayProduct.productName | uppercase}}</h3>
                   <img class="product-image" [src]= 'displayImage' (error)= "updateImageURL()">
-                  <p>{{this.displayProduct.productDescription}}</p>
-                  <br *ngIf="isFeatured()">
-                  <h3 *ngIf="onSale()">Current Price: ${{salePrice | number : '1.2-2'}}</h3>
+                  <p id="productDescription">{{this.displayProduct.productDescription}}</p>
+                  <br id="featuredProduct" *ngIf="isFeatured()">
+                  <h3 id="onSale" *ngIf="onSale()">Current Price: ${{salePrice | number : '1.2-2'}}</h3>
                   <h3 *ngIf="onSale()" style="color:red">With this sale applied you save: {{this.saleDifferential  | number : '1.2-2'}}!!</h3>
                   <h3 *ngIf="!onSale()">Current Price: ${{this.displayProduct.productPrice | number : '1.2-2'}}</h3>
                   <p>Current Stock: {{this.displayProduct.currentStock}}</p>

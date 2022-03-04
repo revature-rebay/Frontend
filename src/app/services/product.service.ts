@@ -93,6 +93,10 @@ export class ProductService {
     return this.http.get(this.backendURL + "products/imgTest", {responseType: 'text'}) as Observable<string>;
   }
 
+  getCachedProducts():Product[] {
+    return this.allProducts;
+  }
+
   localUpdateProduct(product:Product):void {
     //search the allProducts[] array on the product whose id matches the id of the given product and update it to reflect
     //the given product
