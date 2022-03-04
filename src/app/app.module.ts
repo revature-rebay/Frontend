@@ -28,7 +28,6 @@ import { UpdateProductComponent } from './components/update-product/update-produ
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 import { RedirectComponent } from './components/redirect/redirect.component';
-import { FeaturedCarouselComponent } from './components/featured-carousel/featured-carousel.component';
 
 @NgModule({
   declarations: [
@@ -52,8 +51,7 @@ import { FeaturedCarouselComponent } from './components/featured-carousel/featur
     ProductsComponent,
     AddProductComponent,
     UpdateProductComponent,
-    RedirectComponent,
-    FeaturedCarouselComponent
+    RedirectComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
