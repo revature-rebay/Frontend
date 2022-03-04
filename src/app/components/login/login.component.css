@@ -1,6 +1,9 @@
 .image{
-  height:53em; background-size:cover; width:auto;
-  background-image:url('src/assets/images/background.png');
+  height:55em; 
+  background-size:cover; 
+  width:auto;
+  background-image:url('src/assets/images/background2.png');
+  justify-content: center;
 }
 
 .app {
@@ -11,6 +14,7 @@
   width: 100%;
   height: 100vh;
   justify-content: center;
+  opacity: 95%;
 }
 .tab {
   cursor: pointer;
