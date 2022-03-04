@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ProductDetailsPageComponent } from './product-details-page.component';
 import { By } from '@angular/platform-browser';
 
-fdescribe('ProductDetailsPageComponent', () => {
+describe('ProductDetailsPageComponent', () => {
   let component: ProductDetailsPageComponent;
   let fixture: ComponentFixture<ProductDetailsPageComponent>;
   let productService: ProductService;
@@ -49,7 +49,7 @@ fdescribe('ProductDetailsPageComponent', () => {
     fixture.detectChanges();
 
     const nameElement: HTMLHeadingElement = fixture.debugElement.nativeElement.querySelector('#productName');
-    expect(nameElement.textContent).toEqual(component.displayProduct.productName);
+    expect(nameElement.textContent).toEqual(component.displayProduct.productName.toUpperCase());
     const descriptionElement: HTMLHeadingElement = fixture.debugElement.nativeElement.querySelector('#productDescription');
     expect(descriptionElement.textContent).toEqual(component.displayProduct.productDescription);
     const featured = fixture.debugElement.query(By.css('#featuredProduct'));
