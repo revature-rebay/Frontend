@@ -11,11 +11,6 @@ import { AppComponent } from 'src/app/app.component';
   styleUrls: ['./login.component.css']  
 })
 
-@Injectable({
-  providedIn: 'root'
-})
-
-
 export class LoginComponent implements OnInit {
 
   id: number = 0;
@@ -25,22 +20,24 @@ export class LoginComponent implements OnInit {
   lastName: string = "";
   email: string = "";
   user: User = new User();
-  checked: boolean = true;
-  visible!: boolean;
+  loginTabSelected: boolean = true;
+  navbarVisible!: boolean;
 
   constructor(
     private router: Router,
-    private loginService: LoginService,
-    private app: AppComponent
+    private loginService: LoginService
+    //private app: AppComponent
   ) { }
 
   ngOnInit() : void {
-    this.checked = this.loginService.checked;
-    this.app.visible = false;
+    this.loginTabSelected = this.loginService.loginTabSelected;
+    //this.app.visible = false;
+    this.loginService.navbarVisible = false;
   }
 
   ngOnDestroy() : void {
-    this.app.visible = true;
+    //this.app.visible = true;
+    this.loginService.navbarVisible = true;
   }
 
   login() {

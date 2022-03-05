@@ -9,7 +9,8 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginService {
 
-  checked: boolean = true;
+  loginTabSelected: boolean = true;
+  navbarVisible:boolean = true;
 
   currentUser: User = new User(); // I added this line
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
 
@@ -7,16 +7,23 @@ import { LoginService } from './services/login.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, DoCheck {
   title = 'FrontEnd';
-  visible:boolean = true;
+  navbarVisible:boolean = true;
 
   constructor(private router: Router, private login:LoginService) { }
 
   ngOnInit() : void {
-    this.visible = true;
+    this.navbarVisible = this.login.navbarVisible;
     this.router.navigate([`main`]);
 
+  }
+
+  ngDoCheck() : void {
+    if(this.navbarVisible != this.login.navbarVisible){
+      this.navbarVisible = this.login.navbarVisible;
+    }
+    
   }
 
 
