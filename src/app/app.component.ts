@@ -14,16 +14,11 @@ export class AppComponent implements OnInit, DoCheck {
   constructor(private router: Router, private login:LoginService) { }
 
   ngOnInit() : void {
-    this.navbarVisible = this.login.navbarVisible;
     this.router.navigate([`main`]);
-
   }
 
   ngDoCheck() : void {
-    if(this.navbarVisible != this.login.navbarVisible){
       this.navbarVisible = this.login.navbarVisible;
-    }
-    
   }
 
 
