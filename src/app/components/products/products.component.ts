@@ -73,8 +73,6 @@ export class ProductsComponent implements OnInit {
   }
 
   editbtnClick=  (id:number) => {
-    //TODO: need to get the correct product from the array
-    
     this.router.navigate(['/update_product/'+ id]);
   }
 
@@ -85,7 +83,7 @@ export class ProductsComponent implements OnInit {
           this.productService.removeLocalProduct(id); //the current product is now logged in and we store its details for potential later use
           //this.productService
 
-        //redirect to the main page
+        //redirect to the products page
         this.router.navigate(['/redirect/products']);
       },
       error:()=>{

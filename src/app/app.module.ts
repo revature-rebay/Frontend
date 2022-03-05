@@ -30,6 +30,7 @@ import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 import { RedirectComponent } from './components/redirect/redirect.component';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { FeaturedItemComponent } from './components/featured-item/featured-item.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { FeaturedItemComponent } from './components/featured-item/featured-item.
     UpdateProductComponent,
     RedirectComponent,
     ThankYouComponent,
-    FeaturedItemComponent
+    FeaturedItemComponent,
+    FooterComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
