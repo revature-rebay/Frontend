@@ -15,6 +15,8 @@ export class CartItemComponent implements OnInit {
   @Input() productDesc !: string;
   @Input() productImage !: ArrayBuffer;
   @Input() productId !: number;
+  @Input() discountPercentage !: number;
+  @Input() featuredProduct !: boolean;
   updateQuantity !: string;
 
   constructor(private cartService:CartService, private loginService: LoginService) { }
@@ -39,6 +41,11 @@ export class CartItemComponent implements OnInit {
 
   setImage():string {
     return "assets/images/" + this.productName + ".jpg";
+  }
+
+  getPrice(){
+    if(this.featuredProduct) return (this.productPrice - (this.productPrice * this.discountPercentage));
+    return this.productPrice
   }
 
 }

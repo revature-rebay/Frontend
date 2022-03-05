@@ -139,7 +139,7 @@
                 <div *ngFor="let item of cart">
                     <div class="d-flex justify-content-between">
                         <p>{{item.quantity}}x  {{item.product.productName | titlecase}}</p>
-                        <p>{{item.product.productPrice | currency}}</p>
+                        <p>{{getPrice(item.product) | currency}}</p>
                     </div>
                 </div>
             </div>

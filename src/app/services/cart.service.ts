@@ -24,7 +24,8 @@ export class CartService {
     this.monitorCart.subscribe(res => {
       if(res) {
         res.forEach(item => {
-          subtotal += (item.product.productPrice * item.quantity)
+          if(item.product.featuredProduct) subtotal += ((item.product.productPrice - (item.product.discountPercentage * item.product.productPrice)) * item.quantity)
+          else subtotal += (item.product.productPrice * item.quantity)
         })
       }
     });

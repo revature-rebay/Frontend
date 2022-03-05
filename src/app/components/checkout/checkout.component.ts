@@ -6,6 +6,7 @@ import { States } from 'src/app/models/states';
 import { checkoutAnimation } from 'src/app/animations/checkoutAnimations';
 import { CartItem } from 'src/app/models/cart-item';
 import { Router } from '@angular/router';
+import { Product } from 'src/app/models/product/product.model';
 
 @Component({
   selector: 'app-checkout',
@@ -124,5 +125,10 @@ export class CheckoutComponent implements OnInit {
     this.checkoutForm.value.state?.setValue(e.target.value, {
       onlySelf: true,
     });
+  }
+
+  getPrice(product:Product){
+    if(product.featuredProduct) return (product.productPrice - (product.productPrice * product.discountPercentage));
+    return product.productPrice
   }
 }

@@ -11,7 +11,7 @@
             <span>{{productName | titlecase}}</span>
             <span class="fw-normal fst-italic float-left">{{productDesc}}</span>
             
-            <span class="fw-bold float-right">{{productPrice | currency}} 
+            <span class="fw-bold float-right">{{getPrice() | currency}}
             
                 <span (click)="deleteProduct($event)" id={{productId}} class="delete material-icons align-middle">delete</span>
             </span>

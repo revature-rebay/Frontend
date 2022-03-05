@@ -17,6 +17,8 @@ export class CartDetailPageItemComponent implements OnInit {
   @Input() productImage !: ArrayBuffer;
   @Input() productId !: number;
   @Input() currentStock !: number;
+  @Input() discountPercentage !: number;
+  @Input() featuredProduct !: boolean;
   updateQuantity !: string;
 
   constructor(private cartService:CartService, private loginService:LoginService) { 
@@ -40,5 +42,10 @@ export class CartDetailPageItemComponent implements OnInit {
   }
   setImage():string {
     return "assets/images/" + this.productName + ".jpg";
+  }
+
+  getPrice(){
+    if(this.featuredProduct) return (this.productPrice - (this.productPrice * this.discountPercentage));
+    return this.productPrice
   }
 }
