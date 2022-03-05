@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { CartDTO } from '../models/cart-dto';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -16,9 +17,12 @@ export class CartService {
   baseURL: string = environment.serverURL;
   public monitorCart: BehaviorSubject<CartItem[]> = new BehaviorSubject<CartItem[]>([]);
   
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private routerService:Router) { 
   }
-
+  //get current Router path
+  getPath(){
+    return this.routerService.url;
+  }
   getSubTotal(){
     let subtotal = 0;
     this.monitorCart.subscribe(res => {
@@ -132,6 +136,6 @@ export class CartService {
       options: 'response'
     }), 
   };
-  return this.http.put(`${this.baseURL}cart/checkout/${userId}`, {options:'response'});
+  return this.http.put(`${this.baseURL}cart/checkout/${userId}`, httpOptions);
  }
 }

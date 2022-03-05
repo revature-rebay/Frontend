@@ -48,4 +48,8 @@ export class CartDetailPageItemComponent implements OnInit {
     if(this.featuredProduct) return (this.productPrice - (this.productPrice * this.discountPercentage));
     return this.productPrice
   }
+
+  getPath(){
+    return this.cartService.getPath();
+  }
 }

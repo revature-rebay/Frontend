@@ -49,10 +49,4 @@ export class CartComponent implements OnInit {
       if(res) this.cart = res;
     })
   }
-
-  deleteProduct(event:number){
-    this.cartService.deleteProduct(<CartDTO>{userId:this.loginService.currentUser.id, quantity:0, productId:event}).subscribe(res => {
-      if(res) this.cart = res;
-    });
-  }
 }

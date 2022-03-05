@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -7,8 +7,10 @@ import { checkoutAnimation } from 'src/app/animations/checkoutAnimations';
 import { CartItem } from 'src/app/models/cart-item';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product/product.model';
+import { CartDTO } from 'src/app/models/cart-dto';
 
 @Component({
+  encapsulation: ViewEncapsulation.None,
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
@@ -21,6 +23,8 @@ export class CheckoutComponent implements OnInit {
   states = States.states;
   cart!: CartItem[];
   pricePercent: number = 1;
+  badCart = false;
+  notInStock !: CartItem[];
   
 
   constructor(
@@ -88,11 +92,17 @@ export class CheckoutComponent implements OnInit {
       .checkout(this.loginService.currentUser.id.toString())
       .subscribe({
         next: (res) => {
-          this.cartService.setCartEmpty();
-          this.routerService.navigateByUrl('/thank-you');
+          if(res) { //items to be bought are out of stock
+            this.badCart = true;
+            this.notInStock = res;
+          }
+          else {
+            this.cartService.setCartEmpty();
+            this.routerService.navigateByUrl('/thank-you');
+          }
         },
-        error: (res) => {
-          alert('Something went wrong');
+        error: (res) => { //happens when cart is empty
+          alert('Your cart is empty, unable to complete checkout');
         },
       });
   }
@@ -130,5 +140,14 @@ export class CheckoutComponent implements OnInit {
   getPrice(product:Product){
     if(product.featuredProduct) return (product.productPrice - (product.productPrice * product.discountPercentage));
     return product.productPrice
+  }
+
+  delete(){
+    this.notInStock.forEach(item => {
+      this.cartService.deleteProduct(<CartDTO>{userId:this.loginService.currentUser.id, quantity:0, productId:item.product.productId})
+     console.log(item);
+    })
+    this.notInStock = [];
+    this.badCart = false;
   }
 }

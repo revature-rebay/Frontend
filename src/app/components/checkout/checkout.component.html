@@ -1,3 +1,23 @@
+<div *ngIf="badCart" class="overlay">
+    <div id="badCartStyle" class="d-flex flex-row justify-content-center bg-light position-absolute top-50 start-50 translate-middle">
+        <p class="fs-3 m-2">Sorry item(s) not in stock, please remove all from cart</p>
+        <app-cart-detail-page-item *ngFor="let cartItem of notInStock"
+        [itemQuantity] = cartItem.quantity
+        [productDesc] = cartItem.product.productDescription
+        [productName] = cartItem.product.productName
+        [productPrice] = cartItem.product.productPrice
+        [productId] = cartItem.product.productId
+        [currentStock] = cartItem.product.currentStock
+        [discountPercentage] = cartItem.product.discountPercentage
+        [featuredProduct] = cartItem.product.featuredProduct
+        ></app-cart-detail-page-item>
+        <div id="badCartStyle" class="d-flex flex-row">
+            <button class="btn btn-secondary" (click)="delete()">Done</button>
+        </div>
+    </div>
+    <!-- [productImage] = cartItem.product.productImage -->
+</div>
+
 <div class="d-flex justify-content-center">
     
 <form [formGroup]="checkoutForm" (ngSubmit)="onCheckout()" class="p-2">
@@ -174,6 +194,8 @@
         </div>
     </div>
 </div>
+
+
                 
 
                 
