@@ -50,6 +50,11 @@
     transition: none !important;
 }
 
+#cancelCoupon {
+    background-color:  #B9B9BA !important;
+    border-color: #B9B9BA!important;
+}
+
 .overlay {
     position: fixed;
     z-index: 1001;

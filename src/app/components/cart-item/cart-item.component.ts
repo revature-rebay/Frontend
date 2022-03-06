@@ -17,6 +17,7 @@ export class CartItemComponent implements OnInit {
   @Input() productId !: number;
   @Input() discountPercentage !: number;
   @Input() featuredProduct !: boolean;
+  @Input() currentStock !: number;
   updateQuantity !: string;
 
   constructor(private cartService:CartService, private loginService: LoginService) { }
@@ -31,12 +32,18 @@ export class CartItemComponent implements OnInit {
   }
 
   updateProduct(event:MouseEvent){
-    const cartdto = <CartDTO>({
-      userId: this.loginService.currentUser.id,
-      quantity: parseInt(this.updateQuantity),
-      productId: parseInt((<HTMLSpanElement>event.target).id)
-    })
-    this.cartService.updateProductQuantity(cartdto)  
+    //when user tries to put invalid input like a letter / symbol or no input, automatically set to current itemQuantity and do not make api call
+    console.log(this.updateQuantity);
+    if(!this.updateQuantity) {
+      this.updateQuantity = this.itemQuantity.toString();
+    } else {
+      const cartdto = <CartDTO>({
+        userId: this.loginService.currentUser.id,
+        quantity: parseInt(this.updateQuantity),
+        productId: parseInt((<HTMLSpanElement>event.target).id)
+      })
+      this.cartService.updateProductQuantity(cartdto)  
+    }
   }
 
   setImage():string {

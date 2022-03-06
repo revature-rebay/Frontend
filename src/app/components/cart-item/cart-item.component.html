@@ -18,7 +18,7 @@
         </div>
 
         <div class="row mt-5">            
-            <p class="fw-normal text-end bottom-0 end-0">Quantity : <input type="text" size="1" inputmode="numeric" pattern="[1-9]{1}[0-9]{0,2}" placeholder={{itemQuantity}} [(ngModel)]="updateQuantity"></p>  
+            <p class="fw-normal text-end bottom-0 end-0">Quantity :<input class="" type="number" name="quantity" placeholder={{itemQuantity}} min="1" max={{currentStock}} size="2"  [(ngModel)]="updateQuantity"></p>  
             <button type="button" (click)="updateProduct($event)" id={{productId}} class="btn btn-secondary btn-sm">Update</button>        
         </div>
         

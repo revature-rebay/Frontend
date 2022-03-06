@@ -33,12 +33,17 @@ export class CartDetailPageItemComponent implements OnInit {
   }
 
   updateProduct(event:MouseEvent){
-    const cartdto = <CartDTO>({
-      userId: this.loginService.currentUser.id,
-      quantity: parseInt(this.updateQuantity),
-      productId: parseInt((<HTMLSpanElement>event.target).id)
-    })
-    this.cartService.updateProductQuantity(cartdto)  
+    //when user tries to put invalid input like a letter / symbol or no input, automatically set to current itemQuantity and do not make api call
+    if(!this.updateQuantity) {
+      this.updateQuantity = this.itemQuantity.toString();
+    } else {
+      const cartdto = <CartDTO>({
+        userId: this.loginService.currentUser.id,
+        quantity: parseInt(this.updateQuantity),
+        productId: parseInt((<HTMLSpanElement>event.target).id)
+      })
+      this.cartService.updateProductQuantity(cartdto)  
+    }
   }
   setImage():string {
     return "assets/images/" + this.productName + ".jpg";

@@ -199,8 +199,9 @@
                 <label for="coupon">
                     <input id="coupon" type="text" formControlName="coupon" placeholder="Discount Code">
                 </label>
-                <div class="d-flex flex-row">
-                    <button type="submit" class="btn btn-secondary rounded" id="checkout_btn">Apply</button>
+                <div class="d-flex flex-row justify-content-between">
+                    <button [ngClass]="pricePercent != 1 ? 'disabled':''" type="submit" class="btn btn-secondary rounded" id="checkout_btn">Apply</button>
+                    <button  type="submit" class="btn btn-secondary rounded" id="cancelCoupon">Cancel Coupon</button>
                 </div>
             </form>
             

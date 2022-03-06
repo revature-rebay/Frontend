@@ -114,17 +114,16 @@ export class CheckoutComponent implements OnInit {
   }
 
   applyCoupon() {
-    
-    if(this.coupon.value.coupon == '50OFF'){
-      this.pricePercent = 0.5
-    }
-    else if(this.coupon.value.coupon == '100OFF') {
-      this.pricePercent = 0;
-    }
-    else{
+  
+    if(!this.coupon.value.coupon) {
       this.pricePercent = 1;
     }
-    
+    else if(this.coupon.value.coupon.toUpperCase() == '50OFF'){
+      this.pricePercent = 0.5
+    }
+    else if(this.coupon.value.coupon.toUpperCase() == '100OFF') {
+      this.pricePercent = 0;
+    }
     
     console.log(this.coupon.value);
 

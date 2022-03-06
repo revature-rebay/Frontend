@@ -15,9 +15,9 @@ export class CartComponent implements OnInit {
   cart!: CartItem[];
 
   userId: string = '1';
-  userQuantityInput: string = '';
-  userIdInput: string = '';
-  userProductInput: string = '';
+  // userQuantityInput: string = '';
+  // userIdInput: string = '';
+  // userProductInput: string = '';
 
 
   constructor(private cartService: CartService, private loginService:LoginService) {
@@ -36,12 +36,12 @@ export class CartComponent implements OnInit {
     });
   }
 
-  addProductCart(/*possible input*/): void {
-    this.cartService.addProductToCart(this.userIdInput,this.userProductInput,this.userQuantityInput).subscribe(
-      res => {
-        if(res) this.cart = res;
-      });
-  }
+  // addProductCart(/*possible input*/): void {
+  //   this.cartService.addProductToCart(this.userIdInput,this.userProductInput,this.userQuantityInput).subscribe(
+  //     res => {
+  //       if(res) this.cart = res;
+  //     });
+  // }
   
   update(cartItem:CartDTO){
     cartItem.userId = this.loginService.currentUser.id,
