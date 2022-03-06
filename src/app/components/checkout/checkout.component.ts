@@ -1,13 +1,14 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { States } from 'src/app/models/states';
 import { checkoutAnimation } from 'src/app/animations/checkoutAnimations';
 import { CartItem } from 'src/app/models/cart-item';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product/product.model';
 import { CartDTO } from 'src/app/models/cart-dto';
+import { Validator } from 'src/app/models/validator';
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -25,6 +26,7 @@ export class CheckoutComponent implements OnInit {
   pricePercent: number = 1;
   badCart = false;
   notInStock !: CartItem[];
+  emailPattern = '[A-Za-z]{1,32}([A-Za-z]|[0-9]){0,32}(@)[A-Za-z]{1,121}([A-Za-z]|[0-9]){0,121}\\.[a-z]{3}'
   
 
   constructor(
@@ -43,29 +45,29 @@ export class CheckoutComponent implements OnInit {
 
   initializeForm(): void {
     this.checkoutForm = this.fb.group({
-      firstName: this.loginService.currentUser.firstName,
-      lastName: this.loginService.currentUser.lastName,
-      phoneNumber: '',
-      email: this.loginService.currentUser.email,
+      firstName: [this.loginService.currentUser.firstName, [Validators.required]],
+      lastName: [this.loginService.currentUser.lastName, [Validators.required]],
+      phoneNumber: ['', [Validators.pattern('[1-9]{3}[0-9]{3}[0-9]{4}')]],
+      email: [this.loginService.currentUser.email, [Validators.required, Validators.pattern(this.emailPattern)]],
       address: this.fb.group({
-        street: '',
+        street: ['', [Validators.required]],
         address2: '',
-        city: '',
-        state: '',
+        city: ['', [Validators.required]],
+        state: ['Alabama', [Validators.required]],
         country: [
           {
             value: 'United States of America',
             disabled: true,
           },
         ],
-        zipcode: '',
+        zipcode: ['',[Validators.required, Validators.pattern('[0-9]{5}')]],
       }),
       payment: this.fb.group({
         cardNumber: '',
         month: '',
         year: '',
         securityCode: '',
-      }),
+      },{validators:[Validators.required]}),
     });
 
     //coupon
@@ -87,8 +89,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   onCheckout() {
-    console.log(this.checkoutForm.value);
-    this.cartService
+    if(this.checkoutForm.status === 'INVALID'){
+      alert('Please complete checkout form')
+    }
+    else {
+      this.cartService
       .checkout(this.loginService.currentUser.id.toString())
       .subscribe({
         next: (res) => {
@@ -105,6 +110,7 @@ export class CheckoutComponent implements OnInit {
           alert('Your cart is empty, unable to complete checkout');
         },
       });
+    }
   }
 
   applyCoupon() {
@@ -149,5 +155,9 @@ export class CheckoutComponent implements OnInit {
     })
     this.notInStock = [];
     this.badCart = false;
+  }
+
+  getFormControlField(field:string){
+    return this.checkoutForm.get(field)
   }
 }

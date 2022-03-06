@@ -34,19 +34,24 @@
         <div class=" bg-secondary bg-opacity-10 p-2 mb-3">
             <div class="d-flex flex-row">
                 <label for="firstName">
-                    <input id="firstName" type="text" formControlName="firstName" placeholder="First Name">
+                    <input [ngClass]="{'is-invalid':getFormControlField('firstName')?.invalid}" id="firstName" type="text" formControlName="firstName" placeholder="First Name" required>
+                    <div class="invalid-feedback">Please provide your first name</div>
                 </label>
                 <label class="ml-2" for="lastName">
-                    <input id="lastName" type="text" formControlName="lastName" placeholder="Last Name">
+                    <input [ngClass]="{'is-invalid':getFormControlField('lastName')?.invalid}" id="lastName" type="text" formControlName="lastName" placeholder="Last Name" required>
+                    <div class="invalid-feedback">Please provide your last name</div>
                 </label>
             </div>
         
             <div class="d-flex flex-row">
                 <label for="phoneNumber">
-                    <input id="phoneNumber" type="text" formControlName="phoneNumber" placeholder="Phone Number">
+                    <input [ngClass]="{'is-invalid':getFormControlField('phoneNumber')?.invalid}" id="phoneNumber" type="text" formControlName="phoneNumber" placeholder="Phone Number">
+                    <div *ngIf="getFormControlField('phoneNumber')?.touched" class="invalid-feedback">Please a ten digit phone number</div>
                 </label>
                 <label class="ml-2" for="email">
-                    <input id="email" type="text" formControlName="email" placeholder="Email">
+                    <input [ngClass]="{'is-invalid':getFormControlField('email')?.invalid}" id="email" type="text" formControlName="email" placeholder="Email" required>
+                    <div *ngIf="getFormControlField('email')?.errors?.['required']" class="invalid-feedback">Please provide an email</div>
+                    <div *ngIf="getFormControlField('email')?.errors?.['pattern']" class="invalid-feedback">Please provide email in proper format</div>
                 </label>
             </div>
         </div>
@@ -66,13 +71,14 @@
     
                 <div class="d-flex flex-row">
                     <label class="" for="street">
-                        <input id="street" type="text" formControlName="street" placeholder="Street Address">
+                        <input [ngClass]="{'is-invalid':getFormControlField('address.street')?.invalid}" id="street" type="text" formControlName="street" placeholder="Street Address" required>
+                        <div *ngIf="getFormControlField('address.street')?.touched" class="invalid-feedback">Please provide street address</div>
                     </label>
                 </div>
     
                 <div class="d-flex flex-row">
                     <label class="" for="address2">
-                        <input  id="address2" type="text" formControlName="address2" placeholder="Address 2">
+                        <input id="address2" type="text" formControlName="address2" placeholder="Address 2">
                     </label>
                 </div>
     
@@ -87,7 +93,8 @@
     
                 <div class="d-flex flex-row">
                     <label for="city">
-                        <input id="city" type="text" formControlName="city" placeholder="City">
+                        <input [ngClass]="{'is-invalid':getFormControlField('address.city')?.invalid}" id="city" type="text" formControlName="city" placeholder="City" required>
+                        <div *ngIf="getFormControlField('address.city')?.touched" class="invalid-feedback">Please provide city</div>
                     </label>
                     <label for="state" class="ml-2">
                         <select (change)="changeState($event)" id="state" formControlName="state" class="form-select middle-align" aria-label="Default select example">
@@ -98,7 +105,9 @@
     
                 <div class="d-flex flex-row">
                     <label id="zipCode">
-                        <input id="zipCode" type="text" formControlName="zipcode" placeholder="Zip Code">
+                        <input [ngClass]="{'is-invalid':getFormControlField('address.zipcode')?.invalid}" id="zipCode" type="text" formControlName="zipcode" placeholder="Zip Code" required>
+                        <div *ngIf="getFormControlField('address.zipcode')?.errors?.['required'] && getFormControlField('address.zipcode')?.touched" class="invalid-feedback">Please provide zip code</div>
+                        <div *ngIf="getFormControlField('address.zipcode')?.errors?.['pattern'] && getFormControlField('address.zipcode')?.touched" class="invalid-feedback">Please provide 5 digits for zip code</div>
                     </label>
                 </div>
             </div>
@@ -114,7 +123,8 @@
             <div formGroupName = "payment">
                 <div class="d-flex d-row">
                     <label for="payment">
-                        <input id="payment" type="text" formControlName="cardNumber" placeholder="Credit Cart Number" required>
+                        <input [ngClass]="{'is-invalid':getFormControlField('payment.cardNumber')?.invalid}" id="payment" type="text" formControlName="cardNumber" placeholder="Credit Card Number" required>
+                        <div *ngIf="getFormControlField('payment.cardNumber')?.touched" class="invalid-feedback">Please provide credit card number</div>
                     </label>
                     <label class="m-2" for="fname"></label>
                     <div id="fname" class="icon-container align-middle">
@@ -127,16 +137,19 @@
 
                 <div class="d-flex d-row">
                     <label for="month">
-                        <input id="month" type="text" formControlName="month" placeholder="Month" required>
+                        <input [ngClass]="{'is-invalid':getFormControlField('payment.month')?.invalid}" id="month" type="text" formControlName="month" placeholder="Month" required>
+                        <div *ngIf="getFormControlField('payment.month')?.touched" class="invalid-feedback">Please provide exp month</div>
                     </label>
                     <label for="year"> 
-                        <input class="ml-2" id="year" type="text" formControlName="year" placeholder="Year" required>
+                        <input [ngClass]="{'is-invalid':getFormControlField('payment.year')?.invalid}" class="ml-2" id="year" type="text" formControlName="year" placeholder="Year" required>
+                        <div *ngIf="getFormControlField('payment.year')?.touched" class="invalid-feedback">Please provide exp year</div>
                     </label>
                 </div>
 
                 <div class="d-flex d-row">
                     <label for="securityCode">
-                        <input id="securityCode" type="text" formControlName="securityCode" placeholder="Security Code" required>
+                        <input [ngClass]="{'is-invalid':getFormControlField('payment.securityCode')?.invalid}" id="securityCode" type="text" formControlName="securityCode" placeholder="Security Code" required>
+                        <div *ngIf="getFormControlField('payment.securityCode')?.touched" class="invalid-feedback">Please provide credit card security code</div>
                     </label>
                 </div>
             </div>
