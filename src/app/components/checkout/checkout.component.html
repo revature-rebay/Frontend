@@ -18,8 +18,13 @@
     <!-- [productImage] = cartItem.product.productImage -->
 </div>
 
+<div *ngIf="badCheckout" class="text-center fs-5 bg-danger bg-opacity-25">
+    <p *ngIf="!cart?.length" style="color: #474C55;">Your cart is empty, unable to proceed</p>
+    <p *ngIf="checkoutForm.status==='INVALID'" style="color: #474C55;">Incompleted checkout form</p>
+</div>
+
 <div class="d-flex justify-content-center">
-    
+
 <form [formGroup]="checkoutForm" (ngSubmit)="onCheckout()" class="p-2">
 
     <div class="d-flex flex-row justify-content-center">

@@ -25,6 +25,7 @@ export class CheckoutComponent implements OnInit {
   cart!: CartItem[];
   pricePercent: number = 1;
   badCart = false;
+  badCheckout = false;
   notInStock !: CartItem[];
   emailPattern = '[A-Za-z]{1,32}([A-Za-z]|[0-9]){0,32}(@)[A-Za-z]{1,121}([A-Za-z]|[0-9]){0,121}\\.[a-z]{3}'
   
@@ -90,7 +91,7 @@ export class CheckoutComponent implements OnInit {
 
   onCheckout() {
     if(this.checkoutForm.status === 'INVALID'){
-      alert('Please complete checkout form')
+      this.badCheckout = true;
     }
     else {
       this.cartService
@@ -107,7 +108,8 @@ export class CheckoutComponent implements OnInit {
           }
         },
         error: (res) => { //happens when cart is empty
-          alert('Your cart is empty, unable to complete checkout');
+          this.badCheckout = true;
+          //alert('Your cart is empty, unable to complete checkout');
         },
       });
     }
