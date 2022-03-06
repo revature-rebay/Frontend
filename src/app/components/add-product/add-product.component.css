@@ -34,7 +34,7 @@ input[type=checkbox] {
 }
 
 #addbtn:hover{
-    transform: scale(.9);
+    transform: scale(.98);
 }
 
 input[type=text]{

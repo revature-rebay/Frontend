@@ -12,6 +12,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { UpdateProductComponent } from './components/update-product/update-product.component';
 import { RedirectComponent } from './components/redirect/redirect.component';
+import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { FeaturedItemComponent } from './components/featured-item/featured-item.component';
 
 const routes: Routes = [{
@@ -27,7 +28,10 @@ const routes: Routes = [{
 },{
   path: "checkout",
   component: CheckoutComponent
-}, 
+}, {
+  path: "thank-you",
+  component: ThankYouComponent
+},
 {
   path: 'cart_detail_page', 
   component: CartDetailPageComponent
