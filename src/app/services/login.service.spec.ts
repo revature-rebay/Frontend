@@ -5,6 +5,7 @@ import { LoginService } from './login.service';
 
 
 describe('LoginService', () => {
+
   let service: LoginService;
   let httpMock: HttpTestingController;
 
@@ -42,7 +43,7 @@ describe('LoginService', () => {
 
   it('should return a cookie and the user', ()=>{
 
-    let user:User = new User({id:1, userName:'flodev', passWord:'password', email:'flodev@gmail.com', firstName:'Eric', lastName:'Florence', roleId:2});
+    let user:User = new User({id:1, userName:'flodev', passWord:'password', email:'flodev@gmail.com', firstName:'Eric', lastName:'Florence'});
     let loginUser:User = new User();
     loginUser.userName = 'flodev';
     loginUser.passWord = 'password';
@@ -63,21 +64,20 @@ describe('LoginService', () => {
 
   it('should return status 200 for loggin out', ()=>{
 
-    let response:number = 200;
-
-    service.logout().subscribe((status) =>{
-      expect(status).toEqual(response);
+    service.logout().subscribe({next: response=>{
+      expect(response.status).toEqual(200);}
     })
 
     const req = httpMock.expectOne(`${service.url}user/logout`);
 
     expect(req.request.method).toBe("POST");
 
-    req.flush(response);
+    req.flush({status: 200});
 
     httpMock.verify();
 
   })
+
 
   // BELONGED TO ORIGINAL REQUEST FOR GET CURRENT USER, FOR USE LATER IF NEEDED
   // it('should return the user who is currently logged in', ()=>{
@@ -110,4 +110,6 @@ describe('LoginService', () => {
     httpMock.verify();
 
   })
+
+
 });

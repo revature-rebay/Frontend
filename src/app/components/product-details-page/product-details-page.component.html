@@ -1,1 +1,35 @@
-<p>product-details-page works!</p>
+<div class=" text-center mt-5 ">
+  <h1>Product Details</h1>
+</div>
+<div class="row ">
+  <div class="col-lg-7 mx-auto">
+      <div class="card mt-2 mx-auto p-4 bg-light">
+          <div class="card-body bg-light">
+              <div class="container">
+                <div style="margin:0px;">
+                  <p *ngIf="isFeatured()" style="color:green; margin: 0px;"><b>**This is currently one of our featured items!**</b></p>
+                  <p *ngIf="onSale()" style="color:red; margin: 0px;"><b>**This item is currently on sale!**</b></p>
+                </div>
+                <br>
+                <div style="text-align:center">
+                  <h3 id="productName">{{this.displayProduct.productName | uppercase}}</h3>
+                  <img class="product-image" [src]= 'displayImage' (error)= "updateImageURL()">
+                  <p id="productDescription">{{this.displayProduct.productDescription}}</p>
+                  <br id="featuredProduct" *ngIf="isFeatured()">
+                  <h3 id="onSale" *ngIf="onSale()">Current Price: ${{salePrice | number : '1.2-2'}}</h3>
+                  <h3 *ngIf="onSale()" style="color:red">With this sale applied you save: {{this.saleDifferential  | number : '1.2-2'}}!!</h3>
+                  <h3 *ngIf="!onSale()">Current Price: ${{this.displayProduct.productPrice | number : '1.2-2'}}</h3>
+                  <p>Current Stock: {{this.displayProduct.currentStock}}</p>
+                  <div class="product-card__cta">
+                    <input type="number" name="qty" id="qty" min="1" max="10" step="1" [(ngModel)]="quantity" style="margin-right:15px;">
+                    <button class="btn btn-dark" (click)="addToCart()">
+                      {{this.displayProduct.currentStock === 0 ? "Out of stock" : "Add to cart"}}
+                    </button>
+                  </div>
+                </div>
+                
+              </div>
+          </div>
+      </div>
+    </div>
+</div>

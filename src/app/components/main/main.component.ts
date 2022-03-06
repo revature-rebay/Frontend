@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductModel } from 'src/app/models/product/product.model';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { NavigationService } from 'src/app/services/navigation.service';
+import { Product } from 'src/app/models/product/product.model';
 import { ProductService } from 'src/app/services/product.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-main',
@@ -9,13 +11,16 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class MainComponent implements OnInit {
 
-  products: ProductModel[] = [];
-  featuredProducts: ProductModel[] = [];
-  constructor(private productService:ProductService) { }
+  products: Product[] = [];
+  featuredProducts: Product[] = [];
+  salesProducts: Product[] = [];
+  constructor(private productService:ProductService, private navService: NavigationService) { 
+  }
 
   ngOnInit(): void {
-    this.productService.getFeaturedProducts().subscribe((response: ProductModel[])=> this.featuredProducts = response);
-    console.log(this.featuredProducts);
+    this.productService.getFeaturedProducts().subscribe((response: Product[])=> this.featuredProducts = response);
+    this.productService.getDiscountedProducts().subscribe((response: Product[])=> this.salesProducts = response);
+    //console.log(this.featuredProducts);
   }
 
 

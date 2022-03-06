@@ -1,0 +1,41 @@
+
+<div style="margin:15px; text-align: center;">
+    <h4 *ngIf="!anyProducts()" style="margin: 50px;"> Sorry, your search for "{{currentSearch}}" returned no results. Please refine your search and try again.</h4>
+</div>
+<div class="container border" *ngFor='let p of filteredProducts'>
+    <br/>
+    <div class="prod-info-main prod-wrap clearfix">
+        <div class="row">
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <img [src]='setImage(p)' (error)="updateImageUrl($event)" class="img-fluid">
+                <span class="tag2 hot" *ngIf='onSale(p)'>
+
+                    SALE
+
+                </span>
+            </div>
+            <div class="col-md-7 col-sm-12 col-xs-12">
+                <div class="product-detail">
+                    <h5 class="name">
+                        <button (click)="getDetails(p.productId)" id="pName">
+
+                            {{p.productName}}
+
+                        </button>
+                    </h5>
+                    <p class="price-container">
+
+                        <span>${{p.productPrice}}</span>
+
+                    </p>
+                    <span class="tag1"></span>
+                </div>
+                <div class="description" id="pDescription">
+
+                    <p>{{p.productDescription}}</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

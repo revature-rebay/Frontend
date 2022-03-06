@@ -1,18 +1,21 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
+  loginTabSelected: boolean = true;
+  navbarVisible:boolean = true;
+
   currentUser: User = new User(); // I added this line
 
-  url: string = "http://localhost:9000/";
+  url: string = environment.serverURL;
 
-  // constructor(private currentUser: User ,private http: HttpClient) { 
   constructor(private http: HttpClient) { 
     this.currentUser  = new User(); //starts off as a blank user upon instantiation (I added this line)
   }
@@ -36,13 +39,11 @@ export class LoginService {
     this.currentUser  = new User();
   }
 
-  logout():Observable<any> {
-    return this.http.post(this.url + "user/logout", { withCredentials: true });
+  logout() {
+    return this.http.post(this.url + "user/logout", null, { withCredentials:true, observe:'response'});
   }
 
   getCurrentUser():User {
-    // original endpoint for getting current user - still available for use
-    // return this.http.get<User>(this.url + "user/current", { withCredentials: true });
     return this.currentUser;
   }
 
@@ -50,4 +51,12 @@ export class LoginService {
     return this.http.get<User>(this.url + "user/" + id, { withCredentials: true });
   }
 
+  getCookie(){
+    this.http.get<User>(this.url + "user/current", { withCredentials: true }) .subscribe({
+      next: (response) =>{
+        this.currentUser=response;
+      }
+    })
+    return this.currentUser; 
+  }
 }

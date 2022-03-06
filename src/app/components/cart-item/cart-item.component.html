@@ -1,0 +1,31 @@
+<div class="bg-light m-4 py-3 row border border-primary">  
+    
+    
+    <div class="col">
+        <!--TODO update for a product image-->
+        <img class="rounded img-fluid" [src]='setImage()' alt={{productName}}>
+    </div>
+
+    <div class="col">
+        <div class="row">
+            <span>{{productName | titlecase}}</span>
+            <span class="fw-normal fst-italic float-left">{{productDesc}}</span>
+            
+            <span class="fw-bold float-right">{{getPrice() | currency}}
+            
+                <span (click)="deleteProduct($event)" id={{productId}} class="delete material-icons align-middle">delete</span>
+            </span>
+        </div>
+
+        <div class="row mt-5">            
+            <p class="fw-normal text-end bottom-0 end-0">Quantity :<input class="" type="number" name="quantity" placeholder={{itemQuantity}} min="1" max={{currentStock}} size="2"  [(ngModel)]="updateQuantity"></p>  
+            <button type="button" (click)="updateProduct($event)" id={{productId}} class="btn btn-secondary btn-sm">Update</button>        
+        </div>
+        
+    </div>
+</div>
+
+
+
+
+

@@ -67,12 +67,27 @@
       <div class="featured__header">
         <h2>Featured Products</h2>
       </div>
-      <div class="featured__list">
+      <ngb-carousel [circular]="true" [autoplayInterval]="0" class="featured__list">
+          <ng-template ngbSlide *ngFor="let featured of featuredProducts">
             <app-featured-card
-            *ngFor="let featured of featuredProducts"
             [singleproduct]="featured">
             </app-featured-card>
-      </div>
+        </ng-template>
+      </ngb-carousel>
     </div>
 </div>
 <!-- Featured Product-->
+<div class="featured-container">
+    <div class="featured">
+      <div class="featured__header">
+        <h2>Clearance Products</h2>
+      </div>
+      <ngb-carousel [circular]="true" [autoplayInterval]="0" class="featured__list">
+          <ng-template ngbSlide *ngFor="let sales of salesProducts">
+            <app-featured-card
+            [singleproduct]="sales">
+            </app-featured-card>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+</div>
