@@ -1,42 +1,14 @@
-<!--<div class="product-card"[routerLink]="['product_details_page', singleproduct.productId]">-->
-<!--changed the [routerLink] directive to a (click) directive, for some reason the router link wasn't working for me but I left the original code commented on line 1-->
-
-<div class="product-card" >
-  <div>
-  <div class="product-card__image" (click) = "getDetails()">
-    <img src="assets/images/{{singleproduct.productName}}.jpg" alt="" />
-  </div>
-  <div class="product-card__info">
-    <header>
-      <div class="title">
-        <div class="product-name">{{getName()}}
-          {{ displayName }}</div>
-          <section>
-            <form action="">
-                <p class="qty">
-                    <button class="qtyminus" aria-hidden="true" type="button"
-                        (click)="minus()">&minus;</button>
-                    <input type="number" name="qty" id="qty" min="1" max="10" step="1" [value]="quantity">
-                    <button class="qtyplus" aria-hidden="true" type="button"
-                        (click)="plus()">&plus;</button>
-                </p>
-            </form>
-        </section>
+<div class="card">
+  <div class="card-header" (click)="categoryClick(category)"><h2>{{category}}</h2></div>
+    <div class="container">
+        <div class="row">
+          <!-- if number items in a bundle, Use index variable and *ngIf check
+                to display smaller number of products-->
+          <div class="col-sm-6" *ngFor="let item of productList; index as i">
+            <div>
+              <img (click)="imageClick(item.productId)" class="featurePhoto" src="assets/images/{{item.productName}}.jpg">
+            </div>
+        </div>
       </div>
-      <div *ngIf="singleproduct.discountPercentage > 0.0;">
-        <div class ="product-price">{{ singleproduct.productPrice-(singleproduct.productPrice*singleproduct.discountPercentage) | currency: "USD" }}</div>
-        <div class="product-price" style="text-decoration: line-through;">{{ singleproduct.productPrice  | currency: "USD" }}</div>
-
-      </div>
-      <div *ngIf="singleproduct.discountPercentage === 0.0">
-        <div class="product-price" >{{ singleproduct.productPrice | currency: "USD" }}</div>
-      </div>
-    </header>
+    </div>
   </div>
-</div>
-  <div class="product-card__cta">
-    <button class="btn btn-dark" (click)="addCart()"> 
-      {{ singleproduct.currentStock === 0 ? "Out of stock" : "Add to cart" }}
-    </button>
-  </div>
-</div>
