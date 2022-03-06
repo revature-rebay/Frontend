@@ -5,7 +5,6 @@ import { CartService } from 'src/app/services/cart.service';
 import { LoginService } from 'src/app/services/login.service';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { ProductService } from 'src/app/services/product.service';
-import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +16,7 @@ export class NavbarComponent implements OnInit {
     currentUser!: User;
     searchQuery:string = "";
 
-  constructor(public user: LoginService, private router:Router, private navService: NavigationService, private productService:ProductService, private cartService:CartService, public login:LoginComponent) {
+  constructor(public user: LoginService, private router:Router, private navService: NavigationService, private productService:ProductService, private cartService:CartService) {
     this.updateNavbarUser();
    }
 
@@ -29,12 +28,16 @@ export class NavbarComponent implements OnInit {
     this.user.checked = false;
   }
 
+  loginRoute(){
+    this.user.checked = true;
+  }
+
   getCartQuantity(): number{
     return this.cartService.getCartQuantity();
   }
 
   updateNavbarUser(): void {
-    this.currentUser = this.user.getCurrentUser();
+    this.currentUser = this.user.getCookie();
   }
 
   revealCurrentUser():void {
@@ -43,6 +46,10 @@ export class NavbarComponent implements OnInit {
 
   userLoggedIn():boolean {
     return this.user.userLoggedIn();
+  }
+
+  isAdmin():boolean{
+    return this.user.currentUser.admin
   }
 
   logOut():void {
@@ -63,10 +70,11 @@ export class NavbarComponent implements OnInit {
   //displays user cart as a slide in side panel
   toggleSideNav() {
     if(!this.router.url.match('/cart_detail_page')) this.navService.toggleShowNav();
-}
-    applySearch():void {
-    //let Bar document.getElementById("search-bar")
+  }
+
+  applySearch():void {
     this.productService.searchQuery = this.searchQuery;
+    this.searchQuery = ""; //reset the query in the bar
     this.router.navigateByUrl("redirect/search_results");
   }
 

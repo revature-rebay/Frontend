@@ -69,7 +69,6 @@ import { FeaturedItemComponent } from './components/featured-item/featured-item.
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
 

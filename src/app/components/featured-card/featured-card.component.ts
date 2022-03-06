@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import { Router } from '@angular/router';
+import { single } from 'rxjs';
 import { Product } from 'src/app/models/product/product.model';
 import { User } from 'src/app/models/user';
 import { CartService } from 'src/app/services/cart.service';
@@ -33,5 +34,4 @@ export class FeaturedCardComponent implements OnInit {
   imageClick(id:number){
     this.onImageClick.emit(id);
   }
-
 }
