@@ -37,7 +37,7 @@ export class ProductService {
   }
 
   getProduct(productId:number):Observable<Product> {
-    return this.http.get(this.backendURL + "products/" + productId) as Observable<Product>;
+    return this.http.get(this.backendURL + "products/get/" + productId) as Observable<Product>;
   }
 
   getFeaturedProducts():Observable<Product[]> {
@@ -49,15 +49,15 @@ export class ProductService {
   }
 
   addNewProduct(prod:Product):Observable<boolean> {
-    return this.http.post(this.backendURL + "products", prod) as Observable<boolean>;
+    return this.http.post(this.backendURL + "products/add", prod) as Observable<boolean>;
   }
 
   updateProduct(prod:Product):Observable<boolean> {
-    return this.http.put(this.backendURL + "products", prod) as Observable<boolean>;
+    return this.http.put(this.backendURL + "products/update", prod) as Observable<boolean>;
   }
 
   removeProduct(id:number):Observable<boolean> {
-    return this.http.delete(this.backendURL + "products/" + id) as Observable<boolean>;
+    return this.http.delete(this.backendURL + "products/remove" + id) as Observable<boolean>;
   }
 
   removeLocalProduct(id:number):void{
