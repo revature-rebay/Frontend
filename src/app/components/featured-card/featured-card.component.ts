@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import { Router } from '@angular/router';
 import { single } from 'rxjs';
 import { Product } from 'src/app/models/product/product.model';
@@ -12,47 +12,26 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./featured-card.component.css']
 })
 export class FeaturedCardComponent implements OnInit {
-  @Input() singleproduct!:Product;
-  @Input() onAdd:any;
+  
+  @Input() productList!:Product[] | undefined;
+  @Input() category!:string;
+  @Output() onCategoryClick:EventEmitter<string> = new EventEmitter;
+  @Output() onImageClick:EventEmitter<number> = new EventEmitter;
+
+  cardCount:number = 0;
   displayName!:string;
 
   constructor(private router:Router, private cart:CartService, private login:LoginService) { }
 
-  ngOnInit(): void {
-    this.sale();
+  ngOnInit(): void {}
+
+  //Emit click on category
+  categoryClick(category:string){
+    this.onCategoryClick.emit(category);
   }
 
-  getDetails(){
-    this.router.navigate(['/product_details_page/'+this.singleproduct.productId])
-  }
-  addCart(){
-    this.cart.addProductToCart((String)(this.login.getCurrentUser().id), (String)(this.singleproduct.productId), (String)(this.quantity))
-  }
-
-  getName(){
-    this.displayName = this.singleproduct.productName.replace("_", " ")
-  }
-  sales!:boolean;
-  sale(){
-    if(this.singleproduct.discountPercentage > 0){
-      this.sales = true;
-    }
-    else{
-      this.sales = false;
-    }
-  }
-  quantity:number = 1;
-  i=1;
-  plus(){
-    if(this.i < this.singleproduct.currentStock){
-      this.i++;
-      this.quantity = this.i;
-    }
-  }
-  minus(){
-    if(this.i != 1){
-      this.i--;
-      this.quantity = this.i;
-    }
+  //Emit click on image
+  imageClick(id:number){
+    this.onImageClick.emit(id);
   }
 }
