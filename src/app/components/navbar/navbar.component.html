@@ -81,7 +81,7 @@
   
             <!-- User Dropdown (Shows up AFTER User Logs In) -->
         <div class="dropdown" >
-            <span style="color:#F26925;" *ngIf= "userLoggedIn()">Hello, {{this.user.currentUser.firstName}} <span style="color:#af4e1d;">⌄</span></span>
+            <span style="color:#F26925;" class="fw-bold" *ngIf= "userLoggedIn()">Hello, {{this.user.currentUser.firstName}} <span style="color:#af4e1d;">⌄</span></span>
             <div class="dropdown-content" style="background-color:#474C55">
               <a routerLinkActive="true" routerLink="login" *ngIf= "userLoggedIn()">Update Profile</a>
               <a routerLinkActive="true" routerLink="products" *ngIf= "isAdmin()">Products</a>
