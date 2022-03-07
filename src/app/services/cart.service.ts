@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { CartDTO } from '../models/cart-dto';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -16,15 +17,19 @@ export class CartService {
   baseURL: string = environment.serverURL;
   public monitorCart: BehaviorSubject<CartItem[]> = new BehaviorSubject<CartItem[]>([]);
   
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private routerService:Router) { 
   }
-
+  //get current Router path
+  getPath(){
+    return this.routerService.url;
+  }
   getSubTotal(){
     let subtotal = 0;
     this.monitorCart.subscribe(res => {
       if(res) {
         res.forEach(item => {
-          subtotal += (item.product.productPrice * item.quantity)
+          if(item.product.featuredProduct) subtotal += ((item.product.productPrice - (item.product.discountPercentage * item.product.productPrice)) * item.quantity)
+          else subtotal += (item.product.productPrice * item.quantity)
         })
       }
     });
@@ -41,6 +46,10 @@ export class CartService {
       }
     });
     return total;
+  }
+
+  public setCartEmpty(){
+    this.monitorCart.next([]);
   }
 
   private cartObservableUpdate(currentCart:Observable<CartItem[]>){
@@ -119,14 +128,14 @@ export class CartService {
   return response
  }
 
- checkout(userId: string):Observable<CartItem[]> {
+ checkout(userId: string):Observable<any> {
   const httpOptions= {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
       Authorization: 'my-auth-token',
-      observe: 'response'
-    })
+      options: 'response'
+    }), 
   };
-  return this.http.put<CartItem[]>(`${this.baseURL}cart/checkout/${userId}`, httpOptions);
+  return this.http.put(`${this.baseURL}cart/checkout/${userId}`, httpOptions);
  }
 }

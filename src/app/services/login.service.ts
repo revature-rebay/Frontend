@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
@@ -9,12 +9,12 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginService {
 
-  checked: boolean = true;
+  loginTabSelected: boolean = true;
+  navbarVisible:boolean = true;
 
   currentUser: User = new User(); // I added this line
 
   url: string = environment.serverURL;
-  // url: string = "http://ec2-44-203-89-9.compute-1.amazonaws.com:9000/";
 
   constructor(private http: HttpClient) { 
     this.currentUser  = new User(); //starts off as a blank user upon instantiation (I added this line)
@@ -39,8 +39,8 @@ export class LoginService {
     this.currentUser  = new User();
   }
 
-  logout():Observable<any> {
-    return this.http.post(this.url + "user/logout", { withCredentials: true, observe:'response' });
+  logout() {
+    return this.http.post(this.url + "user/logout", null, { withCredentials:true, observe:'response'});
   }
 
   getCurrentUser():User {
