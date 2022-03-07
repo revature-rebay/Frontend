@@ -68,6 +68,12 @@ export class ProductsComponent implements OnInit {
     return false;
   }
 
+  updateImageURL(event:Event):void {
+    //this.displayImage = "assets/images/stockImage.jpg";
+    let htmlEmitter = event.target as HTMLImageElement;
+    htmlEmitter.src = "assets/images/stockImage.jpg";
+  }
+
   addbtnClick= () => {
     this.router.navigate(['/', 'add_product']);
   }
