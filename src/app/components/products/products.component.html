@@ -32,7 +32,7 @@
 
                     </span>
 
-                      <img [src]= 'setImage(product)' alt="">
+                      <img [src]= 'setImage(product)' (error)= 'updateImageURL()' alt="">
 
                       <!-- price -->
                       <h5 id="price">Price: ${{product.productPrice}}</h5>
