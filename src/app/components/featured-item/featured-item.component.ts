@@ -27,4 +27,13 @@ export class FeaturedItemComponent implements OnInit {
     this.product.getFeaturedProducts().subscribe((response: Product[])=> this.products = response);
   }
 
+  setProductImage(product:Product):string {
+    return 'assets/images/' + product.productName + '.jpg'; 
+  }
+
+  updateImageUrl(event:Event):void {
+    let htmlEmitter = event.target as HTMLImageElement;
+    htmlEmitter.src = "assets/images/stockImage.jpg";
+  }
+
 }
