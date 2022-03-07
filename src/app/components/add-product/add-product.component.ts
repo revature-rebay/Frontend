@@ -57,7 +57,8 @@ export class AddProductComponent implements OnInit {
             if (response == true){
             this.productService.updateAllProducts();
             alert("New product was created successfully!");
-            this.router.navigateByUrl("");
+            //this.router.navigateByUrl("");
+            this.router.navigate(['/redirect/products']);
           }else{
             alert("Product was not successfuly added");
             //redirect to the products page
