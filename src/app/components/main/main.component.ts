@@ -34,6 +34,12 @@ export class MainComponent implements OnInit {
     setTimeout(() => {this.makeFeaturedCategories()},300);      
   }
 
+  featureClick(){
+    this.router.navigate(['featured']);
+  }
+  salesClick(){
+    this.router.navigate(['sales']);
+  }
   /*
   Associate a string of category type with an array of products
   If number of items grows too large, product category should be

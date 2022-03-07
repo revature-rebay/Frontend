@@ -25,12 +25,15 @@ export class CartItemComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  //deletes the product from the cart 
+  //using cartDTO and the userId
   deleteProduct(event:MouseEvent) {
     let id = parseInt((<HTMLSpanElement>event.target).id);
     this.cartService.deleteProduct(<CartDTO>{userId:this.loginService.currentUser.id, quantity:0, productId:id});
   }
-
+  //allows the user to update the quantity of an item inside of the cart
+  //returns the new updated cart
+  //uses the cartDTO and userID
   updateProduct(event:MouseEvent){
     //when user tries to put invalid input like a letter / symbol or no input, automatically set to current itemQuantity and do not make api call
     console.log(this.updateQuantity);
@@ -45,12 +48,13 @@ export class CartItemComponent implements OnInit {
       this.cartService.updateProductQuantity(cartdto)  
     }
   }
-
+  //sets the image of the item inside of the cart
   setImage():string {
     return "assets/images/" + this.productName + ".jpg";
   }
-
-  getPrice(){
+  //gets the price of the items and displays it
+  //checks if it is discounted
+  getPrice():number {
     if(this.featuredProduct) return (this.productPrice - (this.productPrice * this.discountPercentage));
     return this.productPrice
   }

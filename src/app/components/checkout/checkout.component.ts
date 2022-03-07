@@ -43,6 +43,7 @@ export class CheckoutComponent implements OnInit {
     this.togglePayment = false;
     this.initializeForm();
   }
+  //the user must fill out all the forms an error appears if they have a blank spot
 
   initializeForm(): void {
     this.checkoutForm = this.fb.group({
@@ -76,19 +77,22 @@ export class CheckoutComponent implements OnInit {
       coupon: '',
     });
   }
-
+  //gets the subtotal + tax of the users cart
   getTotal(): number {
     return this.getSubTotal() + this.getTax();
   }
-
+  //tax amount
   getTax(): number {
     return this.getSubTotal() * 0.07;
   }
-
+  //gets the subtotal of the cart item before taxes
   getSubTotal(): number {
     return this.cartService.getSubTotal() * this.pricePercent;
   }
-
+  //Checks for a bad checkout
+  //checks if the items are out of stock and returns an error message 
+  //empties the cart if a successful checkout
+  //navigates to the thank you page after a successful checkout is done
   onCheckout() {
     if(this.checkoutForm.status === 'INVALID'){
       this.badCheckout = true;
@@ -114,7 +118,8 @@ export class CheckoutComponent implements OnInit {
       });
     }
   }
-
+  //allows the user to apply a coupon 
+  //changes the price
   applyCoupon() {
   
     if(!this.coupon.value.coupon) {
@@ -143,12 +148,15 @@ export class CheckoutComponent implements OnInit {
       onlySelf: true,
     });
   }
-
+  //gets the price of the items
+  //Checks if the item has a discount from the normal sale price
+  //returns the price after discount is applied
   getPrice(product:Product){
     if(product.featuredProduct) return (product.productPrice - (product.productPrice * product.discountPercentage));
     return product.productPrice
   }
-
+  //checks if items are out of stock
+  //delete an item from the cart that is not in stock
   delete(){
     this.notInStock.forEach(item => {
       this.cartService.deleteProduct(<CartDTO>{userId:this.loginService.currentUser.id, quantity:0, productId:item.product.productId})
