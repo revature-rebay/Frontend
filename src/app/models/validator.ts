@@ -1,3 +1,4 @@
+//was not used but can be set up for the checkout form, custom validation
 import { AbstractControl } from "@angular/forms";
 export class Validator {
     //personal details
