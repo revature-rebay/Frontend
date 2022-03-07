@@ -25,12 +25,12 @@ export class CartDetailPageComponent implements OnInit {
   ngOnInit(): void {
     this.getCart(this.loginService.currentUser.id.toString());
   }
-
+  //gets the subtotal inside of the cart
   getSubTotal():number{
     return this.cartService.getSubTotal();
   }
   
-  
+  //gets the users cart using the userId
   getCart(userId: string): void {
     this.cartService.getCart(userId).subscribe((res) => {
       if(res) {
@@ -38,7 +38,8 @@ export class CartDetailPageComponent implements OnInit {
       }
     });
   }
-  
+  //updates the product quantity inside of the cart 
+  //returns the new updated user cart
   update(cartItem:CartDTO){
     cartItem.userId = this.loginService.currentUser.id,
     this.cartService.updateProductQuantity(cartItem).subscribe(res => {
