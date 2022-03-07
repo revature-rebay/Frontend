@@ -43,6 +43,8 @@ export class AddProductComponent implements OnInit {
       alert("Must fill out all required fields.");
     }else if  (this.stock < 1 || this.stock > 100){
       alert("Stock amount must be between 1-100");
+    }else if (this.discount < 1 || this.discount > 100){
+      alert("Discount amount must be between 1-100");
     }else {
       //first create a new product object
       let product:Product = new Product(0, this.productName, this.description, this.formattedPriceAmount, this.discount / 100, this.featured, this.stock);
