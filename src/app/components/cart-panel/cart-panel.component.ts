@@ -15,27 +15,31 @@ export class CartPanelComponent implements OnInit {
   showNav !:boolean;
 
   @Input() sidenavTemplateRef: any;
-  duration: number = 0.5;
+  duration: number = 0.5; //css stuff
   //fills up entire inner window
   // navWidth: number = window.innerWidth;
-  navWidth: number = 400;
-  direction: SideNavDirection = SideNavDirection.Right;
+  navWidth: number = 400; //width of the side panel
+  direction: SideNavDirection = SideNavDirection.Right; //side panel slides from right
   
   constructor(private navService: NavigationService, private cartService:CartService) {
   }
 
+  //gets the subtotal for the cart
   getSubTotal():number{
     return this.cartService.getSubTotal();
   }
 
+  //another behavior subject that will listen to when showNav changes in navService which will update the showNav in this compoenent resulting in sidepanel display or not display
   ngOnInit(): void {
     this.navService.showNav.subscribe(showNav => this.showNav = showNav);
   }
 
+  //closes the side panel 
   onSidebarClose() {
     this.navService.toggleShowNav();
   }
 
+  //sets the style of the side panel, more css stuf
   getSideNavBarStyle() {
     let navBarStyle: any = {};
     

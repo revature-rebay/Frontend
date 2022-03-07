@@ -1,4 +1,5 @@
 export class States {
+	//used by the checkout form for the reactiveForm select input
 
     static states = [ 'Alabama',
 	'Alaska',
