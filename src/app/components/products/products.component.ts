@@ -68,8 +68,8 @@ export class ProductsComponent implements OnInit {
     return false;
   }
 
-  addbtnClick=  () => {
-    this.router.navigateByUrl('/add_product');
+  addbtnClick= () => {
+    this.router.navigate(['/', 'add_product']);
   }
 
   editbtnClick=  (id:number) => {
