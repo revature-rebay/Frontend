@@ -57,7 +57,7 @@ export class ProductService {
   }
 
   removeProduct(id:number):Observable<boolean> {
-    return this.http.delete(this.backendURL + "products/remove" + id) as Observable<boolean>;
+    return this.http.delete(this.backendURL + "products/remove/" + id) as Observable<boolean>;
   }
 
   removeLocalProduct(id:number):void{
