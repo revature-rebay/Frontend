@@ -50,7 +50,7 @@ export class CartItemComponent implements OnInit {
     return "assets/images/" + this.productName + ".jpg";
   }
 
-  getPrice(){
+  getPrice():number {
     if(this.featuredProduct) return (this.productPrice - (this.productPrice * this.discountPercentage));
     return this.productPrice
   }

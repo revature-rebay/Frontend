@@ -58,6 +58,11 @@ export class CartService {
     });
   }
 
+  //used only for testing
+  setCart(cart:CartItem[]){
+    this.monitorCart.next(cart);
+  }
+
   getCart(userId:string):Observable<CartItem[]>{
    
     const httpOptions = {

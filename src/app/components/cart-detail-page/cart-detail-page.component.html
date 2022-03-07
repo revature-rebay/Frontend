@@ -1,4 +1,10 @@
-
+<div *ngIf="!cart || cart?.length == 0" class="container-xl text-center mt-5 mb-5">
+    <h1 class="">Your cart is empty!</h1>
+    <span class="material-icons-outlined fs-1 color-revature">shopping_bag</span>
+    <br>
+    <a routerLinkActive="true" routerLink="/search_results">Go to products listing</a>
+  </div>
+  
 <div>
     <app-cart-detail-page-item *ngFor="let cartItem of cart"
 [itemQuantity] = cartItem.quantity

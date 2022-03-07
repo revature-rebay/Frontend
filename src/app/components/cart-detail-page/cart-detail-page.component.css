@@ -12,7 +12,9 @@
     margin: 0 auto;
 }
 
-
+.color-revature {
+    color: #F26925;
+}
 
 .btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:visited {
     background-color: #F26925 !important;

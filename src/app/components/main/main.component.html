@@ -1,3 +1,18 @@
+<div class="container">
+  <ngb-carousel>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img src="/assets/images/feature.png" alt="" (click)="featureClick()">
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img src="/assets/images/clearance.png" alt="" (click)="salesClick()">
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
 <div class="home-container"> 
     <div class="featured">
       <ngb-carousel  [circular]="true" [autoplayInterval]="1000">

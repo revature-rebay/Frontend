@@ -10,10 +10,9 @@ describe('CartDetailPageItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule, RouterTestingModule ],
-      declarations: [ CartDetailPageItemComponent ]
-    })
-    .compileComponents();
+      imports: [HttpClientTestingModule, RouterTestingModule],
+      declarations: [CartDetailPageItemComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -24,5 +23,25 @@ describe('CartDetailPageItemComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('Return the price of a discounted object', () => {
+    component.featuredProduct = true;
+    component.productPrice = 10;
+    component.discountPercentage = 0.2;
+    expect(component.getPrice()).toEqual(8);
+    expect(component.getPrice() != 8).toBeFalse();
+  });
+
+  it('Return the price of a non discounted object', () => {
+    component.featuredProduct = false;
+    component.productPrice = 10;
+    component.discountPercentage = 0.2;
+    expect(component.getPrice()).toEqual(10);
+  });
+
+  it('Return a string for a Path to an image', () => {
+    component.productName = 'pen';
+    expect(component.setImage()).toEqual('assets/images/pen.jpg');
   });
 });
