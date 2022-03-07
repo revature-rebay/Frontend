@@ -1,26 +1,29 @@
-<<<<<<< HEAD
-body {
-  background-image: url("https://i.pinimg.com/736x/fd/fb/ba/fdfbba317609890b779fd14cd3ac3823.jpg");
-}
-=======
-.image{
-  height:55em; 
-  background-size:cover; 
-  width:auto;
-  background-image:url('src/assets/images/background2.png');
+.image {
+  height: 52em;
+  background-size: cover;
+  width: 100%;
+  background-image: url("src/assets/images/background2.png");
   justify-content: center;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  margin: auto;
+}
+@media screen and (max-width: 650px) {
+  .image {
+    width: fit-content;
+  }
 }
 
->>>>>>> 38538ad5ea805aee0c26dbd528f15990bb027552
-.app {
+*/ .app {
   margin: 2.5em 0 0 auto;
   color: #000000;
   font: 600 16px/18px "Open Sans", sans-serif;
   float: right;
   width: 100%;
-  height: 100vh;
+  height: auto;
   justify-content: center;
-  opacity: 95%;
+  opacity: 100%;
 }
 .tab {
   cursor: pointer;
@@ -40,9 +43,8 @@ body {
   width: 100%;
   height: 100%;
   position: absolute;
-  padding: 90px 70px 50px 70px;
+  padding: 25px 70px 50px 70px;
   background: #f26925;
-  /* background-image: linear-gradient(135deg, #F26925 65%, #474C55); */
 }
 .login-snip .login,
 .login-snip .sign-up-form {
@@ -88,7 +90,7 @@ body {
 }
 .login-space .group {
   padding-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 .login-space .group .label,
 .login-space .group .input,
@@ -190,14 +192,13 @@ a {
 }
 .card {
   width: 500px;
-  left: 100px;
 }
 ::placeholder {
   color: white;
   text-align: center;
 }
 .no-gutters {
-  margin: 0px;
+  margin-top: 3em;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
