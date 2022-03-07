@@ -4,7 +4,7 @@ import { Product } from '../models/product/product.model';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ProductService } from './product.service';
 
-fdescribe('ProductService', () => {
+describe('ProductService', () => {
   let service: ProductService;
   let httpMock: HttpTestingController;
 
@@ -21,7 +21,7 @@ fdescribe('ProductService', () => {
     expect(service).toBeTruthy();
   });
 
-  fit('should return a full list of products', () => {
+  it('should return a full list of products', () => {
     let products: Product[] = [];
 
     let http = httpMock.expectOne(req => req.url.startsWith('http://localhost:9000/products'));
@@ -88,7 +88,7 @@ fdescribe('ProductService', () => {
     http.flush(true);
   })
 
-  fit('should update product data in the database', () => {
+  it('should update product data in the database', () => {
     let product: Product = new Product(0, "", "", 0, 0, false, 0);
 
     service.updateProduct(product).subscribe(response => {
