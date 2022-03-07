@@ -14,8 +14,13 @@ export class FeaturedItemComponent implements OnInit {
   
   constructor( private product:ProductService, private router:Router) { 
   }
-  getDetails(i:number){
-    this.router.navigate(['/product_details_page/'+i])
+  getDetails(productId:number){
+    if (this.product.exists(productId)){
+      this.router.navigate(['/product_details_page/'+ productId])
+    }else{
+      alert("This product doesn't exist");
+    }
+    // this.filteringAlgorithm(this.productService.getCachedProducts());
   }
 
   ngOnInit(): void {

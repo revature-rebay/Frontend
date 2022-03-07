@@ -28,7 +28,7 @@ span.tag2 {
 }
 #pName{
     margin-top:10px;
-    font-family: Poiret one;
+    /* font-family: Poiret one; */
     text-transform: uppercase;
     color:black; 
     background-color:white; 

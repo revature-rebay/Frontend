@@ -10,7 +10,7 @@
         class="list-item"
         *ngFor="let sales of products; index as i"
         [ngStyle]="{ border: i === products.length - 1 && 'none' }"
-        (click) = "getDetails(i+1)"
+        (click) = "getDetails(sales.productId)"
       >
         <div class="list-item__image">
           <img src="assets/images/{{sales.productName}}.jpg" alt="" />
@@ -20,7 +20,7 @@
           <div class="product-description">{{sales.productDescription}}</div>
         </div>
         <div *ngIf="sales.discountPercentage > 0.0;">
-          <div class ="product-price">{{ sales.productPrice-(sales.productPrice*sales.discountPercentage) | currency: "USD" }}</div>
+          <div class ="product-price" id="salePrice">{{ sales.productPrice-(sales.productPrice*sales.discountPercentage) | currency: "USD" }}</div>
           <div class="product-price" style="text-decoration: line-through;">{{ sales.productPrice  | currency: "USD" }}</div>
         </div>
         <div *ngIf="sales.discountPercentage === 0.0">
