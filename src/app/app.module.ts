@@ -28,6 +28,8 @@ import { UpdateProductComponent } from './components/update-product/update-produ
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { PasswordStrengthMeterModule } from 'angular-password-strength-meter';
 import { RedirectComponent } from './components/redirect/redirect.component';
+import { ThankYouComponent } from './components/thank-you/thank-you.component';
+import { FeaturedItemComponent } from './components/featured-item/featured-item.component';
 import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
@@ -53,6 +55,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AddProductComponent,
     UpdateProductComponent,
     RedirectComponent,
+    ThankYouComponent,
+    FeaturedItemComponent,
     FooterComponent
   ],
   schemas: [
@@ -69,7 +73,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [ CurrencyPipe ]
 })
 
 export class AppModule { }

@@ -1,61 +1,34 @@
-<!-- <div class="bg-light m-4 py-3 border border-primary">
-    <div class="d-flex row justify-content-between" id={{productId}}>
-        <div class="col-2">
-        <img class="rounded img-fluid pl-3" src="../../../assets/black_hat.jpeg" alt="Revature Hat"> -->
-                <!-- <p>{{productImage}}</p> -->
-        <!-- </div>
-    
-        <div class="col">
-                <p class="fs-5 fw-bold" >Product Name: {{productName}}</p>
-                <p class="fst-italic">Description: {{productDesc}}</p>
-        </div>
-        
-
-        <div class="col-1 mr-2">
-                <div class="row">
-                <input class="" type="number" name="quantity" placeholder={{itemQuantity}} min="1" max={{currentStock}} size="2"  [(ngModel)]="updateQuantity">
-                </div>
-                <div class="row mt-2">
-                <button class="btn btn-sm btn-secondary rounded" id={{productId}} (click)="updateProduct($event)">Update</button>      
-                </div>
-        </div> 
-        
-             
-
-        <div class="col-2">
-            <span class="fw-bold">Price:{{productPrice | currency}}</span>
-            <span id={{productId}} class="delete material-icons align-middle" (click)="deleteProduct($event)">delete</span>
-        </div>
-</div>
-</div> -->
-
-
 <div class="">
         <div class="d-flex flex-row justify-content-around bg-light m-4 py-3 border border-primary" id={{productId}}>
         
-                <div class="" id="image">
-                <img class="rounded img-fluid img-thumbnail" src="../../../assets/black_hat.jpeg" alt="Revature Hat">
+                <div *ngIf="getPath().match('/cart_detail_page')" class="" id="image">
+                <img class="rounded img-fluid img-thumbnail" [src]="setImage()" alt="../../assets/stockImage.jpg">
                 </div>
 
-                <div class="d-flex flex-column pl-2" id="itemInfo">
+                <div *ngIf="getPath().match('/cart_detail_page'); else elseBlock" class="d-flex flex-column pl-2" id="itemInfo">
                         <p class="fs-5 fw-bold">Product Name: {{productName | titlecase}}</p>
                         <p class="fst-italic">Description: {{productDesc}}</p>
                 </div>
+                <ng-template #elseBlock class="d-flex flex-column">
+                        <p class="fs-5 fw-bold ml-1">Product Name: {{productName | titlecase}}</p>
+                </ng-template>
         
-                <div class="d-flex flex-column ml-auto pr-2">
+                <div *ngIf="getPath().match('/cart_detail_page')" class="d-flex flex-column ml-auto pr-2">
                         <input class="" type="number" name="quantity" placeholder={{itemQuantity}} min="1" max={{currentStock}} size="2"  [(ngModel)]="updateQuantity">
                         <button class="btn btn-sm btn-secondary rounded mt-1" id={{productId}} (click)="updateProduct($event)">Update</button>      
                 </div>
+             
 
-               
 
-                <div class="d-flex flex-column ml-auto">
-                        <span class="fw-bold">Price:{{productPrice | currency}}</span>
+                <div *ngIf="getPath().match('/cart_detail_page')" class="d-flex flex-column ml-auto">
+                        <span class="fw-bold">Price:{{getPrice() | currency}}</span>
                 </div>
 
-                <div class="d-flex flex-column">
-                        <span id={{productId}} class="delete material-icons align-middle" (click)="deleteProduct($event)">delete</span>
+                <div *ngIf="getPath().match('/cart_detail_page')" class="d-flex flex-column">
+                        <span id={{productId}} class="delete material-icons align-middle mr-1" (click)="deleteProduct($event)">delete</span>
                 </div>
+                
+                
         
         </div>
 </div>

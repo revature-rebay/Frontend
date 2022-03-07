@@ -95,8 +95,8 @@ export class UpdateProductComponent implements OnInit {
 
         
         
-        //redirect to the main page
-        this.router.navigateByUrl("");
+        //redirect to the products page
+        this.router.navigate(['/redirect/products']);
       },
       error:()=>{
         console.log("Something went wrong when attempting to update this product.")
