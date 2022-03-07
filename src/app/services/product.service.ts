@@ -37,7 +37,7 @@ export class ProductService {
   }
 
   getProduct(productId:number):Observable<Product> {
-    return this.http.get(this.backendURL + "products/" + productId) as Observable<Product>;
+    return this.http.get(this.backendURL + "products/get/" + productId) as Observable<Product>;
   }
 
   getFeaturedProducts():Observable<Product[]> {
