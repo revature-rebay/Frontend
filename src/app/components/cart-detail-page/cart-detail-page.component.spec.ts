@@ -1,5 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { CartDetailPageComponent } from './cart-detail-page.component';
 
 describe('CartDetailPageComponent', () => {
@@ -8,7 +9,9 @@ describe('CartDetailPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CartDetailPageComponent ]
+      imports: [HttpClientTestingModule, RouterTestingModule],
+      declarations: [ CartDetailPageComponent]
+      
     })
     .compileComponents();
   });
