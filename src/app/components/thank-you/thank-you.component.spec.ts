@@ -22,4 +22,9 @@ describe('ThankYouComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  //randomly generates a number
+  it('orderNumber should be a random number', ()=> {
+    expect(component.orderNum).toBeTruthy();
+  })
 });

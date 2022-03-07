@@ -45,4 +45,5 @@ a:hover{
 
 #cartIcon:hover{
     color:#aa4b1b;
+    cursor: pointer;
 }
