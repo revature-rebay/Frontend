@@ -13,7 +13,7 @@
         (click) = "getDetails(sales.productId)"
       >
         <div class="list-item__image">
-          <img src="assets/images/{{sales.productName}}.jpg" alt="" />
+          <img [src]="setProductImage(sales)" (error)="updateImageUrl($event)" alt="" />
         </div>
         <div class="list-item__details">
           <div class="title">{{ sales.productName }}</div>
