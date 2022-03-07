@@ -2,6 +2,7 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import { AppComponent } from 'src/app/app.component';
 
 
 @Component({
@@ -9,11 +10,6 @@ import { LoginService } from 'src/app/services/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']  
 })
-
-@Injectable({
-  providedIn: 'root'
-})
-
 
 export class LoginComponent implements OnInit {
 
@@ -24,15 +20,24 @@ export class LoginComponent implements OnInit {
   lastName: string = "";
   email: string = "";
   user: User = new User();
-  checked: boolean = true;
+  loginTabSelected: boolean = true;
+  navbarVisible!: boolean;
 
   constructor(
     private router: Router,
     private loginService: LoginService
+    //private app: AppComponent
   ) { }
 
   ngOnInit() : void {
-    this.checked = this.loginService.checked;
+    this.loginTabSelected = this.loginService.loginTabSelected;
+    //this.app.visible = false;
+    this.loginService.navbarVisible = false;
+  }
+
+  ngOnDestroy() : void {
+    //this.app.visible = true;
+    this.loginService.navbarVisible = true;
   }
 
   login() {

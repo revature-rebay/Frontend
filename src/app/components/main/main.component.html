@@ -1,78 +1,15 @@
-<!-- Product Listing -->
-<div class="container">
-    <div class="col-xs-12 col-md-4">
-        <div class="prod-info-main prod-wrap clearfix">
-            <div class="row">
-                <div class="col-md-5 col-sm-12 col-xs-12">
-                    <div class="product-image">
-                        <img src="" class="img-responsive">
-                        <span class="tag2 hot">
-
-                            SALE
-
-                        </span>
-                    </div>
-                </div>
-                <div class="col-md-7 col-sm-12 col-xs-12">
-                    <div class="product-detail">
-                        <h5 class="name">
-                            <a href="#" style="color:#F26925">
-
-                                Product Name
-
-                            </a>
-                        </h5>
-                        <p class="price-container">
-
-                            <span>$199</span>
-
-                        </p>
-                        <span class="tag1"></span>
-                    </div>
-                    <div class="description">
-
-                        <p>A Short product description here </p>
-
-                    </div>
-                    <section>
-                        <form action="">
-                            <p class="qty">
-                                <button class="qtyminus" aria-hidden="true" type="button"
-                                    (click)="minus()">&minus;</button>
-                                <input type="number" name="qty" id="qty" min="1" max="10" step="1" [value]="quantity">
-                                <button class="qtyplus" aria-hidden="true" type="button"
-                                    (click)="plus()">&plus;</button>
-                            </p>
-                        </form>
-                    </section>
-                    <div class="product-info smart-form">
-                        <div class="row">
-                            <div class="col-md-12 justify-content-center">
-
-                                <a href="#" class="btn btn-dark" style="background-color:#F26925">Add to cart</a>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Product Listing -->
-<!-- Featured Product-->
-<div class="home-container">
-    
+<div class="home-container"> 
     <div class="featured">
-      <div class="featured__header">
-        <h2>Featured Products</h2>
-      </div>
-      <div class="featured__list">
-            <app-featured-card
-            *ngFor="let featured of featuredProducts"
-            [singleproduct]="featured">
+      <ngb-carousel  [circular]="true" [autoplayInterval]="1000">
+          <!-- if looping over standard map error is thrown in console, must use iteration keys -->
+        <ng-template ngbSlide *ngFor="let category of categoryMapIterationKeys">
+            <app-featured-card 
+            [productList]="categoryMap.get(category)" 
+            [category]="category" 
+            (onImageClick)="productClick($event)" 
+            (onCategoryClick)="categoryClick($event)">
             </app-featured-card>
-      </div>
+        </ng-template>
+      </ngb-carousel>
     </div>
 </div>
-<!-- Featured Product-->

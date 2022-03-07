@@ -1,0 +1,31 @@
+<div class="sales-container">
+    <div class="sales-container__empty" *ngIf="products.length === 0">
+      No items currently on sale.
+    </div>
+    <div class="sales-container__list" *ngIf="products.length > 0">
+      <header class="list-header">
+        <h2>Featured Items</h2>
+      </header>
+      <div
+        class="list-item"
+        *ngFor="let sales of products; index as i"
+        [ngStyle]="{ border: i === products.length - 1 && 'none' }"
+        (click) = "getDetails(i+1)"
+      >
+        <div class="list-item__image">
+          <img src="assets/images/{{sales.productName}}.jpg" alt="" />
+        </div>
+        <div class="list-item__details">
+          <div class="title">{{ sales.productName }}</div>
+          <div class="product-description">{{sales.productDescription}}</div>
+        </div>
+        <div *ngIf="sales.discountPercentage > 0.0;">
+          <div class ="product-price">{{ sales.productPrice-(sales.productPrice*sales.discountPercentage) | currency: "USD" }}</div>
+          <div class="product-price" style="text-decoration: line-through;">{{ sales.productPrice  | currency: "USD" }}</div>
+        </div>
+        <div *ngIf="sales.discountPercentage === 0.0">
+          <div class="product-price">{{ sales.productPrice | currency: "USD" }}</div>
+        </div>
+      </div>
+    </div>
+  </div>

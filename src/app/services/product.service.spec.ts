@@ -21,7 +21,7 @@ fdescribe('ProductService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return a full list of products', () => {
+  fit('should return a full list of products', () => {
     let products: Product[] = [];
 
     let http = httpMock.expectOne(req => req.url.startsWith('http://localhost:9000/products'));
