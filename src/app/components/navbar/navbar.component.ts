@@ -25,11 +25,11 @@ export class NavbarComponent implements OnInit {
   }
 
   signUpRoute(){
-    this.user.checked = false;
+    this.user.loginTabSelected = false;
   }
 
   loginRoute(){
-    this.user.checked = true;
+    this.user.loginTabSelected = true;
   }
 
   getCartQuantity(): number{

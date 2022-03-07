@@ -48,12 +48,4 @@ export class CartDetailPageComponent implements OnInit {
     })
   }
 
-  deleteProduct(event:number){
-    this.cartService.deleteProduct(<CartDTO>{userId:this.loginService.currentUser.id, quantity:0, productId:event}).subscribe(res => {
-      if(res){
-        this.cart = res;
-      }
-    });
-  }
-
 }
