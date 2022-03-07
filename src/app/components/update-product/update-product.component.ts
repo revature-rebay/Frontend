@@ -63,46 +63,53 @@ export class UpdateProductComponent implements OnInit {
 
   productUpdated():void {
 
-    this.product.productName = this.productName;
-    this.product.currentStock = this.stock;
-    this.product.discountPercentage = this.discount / 100;
-    this.product.featuredProduct = this.featured;
-    this.product.productDescription = this.productDescription;
-    this.product.productPrice = this.formattedAmount;
+    if(this.productName == "" || this.formattedAmount == 0 || this.stock == 0 || this.productDescription == "") {
+      alert("Must fill out all required fields.");
+    }else if  (this.stock < 1 || this.stock > 100){
+      alert("Stock amount must be between 1-100");
+    }else if  (this.discount < 1 || this.discount > 100){
+      alert("Discount amount must be between 1-100");
+    }else {
+      this.product.productName = this.productName;
+      this.product.currentStock = this.stock;
+      this.product.discountPercentage = this.discount / 100;
+      this.product.featuredProduct = this.featured;
+      this.product.productDescription = this.productDescription;
+      this.product.productPrice = this.formattedAmount;
 
-    //drop the dollar sign from the front of the price string
-    this.product.productPrice = parseFloat(this.product.productPrice.toString().substring(1));
+      //drop the dollar sign from the front of the price string
+      this.product.productPrice = parseFloat(this.product.productPrice.toString().substring(1));
 
-    console.log("before sending to the db: " + JSON.stringify(this.product));
+      console.log("before sending to the db: " + JSON.stringify(this.product));
 
 
-  //  this.product.productPrice = Number(this.product.productPrice);
-  //  console.log(this.product.productPrice);
+    //  this.product.productPrice = Number(this.product.productPrice);
+    //  console.log(this.product.productPrice);
 
-    this.productService.updateProduct(this.product).subscribe({
-      next:(product:boolean)=>{
+      this.productService.updateProduct(this.product).subscribe({
+        next:(product:boolean)=>{
 
-        //If the product exists then we get a 200 response and update the current product in the productService
-        if (product == true) {
-          //this means the update worked in the DB
-          this.productService.updateAllProducts(); //the current product is now logged in and we store its details for potential later use
-          console.log("after sedngin to the db: " + JSON.stringify(this.product));
-          //this.productService
+          //If the product exists then we get a 200 response and update the current product in the productService
+          if (product == true) {
+            //this means the update worked in the DB
+            this.productService.updateAllProducts(); //the current product is now logged in and we store its details for potential later use
+            console.log("after sedngin to the db: " + JSON.stringify(this.product));
+            //this.productService
+          }
+          else {
+            //the update failed for somereason
+          }
+
+          
+          
+          //redirect to the products page
+          this.router.navigate(['/redirect/products']);
+        },
+        error:()=>{
+          console.log("Something went wrong when attempting to update this product.")
         }
-        else {
-          //the update failed for somereason
-        }
-
-        
-        
-        //redirect to the products page
-        this.router.navigate(['/redirect/products']);
-      },
-      error:()=>{
-        console.log("Something went wrong when attempting to update this product.")
-      }
-    });
+      });
+    }
   }
-
   
 }
