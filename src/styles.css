@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 ngb-carousel {
-    max-width: 700px;
+    max-width: 1200px;
     margin: 50px auto;
 }
 ngb-carousel img {
