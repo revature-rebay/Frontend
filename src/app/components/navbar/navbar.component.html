@@ -70,7 +70,7 @@
             <!-- Featured & Clearance Links -->
         <ul class="navbar-nav flex-row">
           <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-            <a routerLinkActive="true" routerLink="main" style="text-decoration: none; margin-top:20px;">Featured</a>
+            <a routerLinkActive="true" routerLink="featured" style="text-decoration: none; margin-top:20px;">Featured</a>
           </li>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <li class="nav-item me-2 me-lg-0 d-none d-md-inline-block">
@@ -84,7 +84,7 @@
             <span style="color:#F26925;" *ngIf= "userLoggedIn()">Hello, {{this.user.currentUser.firstName}} <span style="color:#af4e1d;">⌄</span></span>
             <div class="dropdown-content" style="background-color:#474C55">
               <a routerLinkActive="true" routerLink="login" *ngIf= "userLoggedIn()">Update Profile</a>
-              <a routerLinkActive="true" routerLink="product-page" *ngIf= "isAdmin()">Products</a>
+              <a routerLinkActive="true" routerLink="products" *ngIf= "isAdmin()">Products</a>
               <a routerLinkActive="true" routerLink="main" *ngIf= "userLoggedIn()" (click)="logOut()">Logout</a>
             </div>
         </div>

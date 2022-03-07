@@ -1,4 +1,5 @@
 import { CurrencyPipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -8,17 +9,17 @@ import { ProductService } from 'src/app/services/product.service';
 import { AddProductComponent } from './add-product.component';
 
 describe('AddProductComponent', () => {
-  
+
   let component: AddProductComponent;
   let fixture: ComponentFixture<AddProductComponent>;
   let mockProductService: jasmine.SpyObj<ProductService>;
 
   beforeEach(async () => {
-    mockProductService = jasmine.createSpyObj('ProductService', ['addNewProduct', 'updateAllProduct']);
+    mockProductService = jasmine.createSpyObj('ProductService', ['addNewProduct', 'updateAllProducts']);
     mockProductService.addNewProduct.and.returnValue(of(true));
 
     await TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule, RouterTestingModule ],
+      imports: [ RouterTestingModule ],
       declarations: [ AddProductComponent ],
       providers: [ CurrencyPipe, { provide: ProductService, useValue: mockProductService } ]
     })
@@ -32,6 +33,7 @@ describe('AddProductComponent', () => {
   });
 
   it('should create', () => {
+    expect(fixture).toBeTruthy();
     expect(component).toBeTruthy();
   });
 

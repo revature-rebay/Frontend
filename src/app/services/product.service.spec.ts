@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
 import { Product } from '../models/product/product.model';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ProductService } from './product.service';
 
-describe('ProductService', () => {
+fdescribe('ProductService', () => {
   let service: ProductService;
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -13,22 +14,21 @@ describe('ProductService', () => {
       providers: [ ProductService ]
     });
     service = TestBed.inject(ProductService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return a full list of products', () => {
+  fit('should return a full list of products', () => {
     let products: Product[] = [];
-    let productServiceMock = spyOn(service, 'getAllProducts').withArgs()
-      .and.returnValue(of(products));
+    service.getAllProducts();
 
-    service.getAllProducts().subscribe((data) => {
-      console.log("called")
-      expect(data).toEqual(products);
-    }); 
-    expect(service.getAllProducts).toHaveBeenCalled();
+    httpMock.expectOne("localhost:9000/products");
+
+    
+    
   })
 
   it('should return a list of featured products', () => {

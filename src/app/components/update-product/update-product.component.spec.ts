@@ -9,14 +9,15 @@ import { ProductService } from 'src/app/services/product.service';
 import { UpdateProductComponent } from './update-product.component';
 
 describe('UpdateProductComponent', () => {
-  /*
+  
   let component: UpdateProductComponent;
   let fixture: ComponentFixture<UpdateProductComponent>;
   let mockProductService: jasmine.SpyObj<ProductService>;
 
   beforeEach(async () => {
-    mockProductService = jasmine.createSpyObj('ProductService', ['updateProduct', 'updateAllProduct']);
+    mockProductService = jasmine.createSpyObj('ProductService', ['updateProduct', 'updateAllProducts', 'getLoadedProductById']);
     mockProductService.updateProduct.and.returnValue(of(true));
+    mockProductService.getLoadedProductById.and.returnValue(new Product(1, "Black Hat", "It's...a black hat", 15, 10, true, 50))
 
     await TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule, RouterTestingModule ],
@@ -37,12 +38,11 @@ describe('UpdateProductComponent', () => {
   });
 
   it('should update a product in the database via the product service', () => {
-    component.product = new Product(1, "Black Hat", "It's...a black hat", 15, 10, true, 50);
     fixture.detectChanges();
 
     component.productUpdated();
     expect(mockProductService.updateProduct).toHaveBeenCalled();
-    expect(mockProductService.updateAllProduct).toHaveBeenCalled();
+    expect(mockProductService.updateAllProducts).toHaveBeenCalled();
   });
-*/
+
 });

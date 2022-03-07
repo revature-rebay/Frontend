@@ -64,17 +64,15 @@ describe('LoginService', () => {
 
   it('should return status 200 for loggin out', ()=>{
 
-    let response:number = 200;
-
-    service.logout().subscribe((status) =>{
-      expect(status).toEqual(response);
+    service.logout().subscribe({next: response=>{
+      expect(response.status).toEqual(200);}
     })
 
     const req = httpMock.expectOne(`${service.url}user/logout`);
 
     expect(req.request.method).toBe("POST");
 
-    req.flush(response);
+    req.flush({status: 200});
 
     httpMock.verify();
 
