@@ -152,7 +152,7 @@ export class CheckoutComponent implements OnInit {
   //Checks if the item has a discount from the normal sale price
   //returns the price after discount is applied
   getPrice(product:Product){
-    if(product.featuredProduct) return (product.productPrice - (product.productPrice * product.discountPercentage));
+    if(product.discountPercentage) return (product.productPrice - (product.productPrice * product.discountPercentage));
     return product.productPrice
   }
   //checks if items are out of stock
