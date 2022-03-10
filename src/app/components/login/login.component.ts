@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() : void {
+    console.log("in login init");
     this.loginTabSelected = this.loginService.loginTabSelected;
     //this.app.visible = false;
     this.loginService.navbarVisible = false;
