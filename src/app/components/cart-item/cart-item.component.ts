@@ -55,7 +55,7 @@ export class CartItemComponent implements OnInit {
   //gets the price of the items and displays it
   //checks if it is discounted
   getPrice():number {
-    if(this.featuredProduct) return (this.productPrice - (this.productPrice * this.discountPercentage));
+    if(this.discountPercentage) return (this.productPrice - (this.productPrice * this.discountPercentage));
     return this.productPrice
   }
 

@@ -58,7 +58,7 @@ export class CartDetailPageItemComponent implements OnInit {
   }
   //returns the price for a product, if featured, it will calculate the discounted price
   getPrice(){
-    if(this.featuredProduct) return (this.productPrice - (this.productPrice * this.discountPercentage));
+    if(this.discountPercentage) return (this.productPrice - (this.productPrice * this.discountPercentage));
     return this.productPrice
   }
   //uses router to find what url for structural directives in html template
